@@ -1,0 +1,34 @@
+.box_w100per_h70px {
+  width: 100%;
+  height: 70px;
+  border: 1px dotted red;
+  display: inline-block
+}
+
+.PatrickStatusBar {
+  width: 100%;
+  height: 100%;
+  border: 3px dotted green;
+  display: inline-block
+}
+
+.box_94per_3perMg {
+  width: 94%;
+  height: 50px;
+  border: 1px dotted red;
+  margin-left: 3%;
+  margin-right: 3%;
+  display: inline-block
+}
+
+.box_100per_10px {
+  width: 100%;
+  height: 10px;
+  border: 1px dotted red;
+  display: inline-block
+}
+
+.border {
+  border: 1px dotted blue;
+  background: blue;
+}
