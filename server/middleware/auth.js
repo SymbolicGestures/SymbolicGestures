@@ -15,7 +15,7 @@ module.exports.session = session({
     host: 'localhost',
     port: 6379
   }),
-  secret: 'more laughter, more love, more life',
+  secret: 'hire us! github @ jykim16, jerrysummer, rutherfordjp8, sean0923',
   resave: false,
   saveUninitialized: false
 });

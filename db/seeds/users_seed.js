@@ -8,10 +8,10 @@ exports.seed = function (knex, Promise) {
         throw profile;
       }
       return models.Profile.forge({
-        first: 'System',
-        last: 'Admin',
-        display: 'Administrator',
-        email: 'admin@domain.com'
+        first: 'Jonathan',
+        last: 'Kim',
+        display: 'jykim16',
+        email: 'jonathan@gmail.com'
       }).save();
     })
     .error(err => {
@@ -21,7 +21,10 @@ exports.seed = function (knex, Promise) {
     .then((profile) => {
       return models.Auth.forge({
         type: 'local',
-        password: 'admin123',
+        first: profile.get('first'),
+        last: profile.get('last'),
+        display: profile.get('display'),
+        password: 'jonathan',
         profile_id: profile.get('id')
       }).save();
     })
