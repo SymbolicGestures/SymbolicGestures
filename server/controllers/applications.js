@@ -18,7 +18,7 @@ module.exports.getAllApps = (req, res) => {
 };
 
 module.exports.getOneApp = (req, res) => {
-  models.Application.where({ id: req.params.id }).fetch({withRelated: ['contacts', 'histories', 'notes']})
+  models.Application.where({ profile_id: req.params.id }).fetchAll({withRelated: ['contacts', 'histories', 'notes']})
     .then(application => {
       res.status(200).send(application);
     })
@@ -27,7 +27,6 @@ module.exports.getOneApp = (req, res) => {
       res.status(503).send(err);
     });
 };
-
 
 module.exports.createOrUpdateApp = (req, res) => {
   models.Application.forge({ id: req.params.id }).fetch()
@@ -77,7 +76,7 @@ module.exports.getAllNotes = (req, res) => {
 };
 
 module.exports.getOneNote = (req, res) => {
-  models.Note.where({ id: req.params.id }).fetch()
+  models.Note.where({ application_id: req.params.id }).fetchAll()
     .then(note => {
       res.status(200).send(note);
     })
@@ -127,7 +126,7 @@ module.exports.getAllHistories = (req, res) => {
 };
 
 module.exports.getOneHistory = (req, res) => {
-  models.History.where({ id: req.params.id }).fetch()
+  models.History.where({ application_id: req.params.id }).fetchAll()
     .then(history => {
       res.status(200).send(history);
     })
@@ -175,7 +174,7 @@ module.exports.getAllContacts = (req, res) => {
 };
 
 module.exports.getOneContact = (req, res) => {
-  models.Contact.where({ id: req.params.id }).fetch()
+  models.Contact.where({ application_id: req.params.id }).fetchAll()
     .then(contact => {
       res.status(200).send(contact);
     })
