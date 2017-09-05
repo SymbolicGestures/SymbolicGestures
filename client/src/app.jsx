@@ -40,6 +40,14 @@ class App extends React.Component {
 
   }
 
+  getUsersInfo() {
+
+  }
+
+  getApplications() {
+
+  }
+
   render() {
     return (
       <div>

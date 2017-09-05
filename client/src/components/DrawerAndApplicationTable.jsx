@@ -9,13 +9,21 @@ export default class ApplicationTable extends React.Component {
     super(props);
     this.state = {
       items: [],
-      selectedApplication: this.props.applications[0] || []
+      selectedApplication: this.props.applications[0] || [],
+      showDrawer: false,
     };
+
+    this.handleClick = this.handleClick.bind(this);
+    this.showDrawer = this.showDrawer.bind(this);
   }
 
   handleClick(application) {
     // console.log(application);
     this.setState({ selectedApplication: application });
+  }
+
+  showDrawer() {
+    this.setState({ showDrawer: true });
   }
 
   render() {
@@ -29,6 +37,7 @@ export default class ApplicationTable extends React.Component {
         content="Add Aplication"
         icon="add square"
         labelPosition="left"
+        onClick={this.showDrawer}
       /><Button>
         <Icon name="plus" /> Add Aplication
       </Button>
@@ -43,7 +52,10 @@ export default class ApplicationTable extends React.Component {
       <Button content="Next" icon="right arrow" labelPosition="right" />
 
       <MuiThemeProvider>
-        <Drawer application={this.state.selectedApplication} />
+        <Drawer
+          application={this.state.selectedApplication}
+          showDrawer={this.state.showDrawer}
+        />
       </MuiThemeProvider>
       <Segment style={segmentStyle}>
 
