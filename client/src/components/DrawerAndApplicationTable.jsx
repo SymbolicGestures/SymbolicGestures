@@ -23,6 +23,7 @@ export default class ApplicationTable extends React.Component {
   }
 
   showDrawer() {
+    console.log('yeah');
     this.setState({ showDrawer: true });
   }
 
