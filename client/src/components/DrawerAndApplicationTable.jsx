@@ -1,6 +1,6 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Table, Segment } from 'semantic-ui-react';
+import { Table, Segment, Button, Icon } from 'semantic-ui-react';
 
 import Drawer from './Drawer.jsx';
 
@@ -23,6 +23,24 @@ export default class ApplicationTable extends React.Component {
     const applications = this.props.applications || [];
     const stageNameToColorHash = this.props.stageNameToColorHash || {};
     return (<div>
+
+      <Button
+        color="vk"
+        content="Add Aplication"
+        icon="add square"
+        labelPosition="left"
+      /><Button>
+        <Icon name="plus" /> Add Aplication
+      </Button>
+
+      <Button positive>
+        <Icon name="plus" /> Add Aplication
+      </Button>
+
+      <Button color="vk">
+        <Icon name="plus" /> Add Aplication
+      </Button>
+      <Button content="Next" icon="right arrow" labelPosition="right" />
 
       <MuiThemeProvider>
         <Drawer application={this.state.selectedApplication} />
