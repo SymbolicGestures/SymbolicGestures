@@ -29,7 +29,7 @@ let oneFakeApplication = () => {
   }
 
   let dateApplied = format(faker.date.past(), 'YYYY-MM-DD');
-  let possHistories = [dateApplied];
+  let possHistories = [];
   for (let i = 0; i <= rnadDateLen; i++) {
     possHistories.push({
       date: format(faker.date.future(), 'YYYY-MM-DD'),
@@ -45,7 +45,7 @@ let oneFakeApplication = () => {
     stage: stages[randIdx],
     jobPostingLink: faker.internet.url(),
     jobPostingSource: sources[randIdx],
-    // -- In 
+    // -- In
     appliedAt: dateApplied,
     updatedAt: dateApplied,
     locaton: faker.address.city(),
@@ -69,6 +69,6 @@ let fakeApplicationsGenerator = (num) => {
   return applications;
 };
 
-// console.log((fakeApplicationsGenerator(2)));
+console.log(JSON.stringify(fakeApplicationsGenerator(2)));
 
 module.exports = fakeApplicationsGenerator;

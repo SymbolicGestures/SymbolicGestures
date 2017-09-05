@@ -41,7 +41,7 @@ exports.up = function (knex, Promise) {
     knex.schema.createTableIfNotExists('notes', function(table) {
       table.increments('id').unsigned().primary();
       table.integer('application_id').references('applications.id').onDelete('CASCADE');
-      table.string('note').nullable();
+      table.text('note').nullable();
       table.string('type', 50).nullable();
       table.timestamps(true, true);
     }),
@@ -49,8 +49,7 @@ exports.up = function (knex, Promise) {
       table.increments('id').unsigned().primary();
       table.integer('application_id').references('applications.id').onDelete('CASCADE');
       table.string('role', 50).nullable();
-      table.string('first', 100).nullable();
-      table.string('last', 100).nullable();
+      table.string('name', 100).nullable();
       table.string('email', 100).nullable();
       table.string('phone', 100).nullable();
       table.timestamps(true, true);

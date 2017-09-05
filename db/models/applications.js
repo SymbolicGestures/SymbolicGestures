@@ -2,6 +2,7 @@ const db = require('../');
 
 const Application = db.Model.extend({
   tableName: 'applications',
+  hasTimestamps: true,
   profile: function() {
     return this.belongsTo('Profile');
   },
