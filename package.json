@@ -1,12 +1,12 @@
 {
-  "name": "OfferOverflow",
+  "name": "course.thesis",
   "version": "1.0.0",
   "scripts": {
     "start": "nodemon server",
     "test": "NODE_ENV=test grunt test",
     "build": "webpack --watch"
   },
-  "author": "SymbolicGestures",
+  "author": "Hack Reactor",
   "license": "MIT",
   "dependencies": {
     "babel-core": "^6.24.1",
