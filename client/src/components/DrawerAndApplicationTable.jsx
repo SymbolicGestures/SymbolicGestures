@@ -32,25 +32,10 @@ export default class DrawerAndApplicationTable extends React.Component {
     const applications = this.props.applications || [];
     const stageNameToColorHash = this.props.stageNameToColorHash || {};
     return (<div>
-      {console.log('in application table', applications)}
-      <Button
-        color="vk"
-        content="Add Aplication"
-        icon="add square"
-        labelPosition="left"
-        onClick={this.showDrawer}
-      /><Button>
+      
+      <Button color="vk" onClick={this.showDrawer}>
         <Icon name="plus" /> Add Aplication
       </Button>
-
-      <Button positive>
-        <Icon name="plus" /> Add Aplication
-      </Button>
-
-      <Button color="vk">
-        <Icon name="plus" /> Add Aplication
-      </Button>
-      <Button content="Next" icon="right arrow" labelPosition="right" />
 
       <MuiThemeProvider>
         <Drawer

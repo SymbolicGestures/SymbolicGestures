@@ -11,7 +11,7 @@ class AppDrawerNote extends React.Component {
     return (
       <div>
         <h2>AppDrawerNote</h2>
-        <AppDrawerNoteItem application={this.props.application}/>
+        <AppDrawerNoteItem application={this.props.application} />
       </div>
     );
   }

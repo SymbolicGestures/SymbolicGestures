@@ -33,6 +33,11 @@
   background: blue;
 }
 
+.DrawerAndApplicationTable {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
 .practice {
   color: rgba(255, 193, 7, .5);
 }
