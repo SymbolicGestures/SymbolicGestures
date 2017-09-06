@@ -28,10 +28,6 @@ export default class DrawerAndApplicationTable extends React.Component {
     // this.setState({ isDrawerOpen: true });
   }
 
-  closeDrawer() {
-    console.log('ddd');
-  }
-
   render() {
     const segmentStyle = { padding: 0 };
     const applications = this.props.applications || [];
@@ -42,13 +38,13 @@ export default class DrawerAndApplicationTable extends React.Component {
         <Icon name="plus" /> Add Aplication
       </Button>
 
-      <MuiThemeProvider>
+      {/* <MuiThemeProvider>
         <MateUiRightDrawer
           application={this.state.selectedApplication}
           isDrawerOpen={this.state.isDrawerOpen}
           handleAddButtonClick={this.handleAddButtonClick}
         />
-      </MuiThemeProvider>
+      </MuiThemeProvider> */}
       <Segment style={segmentStyle}>
 
         <Table singleLine selectable>

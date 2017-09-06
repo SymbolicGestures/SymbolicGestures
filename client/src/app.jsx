@@ -32,9 +32,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
       // applications: fakeApplications,
       applications: [],
       stagesSettings: fakeStagesSettings,
+=======
+      applications: [],
+      stagesSettings: [],
+>>>>>>> Wokring on user click outside of drawer
       stageNameToColorHash,
     };
     this.getApplications = this.getApplications.bind(this);
@@ -45,60 +50,47 @@ class App extends React.Component {
     this.getApplications();
   }
 
-  getUsersInfo() {
-    axios.get('/');
-  }
-
   getApplications() {
     axios.get('/api/preference')
-      .then((data) => {
-        console.log(data);
+      .then((userData) => {
+        console.log(userData.data.stages_settings);
+        let stagesSettings = userData.data.stages_settings;
+        this.setState({ stagesSettings });
+        axios.get('/api/applications')
+          .then((applicationData) => {
+            console.log('get applications from server');
+            console.log('this is data from server:', applicationData.data);
+            console.log('-----');
+            let applications = applicationData.data.map((application) => {
+              application.createdAt = application.created_at; // 1
+              application.companyName = application.company_name; // 2
+              application.jobTitle = application.job_title; // 3
+              application.jobPostingLink = application.job_posting_link; // 4
+              application.jobPostingSource = application.job_posting_source; // 5
+              application.appliedAt = application.applied_at; // 6
+              application.updatedAt = application.updated_at; // 7
+              application.jobPostingToPdfLink = application.job_posting_to_pdf_link; // 8
+              delete application.created_at; // 1
+              delete application.company_name; // 2
+              delete application.job_title; // 3
+              delete application.job_posting_link; // 4
+              delete application.job_posting_source; // 5
+              delete application.applied_at; // 6
+              delete application.updated_at; // 7
+              delete application.job_posting_to_pdf_link; // 8
+              return application;
+            });
+            this.setState({ applications });
+          })
+          .catch((err) => {
+            console.log('err from api/applications');
+            console.log(err);
+          });
       })
       .catch((err) => {
+        console.log('err from /api/preference');
         console.log(err);
       });
-    // axios.get('/api/applications')
-    //   .then((data) => {
-    //     console.log('get applications from server');
-    //     console.log('this is data from server:', data.data);
-    //     console.log('-----');
-    //     let applications = data.data.map((application) => {
-    //       application.createdAt = application.created_at; // 1
-    //       application.companyName = application.company_name; // 2
-    //       application.jobTitle = application.job_title; // 3
-    //       application.jobPostingLink = application.job_posting_link; // 4
-    //       application.jobPostingSource = application.job_posting_source; // 5
-    //       application.appliedAt = application.applied_at; // 6
-    //       application.updatedAt = application.updated_at; // 7
-    //       application.jobPostingToPdfLink = application.job_posting_to_pdf_link; // 8
-    //       delete application.created_at; // 1
-    //       delete application.company_name; // 2
-    //       delete application.job_title; // 3
-    //       delete application.job_posting_link; // 4
-    //       delete application.job_posting_source; // 5
-    //       delete application.applied_at; // 6
-    //       delete application.updated_at; // 7
-    //       delete application.job_posting_to_pdf_link; // 8
-    //       return application;
-    //     });
-    //     console.log('one application: ', applications[0]);
-    //     this.setState({ applications });
-    //   })
-    //   // createdAt: dateApplied,
-    //   // companyName: faker.company.companyName(),
-    //   // jobTitle: faker.name.jobTitle(),
-    //   // stage: stages[randIdx],
-    //   // jobPostingLink: faker.internet.url(),
-    //   // jobPostingSource: sources[randIdx],
-    //   // // -- In
-    //   // appliedAt: dateApplied,
-    //   // updatedAt: dateApplied,
-    //   // locaton: faker.address.city(),
-    //   // jobPostingToPdfLink: faker.internet.url(),
-    //   // this.setState({ applications });
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   }
 
   handleAddButtonClick() {
@@ -126,9 +118,15 @@ class App extends React.Component {
     this.setState({ applications: newApplications });
   }
 
+  closeDrawer(e) {
+    console.log(e.target);
+    console.log('className:', e.target.className);
+    console.log(Object.keys(e.target));
+  }
+
   render() {
     return (
-      <div>
+      <div onClick={this.closeDrawer} >
         <Navbar />
         <div className={seanStyleBox.box_94per_3perMg} />
 
