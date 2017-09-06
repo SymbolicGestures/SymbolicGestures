@@ -69,16 +69,10 @@ class App extends React.Component {
 
         this.setState({ userId, stageNameToColorHash });
 
-
         axios.get('/api/applications')
           .then((applicationData) => {
             console.log('Applications from database:', applicationData.data);
-            let applications = applicationData.data.map((application) => {
-              application.job_posting_to_pdf_link = application.job_posting_to_pdf_link; // 8
-              delete application.job_posting_to_pdf_link; // 8
-              return application;
-            });
-            this.setState({ applications });
+            this.setState({ applications: applicationData.data });
           })
           .catch((err) => {
             console.log('err from api/applications');
