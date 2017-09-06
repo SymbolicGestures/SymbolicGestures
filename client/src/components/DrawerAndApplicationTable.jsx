@@ -29,7 +29,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     let emptyApplication = {
       createdAt: currentDate,
       companyName: '',
-      jobTitle: '',
+      job_title: '',
       stage: '',
       jobPostingLink: '',
       jobPostingSource: '',
@@ -96,7 +96,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                 <Table.Row key={idx} onClick={() => (this.handleClick(application))}>
                   <Table.Cell>{application.createdAt}</Table.Cell>
                   <Table.Cell>{application.companyName}</Table.Cell>
-                  <Table.Cell>{application.jobTitle}</Table.Cell>
+                  <Table.Cell>{application.job_title}</Table.Cell>
                   <Table.Cell
                     style={stageNameToColorHash[application.stage]}
                   >{application.stage}</Table.Cell>

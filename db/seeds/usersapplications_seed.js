@@ -8,7 +8,7 @@ let createApplicationRecord = (profile_id, knex, application) => {
     stage: application.stage,
     job_posting_link: application.jobPostingLink,
     company_name: application.companyName,
-    job_title: application.jobTitle,
+    job_title: application.job_title,
     location: application.location,
     job_posting_source: application.jobPostingSource,
   })

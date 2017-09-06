@@ -25,7 +25,7 @@ module.exports.createOrUpdateApp = (req, res) => {
           company_name: application.companyName,
           stage: application.stage,
           profile_id: application.profileId,
-          job_title: application.jobTitle,
+          job_title: application.job_title,
           location: application.location,
           job_posting_source: application.jobPostingSource,
           job_posting_to_pdf_link: application.jobPostingToPdfLink
@@ -36,7 +36,7 @@ module.exports.createOrUpdateApp = (req, res) => {
           company_name: application.companyName,
           stage: application.stage,
           profile_id: application.profileId,
-          job_title: application.jobTitle,
+          job_title: application.job_title,
           location: application.location,
           job_posting_source: application.jobPostingSource,
           job_posting_to_pdf_link: application.jobPostingToPdfLink
