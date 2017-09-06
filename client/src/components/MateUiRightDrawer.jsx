@@ -4,8 +4,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import AppDrawer from './drawer/appDrawer.jsx';
 
-const seanStyleBox = require('./../../styles/seanStyleBox.css');
-
 export default class MateUiRightDrawer extends React.Component {
   constructor(props) {
     super(props);

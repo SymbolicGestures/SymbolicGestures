@@ -2,7 +2,7 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Table, Segment, Button, Icon } from 'semantic-ui-react';
 
-import Drawer from './Drawer.jsx';
+import MateUiRightDrawer from './MateUiRightDrawer.jsx';
 
 export default class DrawerAndApplicationTable extends React.Component {
   constructor(props) {
@@ -10,11 +10,11 @@ export default class DrawerAndApplicationTable extends React.Component {
     this.state = {
       items: [],
       selectedApplication: this.props.applications[0] || [],
-      showDrawer: false,
+      isDrawerOpen: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.showDrawer = this.showDrawer.bind(this);
+    this.addAppSoShowDrawer = this.addAppSoShowDrawer.bind(this);
   }
 
   handleClick(application) {
@@ -22,9 +22,9 @@ export default class DrawerAndApplicationTable extends React.Component {
     this.setState({ selectedApplication: application });
   }
 
-  showDrawer() {
+  addAppSoShowDrawer() {
     console.log('yeah');
-    this.setState({ showDrawer: true });
+    this.setState({ isDrawerOpen: true });
   }
 
   render() {
@@ -38,9 +38,10 @@ export default class DrawerAndApplicationTable extends React.Component {
       </Button>
 
       <MuiThemeProvider>
-        <Drawer
+        <MateUiRightDrawer
           application={this.state.selectedApplication}
-          showDrawer={this.state.showDrawer}
+          isDrawerOpen={this.state.isDrawerOpen}
+          addAppSoShowDrawer={this.addAppSoShowDrawer}
         />
       </MuiThemeProvider>
       <Segment style={segmentStyle}>
