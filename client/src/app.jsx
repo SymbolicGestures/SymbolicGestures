@@ -31,7 +31,6 @@ const seanStyleBox = require('./../styles/seanStyleBox.css');
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     // this.state = { // for data from database
     //   applications: [],
     //   stagesSettings: [],
