@@ -9,6 +9,11 @@ export default class MateUiRightDrawer extends React.Component {
     super(props);
     this.state = { open: false };
     this.handleToggle = this.handleToggle.bind(this);
+    this.setDrawerToOpen = this.setDrawerToOpen.bind(this);
+  }
+
+  setDrawerToOpen() {
+    this.setState({ open: true });
   }
 
   handleToggle() {
@@ -24,7 +29,7 @@ export default class MateUiRightDrawer extends React.Component {
           onClick={this.handleToggle}
         />
         <Drawer width={'70%'} openSecondary={true} open={this.state.open} >
-          <AppDrawer application={this.props.application}/>
+          <AppDrawer application={this.props.application} />
         </Drawer>
       </div>
     );

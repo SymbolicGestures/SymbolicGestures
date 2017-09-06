@@ -2,7 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
+<<<<<<< HEAD
 import Navbar from './components/Header/Navbar.jsx';
+=======
+import { format } from 'date-fns';
+
+>>>>>>> Add button render new row
 import DrawerAndApplicationTable from './components/DrawerAndApplicationTable.jsx';
 
 const fakeApplicationsGenerator = require('./../../config/fakeApplicationsGenerator.js');
@@ -36,6 +41,7 @@ class App extends React.Component {
       stageNameToColorHash,
     };
     this.getApplications = this.getApplications.bind(this);
+    this.handleAddButtonClick = this.handleAddButtonClick.bind(this);
   }
 
   componentDidMount() {
@@ -91,6 +97,31 @@ class App extends React.Component {
       });
   }
 
+  handleAddButtonClick() {
+    let currentDate = format(
+      new Date(),
+      'YYYY-MM-DD-ddd-HH-MM-ss'
+    );
+    let emptyApplication = {
+      createdAt: currentDate,
+      companyName: '',
+      jobTitle: '',
+      stage: '',
+      jobPostingLink: '',
+      jobPostingSource: '',
+      appliedAt: '',
+      updatedAt: '',
+      locaton: '',
+      jobPostingToPdfLink: '',
+      notes: [],
+      histories: [],
+      contacts: [],
+    };
+
+    let newApplications = [emptyApplication].concat(this.state.applications);
+    this.setState({ applications: newApplications });
+  }
+
   render() {
     return (
       <div>
@@ -112,6 +143,7 @@ class App extends React.Component {
             applications={this.state.applications}
             stagesSettings={this.state.applications}
             stageNameToColorHash={this.state.stageNameToColorHash}
+            handleAddButtonClick={this.handleAddButtonClick}
           />
         </div>
 

@@ -14,7 +14,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.addAppSoShowDrawer = this.addAppSoShowDrawer.bind(this);
+    this.handleAddButtonClick = this.handleAddButtonClick.bind(this);
   }
 
   handleClick(application) {
@@ -22,9 +22,10 @@ export default class DrawerAndApplicationTable extends React.Component {
     this.setState({ selectedApplication: application });
   }
 
-  addAppSoShowDrawer() {
+  handleAddButtonClick() {
     console.log('yeah');
-    this.setState({ isDrawerOpen: true });
+    this.props.handleAddButtonClick();
+    // this.setState({ isDrawerOpen: true });
   }
 
   render() {
@@ -33,7 +34,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     const stageNameToColorHash = this.props.stageNameToColorHash || {};
     return (<div>
 
-      <Button color="vk" onClick={this.showDrawer}>
+      <Button color="vk" onClick={this.handleAddButtonClick}>
         <Icon name="plus" /> Add Aplication
       </Button>
 
@@ -41,7 +42,7 @@ export default class DrawerAndApplicationTable extends React.Component {
         <MateUiRightDrawer
           application={this.state.selectedApplication}
           isDrawerOpen={this.state.isDrawerOpen}
-          addAppSoShowDrawer={this.addAppSoShowDrawer}
+          handleAddButtonClick={this.handleAddButtonClick}
         />
       </MuiThemeProvider>
       <Segment style={segmentStyle}>
