@@ -74,9 +74,7 @@ class App extends React.Component {
           .then((applicationData) => {
             console.log('Applications from database:', applicationData.data);
             let applications = applicationData.data.map((application) => {
-              application.updated_at = application.updated_at; // 7
-              application.jobPostingToPdfLink = application.job_posting_to_pdf_link; // 8
-              delete application.updated_at; // 7
+              application.job_posting_to_pdf_link = application.job_posting_to_pdf_link; // 8
               delete application.job_posting_to_pdf_link; // 8
               return application;
             });

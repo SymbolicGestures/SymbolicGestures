@@ -49,7 +49,7 @@ let oneFakeApplication = () => {
     applied_at: dateApplied,
     updated_at: dateApplied,
     locaton: faker.address.city(),
-    jobPostingToPdfLink: faker.internet.url(),
+    job_posting_to_pdf_link: faker.internet.url(),
     notes: [
       { type: 'note', note: faker.lorem.paragraph() },
       { type: 'codeSnippet', note: faker.lorem.sentence() },

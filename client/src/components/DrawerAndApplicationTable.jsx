@@ -36,7 +36,7 @@ export default class DrawerAndApplicationTable extends React.Component {
       applied_at: '',
       updated_at: '',
       locaton: '',
-      jobPostingToPdfLink: '',
+      job_posting_to_pdf_link: '',
       notes: [],
       histories: [],
       contacts: [],
