@@ -22,7 +22,7 @@ module.exports.createOrUpdateApp = (req, res) => {
       if(currentApplication) {
         //updating in case of a application with given id.
         return currentApplication.save({
-          company_name: application.companyName,
+          company_name: application.company_name,
           stage: application.stage,
           profile_id: application.profileId,
           job_title: application.job_title,
@@ -33,7 +33,7 @@ module.exports.createOrUpdateApp = (req, res) => {
       } else {
         //creating in case of a application without given id.
         return model.Application.forge({
-          company_name: application.companyName,
+          company_name: application.company_name,
           stage: application.stage,
           profile_id: application.profileId,
           job_title: application.job_title,

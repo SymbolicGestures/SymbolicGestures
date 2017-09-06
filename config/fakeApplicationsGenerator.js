@@ -40,7 +40,7 @@ let oneFakeApplication = () => {
   let application = {
     // -- Info in row
     createdAt: dateApplied,
-    companyName: faker.company.companyName(),
+    company_name: faker.company.companyName(),
     job_title: faker.name.jobTitle(),
     stage: stages[randIdx],
     jobPostingLink: faker.internet.url(),
