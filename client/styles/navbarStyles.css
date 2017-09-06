@@ -1,0 +1,22 @@
+ .header {
+   background: rgb(114,203,254);
+   padding: 10px 13px 0px 0px;
+   display: flex;
+   flex-flow: row wrap
+ }
+
+ .logo {
+   background-image: url('/assets/logo_overflow.png');
+   display: inline-block;
+   width: 50px;
+   height: 56px;
+ }
+
+.buttons {
+  justify-content: space-evenly;
+  align-items: flex-end;
+  width: 150px;
+  margin: 0px 50px;
+  flex: 1 100%;
+  align-content: stretch;
+}

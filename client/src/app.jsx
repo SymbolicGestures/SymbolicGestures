@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-
+import Navbar from './components/Header/Navbar.jsx';
 import DrawerAndApplicationTable from './components/DrawerAndApplicationTable.jsx';
 
 const fakeApplicationsGenerator = require('./../../config/fakeApplicationsGenerator.js');
@@ -46,7 +46,7 @@ class App extends React.Component {
   }
 
   getApplications() {
-    axios.get('/api/applications/1')
+    axios.get('/api/applications')
       .then((data) => {
         console.log('get applications from server');
         console.log('this is data from server:', data.data);
@@ -93,6 +93,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Navbar />
         <div className={seanStyleBox.box_94per_3perMg} />
 
         {/* <div className="box_94per_3perMg"> */}
