@@ -50,48 +50,55 @@ class App extends React.Component {
   }
 
   getApplications() {
-    axios.get('/api/applications')
+    axios.get('/api/preference')
       .then((data) => {
-        console.log('get applications from server');
-        console.log('this is data from server:', data.data);
-        console.log('-----');
-        let applications = data.data.map((application) => {
-          application.createdAt = application.created_at; // 1
-          application.companyName = application.company_name; // 2
-          application.jobTitle = application.job_title; // 3
-          application.jobPostingLink = application.job_posting_link; // 4
-          application.jobPostingSource = application.job_posting_source; // 5
-          application.appliedAt = application.applied_at; // 6
-          application.updatedAt = application.updated_at; // 7
-          application.jobPostingToPdfLink = application.job_posting_to_pdf_link; // 8
-          delete application.created_at; // 1
-          delete application.company_name; // 2
-          delete application.job_title; // 3
-          delete application.job_posting_link; // 4
-          delete application.job_posting_source; // 5
-          delete application.applied_at; // 6
-          delete application.updated_at; // 7
-          delete application.job_posting_to_pdf_link; // 8
-          return application;
-        });
-        console.log('one application: ', applications[0]);
-        this.setState({ applications });
+        console.log(data);
       })
-      // createdAt: dateApplied,
-      // companyName: faker.company.companyName(),
-      // jobTitle: faker.name.jobTitle(),
-      // stage: stages[randIdx],
-      // jobPostingLink: faker.internet.url(),
-      // jobPostingSource: sources[randIdx],
-      // // -- In
-      // appliedAt: dateApplied,
-      // updatedAt: dateApplied,
-      // locaton: faker.address.city(),
-      // jobPostingToPdfLink: faker.internet.url(),
-      // this.setState({ applications });
       .catch((err) => {
         console.log(err);
       });
+    // axios.get('/api/applications')
+    //   .then((data) => {
+    //     console.log('get applications from server');
+    //     console.log('this is data from server:', data.data);
+    //     console.log('-----');
+    //     let applications = data.data.map((application) => {
+    //       application.createdAt = application.created_at; // 1
+    //       application.companyName = application.company_name; // 2
+    //       application.jobTitle = application.job_title; // 3
+    //       application.jobPostingLink = application.job_posting_link; // 4
+    //       application.jobPostingSource = application.job_posting_source; // 5
+    //       application.appliedAt = application.applied_at; // 6
+    //       application.updatedAt = application.updated_at; // 7
+    //       application.jobPostingToPdfLink = application.job_posting_to_pdf_link; // 8
+    //       delete application.created_at; // 1
+    //       delete application.company_name; // 2
+    //       delete application.job_title; // 3
+    //       delete application.job_posting_link; // 4
+    //       delete application.job_posting_source; // 5
+    //       delete application.applied_at; // 6
+    //       delete application.updated_at; // 7
+    //       delete application.job_posting_to_pdf_link; // 8
+    //       return application;
+    //     });
+    //     console.log('one application: ', applications[0]);
+    //     this.setState({ applications });
+    //   })
+    //   // createdAt: dateApplied,
+    //   // companyName: faker.company.companyName(),
+    //   // jobTitle: faker.name.jobTitle(),
+    //   // stage: stages[randIdx],
+    //   // jobPostingLink: faker.internet.url(),
+    //   // jobPostingSource: sources[randIdx],
+    //   // // -- In
+    //   // appliedAt: dateApplied,
+    //   // updatedAt: dateApplied,
+    //   // locaton: faker.address.city(),
+    //   // jobPostingToPdfLink: faker.internet.url(),
+    //   // this.setState({ applications });
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 
   handleAddButtonClick() {

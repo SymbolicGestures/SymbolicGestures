@@ -28,11 +28,15 @@ export default class DrawerAndApplicationTable extends React.Component {
     // this.setState({ isDrawerOpen: true });
   }
 
+  closeDrawer() {
+    console.log('ddd');
+  }
+
   render() {
     const segmentStyle = { padding: 0 };
     const applications = this.props.applications || [];
     const stageNameToColorHash = this.props.stageNameToColorHash || {};
-    return (<div>
+    return (<div onClick={this.closeDrawer} >
 
       <Button color="vk" onClick={this.handleAddButtonClick}>
         <Icon name="plus" /> Add Aplication
