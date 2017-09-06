@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-
-<<<<<<< HEAD
-import Navbar from './components/Header/Navbar.jsx';
-=======
 import { format } from 'date-fns';
 
->>>>>>> Add button render new row
+import Navbar from './components/Header/Navbar.jsx';
+
 import DrawerAndApplicationTable from './components/DrawerAndApplicationTable.jsx';
 
 const fakeApplicationsGenerator = require('./../../config/fakeApplicationsGenerator.js');
