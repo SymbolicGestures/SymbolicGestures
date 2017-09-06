@@ -10,7 +10,7 @@ class AppDrawerInfo extends React.Component {
     return (
       <div>
         <h2>AppDrawerInfo</h2>
-        <div> {this.props.application.createdAt} </div>
+        <div> {this.props.application.created_at} </div>
         <div> {this.props.application.company_name} </div>
         <div> {this.props.application.job_title} </div>
         <div> {this.props.application.stage} </div>

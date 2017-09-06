@@ -74,7 +74,7 @@ class App extends React.Component {
           .then((applicationData) => {
             console.log('Applications from database:', applicationData.data);
             let applications = applicationData.data.map((application) => {
-              application.createdAt = application.created_at; // 1
+              application.created_at = application.created_at; // 1
               application.company_name = application.company_name; // 2
               application.job_title = application.job_title; // 3
               application.jobPostingLink = application.job_posting_link; // 4

@@ -39,7 +39,7 @@ let oneFakeApplication = () => {
 
   let application = {
     // -- Info in row
-    createdAt: dateApplied,
+    created_at: dateApplied,
     company_name: faker.company.companyName(),
     job_title: faker.name.jobTitle(),
     stage: stages[randIdx],

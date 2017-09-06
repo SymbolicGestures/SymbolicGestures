@@ -27,7 +27,7 @@ export default class DrawerAndApplicationTable extends React.Component {
   handleAddButtonClick() {
     let currentDate = format(new Date(), 'YYYY-MM-DD-ddd-HH-MM-ss');
     let emptyApplication = {
-      createdAt: currentDate,
+      created_at: currentDate,
       company_name: '',
       job_title: '',
       stage: '',
@@ -94,7 +94,7 @@ export default class DrawerAndApplicationTable extends React.Component {
             {applications.map((application, idx) => {
               return (
                 <Table.Row key={idx} onClick={() => (this.handleClick(application))}>
-                  <Table.Cell>{application.createdAt}</Table.Cell>
+                  <Table.Cell>{application.created_at}</Table.Cell>
                   <Table.Cell>{application.company_name}</Table.Cell>
                   <Table.Cell>{application.job_title}</Table.Cell>
                   <Table.Cell
