@@ -31,16 +31,16 @@ const seanStyleBox = require('./../styles/seanStyleBox.css');
 class App extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = { // for data from database
-    //   applications: [],
-    //   stagesSettings: [],
-    //   stagesSettings: {},
-    // };
-    this.state = { // for data from fake data
-      applications: fakeApplications,
-      stagesSettings: fakeStagesSettings,
-      stageNameToColorHash,
+    this.state = { // for data from database
+      applications: [],
+      stagesSettings: [],
+      stageNameToColorHash: {},
     };
+    // this.state = { // for data from fake data
+    //   applications: fakeApplications,
+    //   stagesSettings: fakeStagesSettings,
+    //   stageNameToColorHash,
+    // };
     this.getApplications = this.getApplications.bind(this);
     this.handleAddButtonClick = this.handleAddButtonClick.bind(this);
   }
