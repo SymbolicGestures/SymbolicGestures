@@ -3,70 +3,68 @@ const express = require('express');
 const router = express.Router();
 const ApplicationController = require('../controllers').Applications;
 
-
-router.route('/applications')
-  .get(ApplicationController.getAllApps);
-
 /**
- * api access to all applications of a given user determined by :id.
- * @return {Array}     returns an array of all applications of user with profile_id of :id
+ * With a GET - Returns all applications of the user.
+ * With a Post - Adds an application for the user.
+ * @return {Array}     returns an array of all applications (including contacts, notes, histories) of the user.
  */
-router.route('/applications/:id')
-  .get(ApplicationController.getOneApp);
+router.route('/applications')
+  .get(ApplicationController.getAllApps)
+  .post(ApplicationController.createOrUpdateApp);
 
 /**
  * edit an application with id - :id.
  * @return {String}     returns a string with success or error message.
  */
-router.route('/applications/edit/:id')
-  .put(ApplicationController.createOrUpdateApp);
-
-router.route('/notes')
-  .get(ApplicationController.getAllNotes);
+router.route('/applications/:id')
+  .post(ApplicationController.createOrUpdateApp);
 
 /**
- * api access to all notes of a given application determined by :id.
- * @return {Array}     returns an array of all notes of user with application_id of :id
+ * With a GET - Returns all notes of the user.
+ * With a Post - Adds a note for the user.
+ * @return {Array}     returns an array of all notes of the user.
  */
-router.route('/notes/:id')
-  .get(ApplicationController.getOneNote);
+router.route('/notes')
+  .get(ApplicationController.getAllNotes)
+  .post(ApplicationController.createOrUpdateNote);
 
 /**
  * edit a note with id - :id.
  * @return {String}     returns a string with success or error message.
  */
-router.route('/notes/edit/:id')
-  .put(ApplicationController.createOrUpdateNote);
-
-router.route('/histories')
-  .get(ApplicationController.getAllHistories);
+router.route('/notes/:id')
+  .post(ApplicationController.createOrUpdateNote);
 
 /**
- * api access to all histories of a given application determined by :id.
- * @return {Array}     returns an array of all histories of user with application_id of :id
+ * With a GET - Returns all histories of the user.
+ * With a Post - Adds a history for the user.
+ * @return {Array}     returns an array of all histories of the user.
+ */
+router.route('/histories')
+  .get(ApplicationController.getAllHistories)
+  .post(ApplicationController.createOrUpdateHistory);
+
+/**
+ * edit a history with id - :id.
+ * @return {String}     returns a string with success or error message.
  */
 router.route('/histories/:id')
-  .get(ApplicationController.getOneHistory);
+  .post(ApplicationController.createOrUpdateHistory);
 
 /**
- * api access to all notes of a given application determined by :id.
- * @return {Array}     returns an array of all applications of user with application_id of :id
+ * With a GET - Returns all contacts of the user.
+ * With a Post - Adds a contact for the user.
+ * @return {Array}     returns an array of all contacts of the user.
  */
-router.route('/histories/edit/:id')
-  .put(ApplicationController.createOrUpdateHistory);
-
 router.route('/contacts')
-  .get(ApplicationController.getAllContacts);
-
+  .get(ApplicationController.getAllContacts)
+  .post(ApplicationController.createOrUpdateContact);
 
 /**
- * api access to all contacts of a given application determined by :id.
- * @return {Array}     returns an array of all contacts of user with application_id of :id
+ * edit a contact with id - :id.
+ * @return {String}     returns a string with success or error message.
  */
 router.route('/contacts/:id')
-  .get(ApplicationController.getOneContact);
-
-router.route('/contacts/edit/:id')
-  .put(ApplicationController.createOrUpdateContact);
+  .post(ApplicationController.createOrUpdateContact);
 
 module.exports = router;

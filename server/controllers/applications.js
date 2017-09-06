@@ -1,26 +1,13 @@
 const models = require('../../db/models');
 
 /**
- * [getAllApp description]
- * @param  {[type]} req [description]
- * @param  {[type]} res [description]
- * @return {[type]}     [description]
+ * returns all apps of the user.
+ * @return {Array}     Returns an array of applications tree of the user.
  */
 module.exports.getAllApps = (req, res) => {
-  models.Application.fetchAll()
+  models.Application.where({ profile_id: req.user.id }).fetchAll({withRelated: ['contacts', 'histories', 'notes']})
     .then(applications => {
       res.status(200).send(applications);
-    })
-    .catch(err => {
-      // This code indicates an outside service (the database) did not respond in time
-      res.status(503).send(err);
-    });
-};
-
-module.exports.getOneApp = (req, res) => {
-  models.Application.where({ profile_id: req.params.id }).fetchAll({withRelated: ['contacts', 'histories', 'notes']})
-    .then(application => {
-      res.status(200).send(application);
     })
     .catch(err => {
       // This code indicates an outside service (the database) did not respond in time
@@ -65,7 +52,7 @@ module.exports.createOrUpdateApp = (req, res) => {
 };
 
 module.exports.getAllNotes = (req, res) => {
-  models.Note.fetchAll()
+  models.Note.where({ application_id: req.user.id }).fetchAll()
     .then(notes => {
       res.status(200).send(notes);
     })
@@ -75,19 +62,8 @@ module.exports.getAllNotes = (req, res) => {
     });
 };
 
-module.exports.getOneNote = (req, res) => {
-  models.Note.where({ application_id: req.params.id }).fetchAll()
-    .then(note => {
-      res.status(200).send(note);
-    })
-    .catch(err => {
-      // This code indicates an outside service (the database) did not respond in time
-      res.status(503).send(err);
-    });
-};
-
 module.exports.createOrUpdateNote = (req, res) => {
-  models.Note.forge({ id: req.body.id }).fetch()
+  models.Note.forge({ id: req.params.id }).fetch()
   .then(currentNote => {
     let modelApp = req.params.id
     let note = req.body;
@@ -115,7 +91,7 @@ module.exports.createOrUpdateNote = (req, res) => {
 };
 
 module.exports.getAllHistories = (req, res) => {
-  models.History.fetchAll()
+  models.Histories.where({ application_id: req.user.id }).fetchAll()
     .then(histories => {
       res.status(200).send(histories);
     })
@@ -125,19 +101,8 @@ module.exports.getAllHistories = (req, res) => {
     });
 };
 
-module.exports.getOneHistory = (req, res) => {
-  models.History.where({ application_id: req.params.id }).fetchAll()
-    .then(history => {
-      res.status(200).send(history);
-    })
-    .catch(err => {
-      // This code indicates an outside service (the database) did not respond in time
-      res.status(503).send(err);
-    });
-};
-
 module.exports.createOrUpdateHistory = (req, res) => {
-  models.History.forge({ id: req.body.id }).fetch()
+  models.History.forge({ id: req.params.id }).fetch()
   .then(currentHistory => {
     let modelApp = req.params.id
     let history = req.body;
@@ -163,7 +128,7 @@ module.exports.createOrUpdateHistory = (req, res) => {
 };
 
 module.exports.getAllContacts = (req, res) => {
-  models.Contact.fetchAll()
+  models.Contact.where({ application_id: req.user.id }).fetchAll()
     .then(contacts => {
       res.status(200).send(contacts);
     })
@@ -173,19 +138,8 @@ module.exports.getAllContacts = (req, res) => {
     });
 };
 
-module.exports.getOneContact = (req, res) => {
-  models.Contact.where({ application_id: req.params.id }).fetchAll()
-    .then(contact => {
-      res.status(200).send(contact);
-    })
-    .catch(err => {
-      // This code indicates an outside service (the database) did not respond in time
-      res.status(503).send(err);
-    });
-};
-
 module.exports.createOrUpdateContact = (req, res) => {
-  models.Contact.forge({ id: req.body.id }).fetch()
+  models.Contact.forge({ id: req.params.id }).fetch()
   .then(currentContact => {
     let modelApp = req.params.id
     let contact = req.body;
