@@ -4,7 +4,7 @@ import { Table, Segment, Button, Icon } from 'semantic-ui-react';
 
 import Drawer from './Drawer.jsx';
 
-export default class ApplicationTable extends React.Component {
+export default class DrawerAndApplicationTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +32,7 @@ export default class ApplicationTable extends React.Component {
     const applications = this.props.applications || [];
     const stageNameToColorHash = this.props.stageNameToColorHash || {};
     return (<div>
-
+      {console.log('in application table', applications)}
       <Button
         color="vk"
         content="Add Aplication"

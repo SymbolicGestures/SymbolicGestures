@@ -47,8 +47,9 @@ class App extends React.Component {
 
   getApplications() {
     axios.get('/api/applications/1')
-      .then((res) => {
-        console.log(res);
+      .then((data) => {
+        console.log('get applications from server');
+        this.setState({ applications: data.data });
       })
       .catch((err) => {
         console.log(err);
