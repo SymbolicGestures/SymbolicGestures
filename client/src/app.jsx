@@ -18,9 +18,9 @@ let fakeStagesSettings = [
   { name: 'On Site', backgroundColor: '#F44336', textColor: 'white' }
 ];
 
-let stageNameToColorHash = {};
+let fakeStageNameToColorHash = {};
 fakeStagesSettings.forEach((setting) => {
-  stageNameToColorHash[setting.name] = {
+  fakeStageNameToColorHash[setting.name] = {
     backgroundColor: setting.backgroundColor,
     color: setting.textColor,
   };
@@ -39,7 +39,7 @@ class App extends React.Component {
     // this.state = { // for data from fake data
     //   applications: fakeApplications,
     //   stagesSettings: fakeStagesSettings,
-    //   stageNameToColorHash,
+    //   fakeStageNameToColorHash,
     // };
     this.getApplications = this.getApplications.bind(this);
     this.handleAddButtonClick = this.handleAddButtonClick.bind(this);
@@ -54,7 +54,21 @@ class App extends React.Component {
       .then((userData) => {
         let stagesSettings = userData.data.stages_settings;
         console.log('stagesSettings from database:', stagesSettings);
-        this.setState({ stagesSettings });
+
+        let stageNameToColorHash = {};
+        stagesSettings.forEach((setting) => {
+          stageNameToColorHash[setting.name] = {
+            backgroundColor: setting.backgroundColor,
+            color: setting.textColor,
+          };
+        });
+
+        console.log('stageNameToColorHash:', stageNameToColorHash);
+        console.log('fakeStageNameToColorHash:', fakeStageNameToColorHash);
+
+        this.setState({ stageNameToColorHash });
+
+
         axios.get('/api/applications')
           .then((applicationData) => {
             console.log('Applications from database:', applicationData.data);
