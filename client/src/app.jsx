@@ -52,14 +52,12 @@ class App extends React.Component {
   getApplications() {
     axios.get('/api/preference')
       .then((userData) => {
-        console.log(userData.data.stages_settings);
         let stagesSettings = userData.data.stages_settings;
+        console.log('stagesSettings from database:', stagesSettings);
         this.setState({ stagesSettings });
         axios.get('/api/applications')
           .then((applicationData) => {
-            console.log('get applications from server');
-            console.log('this is data from server:', applicationData.data);
-            console.log('-----');
+            console.log('Applications from database:', applicationData.data);
             let applications = applicationData.data.map((application) => {
               application.createdAt = application.created_at; // 1
               application.companyName = application.company_name; // 2
@@ -118,14 +116,10 @@ class App extends React.Component {
   }
 
   closeDrawer(e) {
-    // console.log(Object.keys(e));
-    // console.log(e.target);
-    // console.log(typeof e.target);
-    // console.log(Object.values(e.target));
-    console.log('className:', e.target.className);
-    console.log('attribute:', e.target.attributes);
-    console.log('nodeName:', e.target.nodeName);
-    console.log('nodeValue:', e.target.nodeValue);
+    // console.log('className:', e.target.className);
+    // console.log('attribute:', e.target.attributes);
+    // console.log('nodeName:', e.target.nodeName);
+    // console.log('nodeValue:', e.target.nodeValue);
   }
 
   render() {
