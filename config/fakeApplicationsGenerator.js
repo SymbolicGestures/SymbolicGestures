@@ -46,7 +46,7 @@ let oneFakeApplication = () => {
     job_posting_link: faker.internet.url(),
     job_posting_source: sources[randIdx],
     // -- In
-    appliedAt: dateApplied,
+    applied_at: dateApplied,
     updatedAt: dateApplied,
     locaton: faker.address.city(),
     jobPostingToPdfLink: faker.internet.url(),
