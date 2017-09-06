@@ -32,7 +32,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     const applications = this.props.applications || [];
     const stageNameToColorHash = this.props.stageNameToColorHash || {};
     return (<div>
-      
+
       <Button color="vk" onClick={this.showDrawer}>
         <Icon name="plus" /> Add Aplication
       </Button>
