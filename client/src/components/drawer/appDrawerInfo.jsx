@@ -15,7 +15,7 @@ class AppDrawerInfo extends React.Component {
         <div> {this.props.application.job_title} </div>
         <div> {this.props.application.stage} </div>
         <div> {this.props.application.job_posting_link} </div>
-        <div> {this.props.application.jobPostingSource} </div>
+        <div> {this.props.application.job_posting_source} </div>
         <div> {this.props.application.appliedAt} </div>
         <div> {this.props.application.updatedAt} </div>
         <div> {this.props.application.locaton} </div>

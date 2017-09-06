@@ -27,7 +27,7 @@ module.exports.createOrUpdateApp = (req, res) => {
           profile_id: application.profileId,
           job_title: application.job_title,
           location: application.location,
-          job_posting_source: application.jobPostingSource,
+          job_posting_source: application.job_posting_source,
           job_posting_to_pdf_link: application.jobPostingToPdfLink
         });
       } else {
@@ -38,7 +38,7 @@ module.exports.createOrUpdateApp = (req, res) => {
           profile_id: application.profileId,
           job_title: application.job_title,
           location: application.location,
-          job_posting_source: application.jobPostingSource,
+          job_posting_source: application.job_posting_source,
           job_posting_to_pdf_link: application.jobPostingToPdfLink
         }).save();
       }

@@ -10,7 +10,7 @@ let createApplicationRecord = (profile_id, knex, application) => {
     company_name: application.company_name,
     job_title: application.job_title,
     location: application.location,
-    job_posting_source: application.jobPostingSource,
+    job_posting_source: application.job_posting_source,
   })
   .returning('id')
   .into('applications')
