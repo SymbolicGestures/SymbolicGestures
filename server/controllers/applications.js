@@ -64,30 +64,30 @@ module.exports.getAllNotes = (req, res) => {
 
 module.exports.createOrUpdateNote = (req, res) => {
   models.Note.forge({ id: req.params.id }).fetch()
-  .then(currentNote => {
-    let modelApp = req.params.id
-    let note = req.body;
-    if(currentNote) {
-      return currentNote.save({
-        application_id: modelApp.id,
-        type: note.type,
-        note: note.note
-      });
-    } else {
-      return models.Note.forge({
-        application_id: modelApp.id,
-        type: note.type,
-        note: note.note
-      });
-    }
-  })
-  .save()
-  .then(() => {
-    res.status(200).send('Note successfully created/updated!');
-  })
-  .catch(err => {
-    res.status(503).send(err);
-  });
+    .then(currentNote => {
+      let modelApp = req.params.id;
+      let note = req.body;
+      if (currentNote) {
+        return currentNote.save({
+          application_id: modelApp.id,
+          type: note.type,
+          note: note.note
+        });
+      } else {
+        return models.Note.forge({
+          application_id: modelApp.id,
+          type: note.type,
+          note: note.note
+        });
+      }
+    })
+    .save()
+    .then(() => {
+      res.status(200).send('Note successfully created/updated!');
+    })
+    .catch(err => {
+      res.status(503).send(err);
+    });
 };
 
 module.exports.getAllHistories = (req, res) => {
