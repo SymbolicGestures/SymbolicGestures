@@ -32,6 +32,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { // for data from database
+      userId: undefined,
       applications: [],
       stagesSettings: [],
       stageNameToColorHash: {},
@@ -42,7 +43,6 @@ class App extends React.Component {
     //   fakeStageNameToColorHash,
     // };
     this.getApplications = this.getApplications.bind(this);
-    this.handleAddButtonClick = this.handleAddButtonClick.bind(this);
   }
 
   componentDidMount() {
@@ -53,6 +53,7 @@ class App extends React.Component {
     axios.get('/api/preference')
       .then((userData) => {
         let stagesSettings = userData.data.stages_settings;
+        let userId = userData.data.id;
         console.log('stagesSettings from database:', stagesSettings);
 
         let stageNameToColorHash = {};
@@ -66,7 +67,7 @@ class App extends React.Component {
         console.log('stageNameToColorHash:', stageNameToColorHash);
         console.log('fakeStageNameToColorHash:', fakeStageNameToColorHash);
 
-        this.setState({ stageNameToColorHash });
+        this.setState({ userId, stageNameToColorHash });
 
 
         axios.get('/api/applications')
@@ -104,31 +105,6 @@ class App extends React.Component {
       });
   }
 
-  handleAddButtonClick() {
-    let currentDate = format(
-      new Date(),
-      'YYYY-MM-DD-ddd-HH-MM-ss'
-    );
-    let emptyApplication = {
-      createdAt: currentDate,
-      companyName: '',
-      jobTitle: '',
-      stage: '',
-      jobPostingLink: '',
-      jobPostingSource: '',
-      appliedAt: '',
-      updatedAt: '',
-      locaton: '',
-      jobPostingToPdfLink: '',
-      notes: [],
-      histories: [],
-      contacts: [],
-    };
-
-    let newApplications = [emptyApplication].concat(this.state.applications);
-    this.setState({ applications: newApplications });
-  }
-
   closeDrawer(e) {
     // console.log('className:', e.target.className);
     // console.log('attribute:', e.target.attributes);
@@ -157,7 +133,6 @@ class App extends React.Component {
             applications={this.state.applications}
             stagesSettings={this.state.applications}
             stageNameToColorHash={this.state.stageNameToColorHash}
-            handleAddButtonClick={this.handleAddButtonClick}
           />
         </div>
 
