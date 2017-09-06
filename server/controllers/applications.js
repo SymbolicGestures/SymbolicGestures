@@ -169,3 +169,30 @@ module.exports.createOrUpdateContact = (req, res) => {
     res.status(503).send(err);
   });
 };
+
+module.exports.getUserPreference = (req, res) => {
+  models.Profiles.where({ id: req.user.id }).fetch()
+    .then(preference => {
+      res.status(200).send(preference);
+    })
+    .catch(err => {
+      // This code indicates an outside service (the database) did not respond in time
+      res.status(503).send(err);
+    });
+};
+
+module.exports.updateUserPreference = (req, res) => {
+  models.Profiles.where({ id: req.user.id }).fetch()
+  .then(preference => {
+    return preference.save({
+      stages_settings: req.body.stagesSettings
+    });
+  })
+  .save()
+  .then(() => {
+    res.status(200).send('Stages preference successfully created/updated!');
+  })
+  .catch(err => {
+    res.status(503).send(err);
+  });
+};

@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.route('/')
   .get(middleware.auth.verify, (req, res) => {
-    console.log(req.user)
     res.render('index.ejs', {user: req.user});
   });
 

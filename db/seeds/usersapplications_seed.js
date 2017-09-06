@@ -4,13 +4,13 @@ const faker = require('../../config/fakeApplicationsGenerator');
 let fakeApplications = faker(15);
 let createApplicationRecord = (profile_id, knex, application) => {
   return knex('applications').insert({
-      profile_id,
-      stage: application.stage,
-      job_posting_link: application.jobPostingLink,
-      company_name: application.companyName,
-      job_title: application.jobTitle,
-      location: application.location,
-      job_posting_source: application.jobPostingSource,
+    profile_id,
+    stage: application.stage,
+    job_posting_link: application.jobPostingLink,
+    company_name: application.companyName,
+    job_title: application.jobTitle,
+    location: application.location,
+    job_posting_source: application.jobPostingSource,
   })
   .returning('id')
   .into('applications')
