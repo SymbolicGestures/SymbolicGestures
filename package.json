@@ -38,6 +38,7 @@
     "passport-twitter": "^1.0.4",
     "pg": "^6.1.5",
     "react": "^15.4.2",
+    "react-bootstrap": "^0.31.2",
     "react-dom": "^15.4.2",
     "redis": "^2.7.1",
     "semantic-ui-react": "^0.72.0",

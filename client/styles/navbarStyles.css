@@ -10,6 +10,13 @@
    display: inline-block;
    width: 50px;
    height: 56px;
+   margin: 5px 5px;
+ }
+
+ .logo {
+    align-items: center;
+    font-size: x-large;
+    margin: auto 20px auto 10px;
  }
 
 .buttons {

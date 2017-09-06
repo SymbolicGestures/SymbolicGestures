@@ -8,7 +8,7 @@ exports.up = function (knex, Promise) {
       table.string('display', 100).nullable();
       table.string('email', 100).nullable().unique();
       table.string('phone', 100).nullable();
-      table.json('stages_settings').defaultTo('[{"name":"Applied","backgroundColor":"#FFC107","textColor":"black"},{"name":"Phone Interview","backgroundColor":"#2196F3","textColor":"white"},{"name":"Onsite Interview","backgroundColor":"#9C27B0","textColor":"white"},{"name":"Offered","backgroundColor":"#009688","textColor":"white"},{"name":"Declined","backgroundColor":"#F44336","textColor":"white"}]');
+      table.json('stages_settings').defaultTo('[{"name":"Applied","backgroundColor":"#FFC107","textColor":"black"},{"name":"Phone Screen","backgroundColor":"#2196F3","textColor":"white"},{"name":"Onsite","backgroundColor":"#9C27B0","textColor":"white"},{"name":"OFFER","backgroundColor":"#009688","textColor":"white"},{"name":"Denied","backgroundColor":"#F44336","textColor":"white"}]');
       table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
@@ -21,7 +21,7 @@ exports.up = function (knex, Promise) {
     }),
     knex.schema.createTableIfNotExists('applications', function(table) {
       table.increments('id').unsigned().primary();
-      table.integer('profile_id').references('profiles.id').onDelete('CASCADE');
+      table.integer('profile_id').references('profiles.id').onDelete('CASCADE').notNullable();
       table.string('stage', 50).defaultTo('Applied');
       table.string('job_posting_link').nullable();
       table.string('company_name', 50).nullable();
@@ -34,20 +34,20 @@ exports.up = function (knex, Promise) {
     }),
     knex.schema.createTableIfNotExists('histories', function(table) {
       table.increments('id').unsigned().primary();
-      table.integer('application_id').references('applications.id').onDelete('CASCADE');
+      table.integer('application_id').references('applications.id').onDelete('CASCADE').notNullable();
       table.string('event').nullable();
       table.timestamp('created_at').defaultTo(knex.fn.now());
     }),
     knex.schema.createTableIfNotExists('notes', function(table) {
       table.increments('id').unsigned().primary();
-      table.integer('application_id').references('applications.id').onDelete('CASCADE');
+      table.integer('application_id').references('applications.id').onDelete('CASCADE').notNullable();
       table.text('note').nullable();
       table.string('type', 50).nullable();
       table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('contacts', function(table) {
       table.increments('id').unsigned().primary();
-      table.integer('application_id').references('applications.id').onDelete('CASCADE');
+      table.integer('application_id').references('applications.id').onDelete('CASCADE').notNullable();
       table.string('role', 50).nullable();
       table.string('name', 100).nullable();
       table.string('email', 100).nullable();
