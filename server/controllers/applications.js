@@ -171,7 +171,7 @@ module.exports.createOrUpdateContact = (req, res) => {
 };
 
 module.exports.getUserPreference = (req, res) => {
-  models.Profiles.where({ id: req.user.id }).fetch()
+  models.Profile.where({ id: req.user.id }).fetch()
     .then(preference => {
       res.status(200).send(preference);
     })
@@ -182,7 +182,7 @@ module.exports.getUserPreference = (req, res) => {
 };
 
 module.exports.updateUserPreference = (req, res) => {
-  models.Profiles.where({ id: req.user.id }).fetch()
+  models.Profile.where({ id: req.user.id }).fetch()
   .then(preference => {
     return preference.save({
       stages_settings: req.body.stagesSettings

@@ -9,7 +9,8 @@ const Header = (props) => {
           <button type="button" className="btn navbar-toggle" id="header-button">
             Menu <i className="fa fa-bars"></i>
           </button>
-          <a className="navbar-brand" href="../portfolio.html">Offer Overflow</a>
+          <a className={styles.brand} href="/"></a>
+          <a className="navbar-brand" href="/">Offer Overflow</a>
         </div>
         <ul className="nav navbar-nav navbar-collapse collapse navbar-center">
           <li><a href="../portfolio.html">Applications</a></li>
