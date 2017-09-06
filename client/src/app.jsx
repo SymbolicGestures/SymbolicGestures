@@ -119,9 +119,14 @@ class App extends React.Component {
   }
 
   closeDrawer(e) {
-    console.log(e.target);
+    // console.log(Object.keys(e));
+    // console.log(e.target);
+    // console.log(typeof e.target);
+    // console.log(Object.values(e.target));
     console.log('className:', e.target.className);
-    console.log(Object.keys(e.target));
+    console.log('attribute:', e.target.attributes);
+    console.log('nodeName:', e.target.nodeName);
+    console.log('nodeValue:', e.target.nodeValue);
   }
 
   render() {
