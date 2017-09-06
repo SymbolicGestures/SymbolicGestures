@@ -31,7 +31,7 @@ export default class DrawerAndApplicationTable extends React.Component {
       company_name: '',
       job_title: '',
       stage: '',
-      jobPostingLink: '',
+      job_posting_link: '',
       jobPostingSource: '',
       appliedAt: '',
       updatedAt: '',
@@ -100,7 +100,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                   <Table.Cell
                     style={stageNameToColorHash[application.stage]}
                   >{application.stage}</Table.Cell>
-                  <Table.Cell>{application.jobPostingLink}</Table.Cell>
+                  <Table.Cell>{application.job_posting_link}</Table.Cell>
                   <Table.Cell>{application.jobPostingSource}</Table.Cell>
                 </Table.Row>
               );

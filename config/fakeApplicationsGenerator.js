@@ -43,7 +43,7 @@ let oneFakeApplication = () => {
     company_name: faker.company.companyName(),
     job_title: faker.name.jobTitle(),
     stage: stages[randIdx],
-    jobPostingLink: faker.internet.url(),
+    job_posting_link: faker.internet.url(),
     jobPostingSource: sources[randIdx],
     // -- In
     appliedAt: dateApplied,

@@ -6,7 +6,7 @@ let createApplicationRecord = (profile_id, knex, application) => {
   return knex('applications').insert({
     profile_id,
     stage: application.stage,
-    job_posting_link: application.jobPostingLink,
+    job_posting_link: application.job_posting_link,
     company_name: application.company_name,
     job_title: application.job_title,
     location: application.location,
