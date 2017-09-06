@@ -34,18 +34,25 @@ class App extends React.Component {
       stagesSettings: fakeStagesSettings,
       stageNameToColorHash,
     };
+    this.getApplications = this.getApplications.bind(this);
   }
 
   componentDidMount() {
-
+    this.getApplications();
   }
 
   getUsersInfo() {
-
+    axios.get('/');
   }
 
   getApplications() {
-
+    axios.get('/api/applications/1')
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
