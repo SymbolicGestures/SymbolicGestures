@@ -4,7 +4,7 @@ import axios from 'axios';
 import { format } from 'date-fns';
 
 import Navbar from './components/Header/Navbar.jsx';
-
+import StageBar from './components/stageBar/StageBar.jsx';
 import DrawerAndApplicationTable from './components/DrawerAndApplicationTable.jsx';
 
 const fakeApplicationsGenerator = require('./../../config/fakeApplicationsGenerator.js');
@@ -36,6 +36,7 @@ class App extends React.Component {
       applications: [],
       stagesSettings: [],
       stageNameToColorHash: {},
+      stagesCount: {},
     };
     // this.state = { // for data from fake data
     //   applications: fakeApplications,
@@ -49,6 +50,11 @@ class App extends React.Component {
     this.getApplications();
   }
 
+  /**
+   * Retrieve users settings and applications from DB
+   * Counts applications stages.
+   * @async
+   */
   getApplications() {
     axios.get('/api/preference')
       .then((userData) => {
@@ -62,6 +68,7 @@ class App extends React.Component {
             backgroundColor: setting.backgroundColor,
             color: setting.textColor,
           };
+          this.setState({stagesSettings: stagesSettings});
         });
 
         console.log('stageNameToColorHash:', stageNameToColorHash);
@@ -96,17 +103,19 @@ class App extends React.Component {
     return (
       <div onClick={this.closeDrawer} >
         <Navbar />
-        <div className={seanStyleBox.box_94per_3perMg} />
+
 
         {/* <div className="box_94per_3perMg"> */}
         <div className={seanStyleBox.box_94per_3perMg}>
           <div className={seanStyleBox.PatrickStatusBar}>
-            <h3>Patrick Status Bar</h3>
+            <StageBar
+              stages={this.state.stagesSettings}
+              stagesCount={this.state.stagesCount}
+              applications={this.state.applications}
+            />
           </div>
         </div>
 
-        <div className={seanStyleBox.box_94per_3perMg}>
-        </div>
 
         <div className={seanStyleBox.DrawerAndApplicationTable}>
           <DrawerAndApplicationTable

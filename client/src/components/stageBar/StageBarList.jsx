@@ -17,7 +17,7 @@ const StageBarList = (props) => {
                 />;
         })}
         <li className={styles.addStage} onClick={props.onClickAddStage}>
-          Add Stage
+          Add Stage<br/>+
         </li>
       </ul>
     </div>

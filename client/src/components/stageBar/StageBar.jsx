@@ -14,8 +14,8 @@ class StageBar extends React.Component {
     this.countApplicationStages = this.countApplicationStages.bind(this);
   }
 
-  componentDidMount() {
-
+  componentWillReceiveProps() {
+    this.countApplicationStages();
   }
 
   /**
