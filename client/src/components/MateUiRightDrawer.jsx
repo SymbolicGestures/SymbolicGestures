@@ -5,7 +5,11 @@ import { Table, Segment, Button, Icon } from 'semantic-ui-react';
 import axios from 'axios';
 import { format } from 'date-fns';
 
+
 import AppDrawer from './drawer/appDrawer.jsx';
+
+const seanStyleBox = require('./../../styles/seanStyleBox.css');
+
 
 const generateEmptyApplicaton = () => {
   // let currentDate = format(new Date(), 'YYYY-MM-DD-ddd-HH-MM-ss');
@@ -60,7 +64,7 @@ export default class MateUiRightDrawer extends React.Component {
 
   render() {
     return (
-      <div onClick={this.closeDrawer}>
+      <div>
         {/* #00bcd4 */}
         {/* <Button color="vk" style={{ backgroundColor: '#00bcd4' }}> */}
         <Button color="vk" onClick={this.openDrawerAndPostEmptyAppToDB} >

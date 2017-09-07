@@ -40,6 +40,27 @@
   margin-right: 3%;
 }
 
+.testBox00 {
+  width: 5%;
+  height: 100%;
+  border: 1px dotted green;
+  display: inline-block;
+}
+
+.testBox01 {
+  width: 90%;
+  height: 100%;
+  border: 1px dotted red;
+  display: inline-block;
+}
+
+.testBox02 {
+  width: 5%;
+  height: 100%;
+  border: 1px dotted blue;
+  display: inline-block;
+}
+
 .practice {
   color: rgba(255, 193, 7, .5);
 }
