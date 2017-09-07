@@ -80,8 +80,33 @@ class App extends React.Component {
 
         axios.get('/api/applications')
           .then((applicationData) => {
+<<<<<<< HEAD
             // console.log('Applications from database:', applicationData.data);
             this.setState({ applications: applicationData.data });
+=======
+            console.log('Applications from database:', applicationData.data);
+
+            let strDateToMiliSec = (strDate) => {
+              return getTime(parse(strDate));
+            };
+
+            let applications = applicationData.data;
+            // applications.forEach((application) => {
+            //   let dateStr = application.applied_at;
+            //   let dateParsed = parse(dateStr);
+            //   let dateMiliSec = getTime(dateParsed);
+
+            //   // console.log(typeof dateStr, dateStr);
+            //   // console.log(typeof dateParsed, dateParsed);
+            //   console.log(typeof dateMiliSec, strDateToMiliSec(application.applied_at));
+            // });
+
+            applications.sort((a, b) => {
+              return strDateToMiliSec(b.applied_at) - strDateToMiliSec(a.applied_at);
+            });
+
+            this.setState({ applications });
+>>>>>>> Sort by date
           })
           .catch((err) => {
             // console.log('err from api/applications');
