@@ -60,7 +60,7 @@ export default class MateUiRightDrawer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div onClick={this.closeDrawer}>
         {/* #00bcd4 */}
         {/* <Button color="vk" style={{ backgroundColor: '#00bcd4' }}> */}
         <Button color="vk" onClick={this.openDrawerAndPostEmptyAppToDB} >
