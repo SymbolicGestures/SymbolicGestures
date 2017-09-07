@@ -1,109 +1,37 @@
+.stageBar {
+}
+
 .stageBar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  display:flex;
+  flex-direction: row;
+  list-style-type: none;
+  width: 100%;
+  height: inherit;
+  min-height: 50px;
+  max-height: 50px;
+  padding-left: 0px;
 }
 
 .stageBar li {
-  padding: 15px;
-  font-size: 15px;
-  color: black;
-  float: left;
-  border-width: 20px 20px 20px 20px;
-  border-color: red;
+  flex-grow:1;
+  text-align: center;
+  min-width: 20px;
+  overflow-wrap: break-word;
 }
 
 .addStage {
   padding: 5px;
   color: white;
   text-align: center;
-  background: blue;
-  border-width: 2px;
-  border-color: blue;
-  border-radius: 50%;
-  float: right;
-}
-.arrows { white-space: nowrap; }
-.arrows li {
-    display: inline-block;
-    line-height: 26px;
-    margin: 0 9px 0 -10px;
-    padding: 0 20px;
-    position: relative;
-}
-.arrows li::before,
-.arrows li::after {
-    border-right: 1px solid #666666;
-    content: '';
-    display: block;
-    height: 50%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: -1;
-    transform: skewX(45deg);
-}
-.arrows li::after {
-    bottom: 0;
-    top: auto;
-    transform: skewX(-45deg);
+  background-color: rgb(0, 188, 212);;
 }
 
-.arrows li:last-of-type::before,
-.arrows li:last-of-type::after {
-    display: none;
+.addStage:hover {
+  opacity: .7;
+  content: '+'
 }
 
-.arrows li a {
-   font: bold 24px Sans-Serif;
-   letter-spacing: -1px;
-   text-decoration: none;
-}
-/*#stageBar li a::after {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 50px solid transparent;
-  border-bottom: 50px solid transparent;
-  border-left: 30px solid hsla(34,85%,35%,1);
+.settings {
+  color: white;
   position: absolute;
-  top: 50%;
-  margin-top: -50px;
-  left: 100%;
-  z-index: 2;
 }
-
-#stageBar li a::before {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 50px solid transparent;
-  border-bottom: 50px solid transparent;
-  border-left: 30px solid white;
-  position: absolute;
-  top: 50%;
-  margin-top: -50px;
-  margin-left: 1px;
-  left: 100%;
-  z-index: 1;
-}*/
-/*#stageBar a:before, #stageBar a:after {
-  position:absolute;
-  content:"";
-  height:0;
-  width:1px;
-  top:50%;
-  left:-25px;
-  margin-top: -24px;
-  border:      24px solid #eee;
-  border-right: 0 !important;
-  border-left-color: transparent !important;
-}
-#stageBar a:before{
-  left:-26px;
-  border: 24px solid #555;
-}*/
