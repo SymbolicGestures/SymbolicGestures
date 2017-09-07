@@ -1,0 +1,46 @@
+{
+  "name": "SymbolicGestures",
+  "scripts": {},
+  "env": {
+    "callbackURL": {
+      "required": true
+    },
+    "FACEBOOK_CLIENT_ID": {
+      "required": true
+    },
+    "FACEBOOK_CLIENT_SECRET": {
+      "required": true
+    },
+    "GOOGLE_CALLBACK_URL": {
+      "required": true
+    },
+    "GOOGLE_CLIENT_ID": {
+      "required": true
+    },
+    "GOOGLE_CLIENT_SECRET": {
+      "required": true
+    },
+    "REDIS_URL": {
+      "required": true
+    },
+    "TWITTER_CALLBACK_URL": {
+      "required": true
+    },
+    "TWITTER_CLIENT_ID": {
+      "required": true
+    },
+    "TWITTER_CLIENT_SECRET": {
+      "required": true
+    }
+  },
+  "formation": {},
+  "addons": [
+    "heroku-postgresql",
+    "heroku-redis"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
