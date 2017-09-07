@@ -44,12 +44,12 @@ class App extends React.Component {
     //   stages_settings: fakestages_settings,
     //   fakeStageNameToColorHash,
     // };
-    this.getApplications = this.getApplications.bind(this);
+    this.getApplicationsFromDB = this.getApplicationsFromDB.bind(this);
     this.toggleNavBar = this.toggleNavBar.bind(this);
   }
 
   componentDidMount() {
-    this.getApplications();
+    this.getApplicationsFromDB();
   }
 
   /**
@@ -80,10 +80,6 @@ class App extends React.Component {
 
         axios.get('/api/applications')
           .then((applicationData) => {
-<<<<<<< HEAD
-            // console.log('Applications from database:', applicationData.data);
-            this.setState({ applications: applicationData.data });
-=======
             console.log('Applications from database:', applicationData.data);
 
             let strDateToMiliSec = (strDate) => {
@@ -101,7 +97,6 @@ class App extends React.Component {
             });
 
             this.setState({ applications });
->>>>>>> Sort by date
           })
           .catch((err) => {
             // console.log('err from api/applications');
@@ -147,6 +142,7 @@ class App extends React.Component {
             applications={this.state.applications}
             stages_settings={this.state.applications}
             stageNameToColorHash={this.state.stageNameToColorHash}
+            getApplicationsFromDB={this.getApplicationsFromDB}
           />
         </div>
 

@@ -8,16 +8,16 @@ import { format } from 'date-fns';
 import AppDrawer from './drawer/appDrawer.jsx';
 
 const generateEmptyApplicaton = () => {
-  let currentDate = format(new Date(), 'YYYY-MM-DD-ddd-HH-MM-ss');
+  // let currentDate = format(new Date(), 'YYYY-MM-DD-ddd-HH-MM-ss');
   let emptyApplication = {
-    created_at: currentDate,
+    // created_at: currentDate,
     company_name: '',
     job_title: '',
     stage: '',
     job_posting_link: '',
     job_posting_source: '',
-    applied_at: '',
-    updated_at: '',
+    // applied_at: '',
+    // updated_at: '',
     locaton: '',
     job_posting_to_pdf_link: '',
     notes: [],
@@ -55,6 +55,7 @@ export default class MateUiRightDrawer extends React.Component {
   openDrawerAndPostEmptyAppToDB() {
     this.postEmptyApplicationToDB();
     this.setState({ open: true });
+    this.props.getApplicationsFromDB();
   }
   closeDrawer() { this.setState({ open: false }); }
 

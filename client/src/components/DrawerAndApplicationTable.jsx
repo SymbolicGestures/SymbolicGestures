@@ -18,31 +18,23 @@ export default class DrawerAndApplicationTable extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.handleAddButtonClick = this.handleAddButtonClick.bind(this);
   }
 
   handleClick(application) {
-    // console.log(application);
     this.setState({ selectedApplication: application });
-  }
-
-  handleAddButtonClick() {
-    let newApplications = [generateEmptyApplicaton()].concat(this.state.applications);
-    this.setState({ applications: newApplications });
   }
 
   render() {
     const segmentStyle = { padding: 0 };
     const applications = this.props.applications || [];
     const stageNameToColorHash = this.props.stageNameToColorHash || {};
-    return (<div onClick={this.closeDrawer} >
-
-
+    return (<div>
       <MuiThemeProvider>
         <MateUiRightDrawer
           application={this.state.selectedApplication}
           isDrawerOpen={this.state.isDrawerOpen}
           handleAddButtonClick={this.handleAddButtonClick}
+          getApplicationsFromDB={this.props.getApplicationsFromDB}
         />
       </MuiThemeProvider>
       <Segment style={segmentStyle}>
