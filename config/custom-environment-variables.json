@@ -1,8 +1,11 @@
 {
   "knex": {
     "connection": {
-      "database": "POSTRGESS_DB"
+      "database": "DATABASE_URL"
     }
+  },
+  "redis": {
+    "url": "REDIS_URL"
   },
   "passport": {
     "Google": {
@@ -15,12 +18,6 @@
       "clientID": "FACEBOOK_CLIENT_ID",
       "clientSecret": "FACEBOOK_CLIENT_SECRET",
       "callbackURL": "FACEBOOK_CALLBACK_URL"
-    },
-
-    "Twitter": {
-      "consumerKey": "TWITTER_CLIENT_ID",
-      "consumerSecret": "TWITTER_CLIENT_SECRET",
-      "callbackURL": "TWITTER_CALLBACK_URL"
     }
   }
 }
