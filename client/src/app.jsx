@@ -92,8 +92,15 @@ class App extends React.Component {
 
             let applications = applicationData.data;
             applications.sort((a, b) => {
-              return strDateToMiliSec(b.applied_at) - strDateToMiliSec(a.applied_at);
+              return strDateToMiliSec(b.created_at) - strDateToMiliSec(a.created_at);
             });
+
+            applications = applications.map((application) => {
+              let formatedDate = format(parse(application.created_at), 'ddd, MMM DD, YY');
+              application.created_at = formatedDate;
+              return application;
+            });
+            // format(faker.date.past(), 'YYYY-MM-DD');
 
             this.setState({ applications });
 >>>>>>> Sort by date
