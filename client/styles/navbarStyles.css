@@ -1,29 +1,27 @@
- .header {
-   background: rgb(114,203,254);
-   padding: 10px 13px 0px 0px;
-   display: flex;
-   flex-flow: row wrap
+.navbar {
+
+}
+
+.brand {
+ background-image: url('/assets/logo_overflow.png');
+ display: inline-block;
+ width: 50px;
+ height: 56px;
+ margin: 5px 5px;
+}
+
+.logo {
+  align-items: center;
+  font-size: x-large;
+  margin: auto 20px auto 10px;
  }
 
- .brand {
-   background-image: url('/assets/logo_overflow.png');
-   display: inline-block;
-   width: 50px;
-   height: 56px;
-   margin: 5px 5px;
- }
+.hidden {
+  transform: translateY(-100%);
+  transition: .5s ease-in-out;
+}
 
- .logo {
-    align-items: center;
-    font-size: x-large;
-    margin: auto 20px auto 10px;
- }
-
-.buttons {
-  justify-content: space-evenly;
-  align-items: flex-end;
-  width: 150px;
-  margin: 0px 50px;
-  flex: 1 100%;
-  align-content: stretch;
+.displayed {
+  transform: translateY(0%);
+  transition: .5s ease-in-out;
 }

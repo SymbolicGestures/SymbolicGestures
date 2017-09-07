@@ -37,6 +37,7 @@ class App extends React.Component {
       stagesSettings: [],
       stageNameToColorHash: {},
       stagesCount: {},
+      navBarIsHidden: false
     };
     // this.state = { // for data from fake data
     //   applications: fakeApplications,
@@ -44,6 +45,18 @@ class App extends React.Component {
     //   fakeStageNameToColorHash,
     // };
     this.getApplications = this.getApplications.bind(this);
+    this.toggleNavBar = this.toggleNavBar.bind(this);
+  }
+  toggleNavBar(scrollDirection) {
+    if(this.state.navBarIsHidden && scrollDirection < 0) {
+      this.setState({
+        navBarIsHidden: !this.state.navBarIsHidden
+      });
+    } else if (!this.state.navBarIsHidden && scrollDirection > 0){
+      this.setState({
+        navBarIsHidden: !this.state.navBarIsHidden
+      });
+    }
   }
 
   componentDidMount() {
@@ -101,10 +114,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div onClick={this.closeDrawer} >
-        <Navbar />
-
-
+      <div onClick={this.closeDrawer} onWheel={event=>{this.toggleNavBar(event.deltaY)}}>
+        <Navbar navBarIsHidden={this.state.navBarIsHidden}/>
         {/* <div className="box_94per_3perMg"> */}
         <div className={seanStyleBox.box_94per_3perMg}>
           <div className={seanStyleBox.PatrickStatusBar}>

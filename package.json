@@ -4,7 +4,8 @@
   "scripts": {
     "start": "nodemon server",
     "test": "NODE_ENV=test grunt test",
-    "build": "webpack --watch"
+    "build": "webpack --watch",
+    "knex": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "author": "Symbolic Gestures",
   "license": "MIT",
@@ -59,6 +60,7 @@
     "grunt-mocha-test": "^0.13.2",
     "mocha": "^3.2.0",
     "node-mocks-http": "^1.6.1",
+    "prop-types": "^15.5.10",
     "supertest": "^3.0.0",
     "webpack": "^2.3.2",
     "webpack-dev-server": "^2.4.2"
