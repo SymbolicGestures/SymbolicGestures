@@ -57,7 +57,7 @@ class App extends React.Component {
    * Counts applications stages.
    * @async
    */
-  getApplications() {
+  getApplicationsFromDB() {
     axios.get('/api/profiles')
       .then((userData) => {
         let stages_settings = userData.data.stages_settings;
