@@ -1,4 +1,9 @@
 {
+  "knex": {
+    "connection": {
+      "database": "POSTRGESS_DB"
+    }
+  },
   "passport": {
     "Google": {
       "clientID": "GOOGLE_CLIENT_ID",
