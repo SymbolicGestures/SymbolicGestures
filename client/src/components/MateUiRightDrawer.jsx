@@ -31,13 +31,12 @@ export default class MateUiRightDrawer extends React.Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
-    this.setDrawerToOpen = this.setDrawerToOpen.bind(this);
     this.openDrawerAndPostEmptyAppToDB = this.openDrawerAndPostEmptyAppToDB.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
   }
 
-  setDrawerToOpen() {
-    this.setState({ open: true });
+  componentWillReceiveProps(nextProps) {
+    this.setState({ open: nextProps.isDrawerOpen });
   }
 
   postEmptyApplicationToDB() {

@@ -21,7 +21,10 @@ export default class DrawerAndApplicationTable extends React.Component {
   }
 
   handleClick(application) {
-    this.setState({ selectedApplication: application });
+    this.setState({
+      selectedApplication: application,
+      isDrawerOpen: true
+    });
   }
 
   render() {
