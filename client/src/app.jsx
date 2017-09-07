@@ -96,11 +96,9 @@ class App extends React.Component {
             });
 
             applications = applications.map((application) => {
-              let formatedDate = format(parse(application.created_at), 'ddd, MMM DD, YY');
-              application.created_at = formatedDate;
+              application.created_at = format(parse(application.created_at), 'ddd, MMM DD, YY');
               return application;
             });
-            // format(faker.date.past(), 'YYYY-MM-DD');
 
             this.setState({ applications });
 >>>>>>> Sort by date
