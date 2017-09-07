@@ -91,16 +91,6 @@ class App extends React.Component {
             };
 
             let applications = applicationData.data;
-            // applications.forEach((application) => {
-            //   let dateStr = application.applied_at;
-            //   let dateParsed = parse(dateStr);
-            //   let dateMiliSec = getTime(dateParsed);
-
-            //   // console.log(typeof dateStr, dateStr);
-            //   // console.log(typeof dateParsed, dateParsed);
-            //   console.log(typeof dateMiliSec, strDateToMiliSec(application.applied_at));
-            // });
-
             applications.sort((a, b) => {
               return strDateToMiliSec(b.applied_at) - strDateToMiliSec(a.applied_at);
             });
