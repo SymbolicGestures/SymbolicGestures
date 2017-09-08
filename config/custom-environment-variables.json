@@ -1,11 +1,10 @@
 {
   "knex": {
-    "connection": {
-      "database": "DATABASE_URL"
-    }
+    "connection": "DATABASE_URL"
   },
   "redis": {
-    "url": "REDIS_URL"
+    "url": "REDIS_URL",
+    "secret": "REDIS_SECRET"
   },
   "passport": {
     "Google": {
