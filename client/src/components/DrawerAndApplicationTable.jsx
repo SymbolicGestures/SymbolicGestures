@@ -13,6 +13,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     super(props);
     this.state = {
       items: [],
+      selectAppIdx: 0,
       selectedApplication: this.props.applications[0] || [],
       isDrawerOpen: false,
     };
@@ -21,8 +22,17 @@ export default class DrawerAndApplicationTable extends React.Component {
     this.closeDrawer = this.closeDrawer.bind(this);
   }
 
-  handleClick(application) {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.applications.length > 0) {
+      this.setState({
+        selectedApplication: nextProps.applications[this.state.selectAppIdx]
+      });
+    }
+  }
+
+  handleClick(application, idx) {
     this.setState({
+      selectAppIdx: idx,
       selectedApplication: application,
       isDrawerOpen: true
     });
@@ -61,7 +71,7 @@ export default class DrawerAndApplicationTable extends React.Component {
           <Table.Body>
             {applications.map((application, idx) => {
               return (
-                <Table.Row key={idx} onClick={() => (this.handleClick(application))}>
+                <Table.Row key={idx} onClick={() => (this.handleClick(application, idx))}>
                   <Table.Cell>{application.created_at}</Table.Cell>
                   <Table.Cell>{application.company_name}</Table.Cell>
                   <Table.Cell>{application.job_title}</Table.Cell>

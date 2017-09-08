@@ -40,7 +40,7 @@ export default class MateUiRightDrawer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.isDrawerOpen);
+    // console.log(nextProps.isDrawerOpen);
     this.setState({ open: nextProps.isDrawerOpen });
   }
 
@@ -57,11 +57,13 @@ export default class MateUiRightDrawer extends React.Component {
   }
 
   openDrawerAndPostEmptyAppToDB() {
+    console.log('open drawer');
     this.postEmptyApplicationToDB();
     this.setState({ open: true });
     this.props.getApplicationsFromDB();
   }
   closeDrawer() {
+    console.log('close drawer');
     this.setState({ open: false });
     this.props.closeDrawer();
   }
@@ -74,7 +76,7 @@ export default class MateUiRightDrawer extends React.Component {
         <Button color="vk" onClick={this.openDrawerAndPostEmptyAppToDB} >
           <Icon name="plus" /> Add Aplication
         </Button>
-
+        {/* {console.log('open state:', this.state.open)} */}
         <Drawer width={'70%'} openSecondary={true} open={this.state.open}>
           <Button
             attached="top"
