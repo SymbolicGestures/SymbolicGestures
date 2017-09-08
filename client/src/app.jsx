@@ -67,9 +67,15 @@ class App extends React.Component {
   getApplicationsFromDB(callback) {
     axios.get('/api/profiles')
       .then((userData) => {
+        let allData = userData.data;
         let stages_settings = userData.data.stages_settings;
         let userId = userData.data.id;
+<<<<<<< HEAD
         // console.log('stages_settings from database:', stages_settings);
+=======
+        console.log('all data:', allData);
+        console.log('stages_settings from database:', stages_settings);
+>>>>>>> Change one space to zero space
 
         let stageNameToColorHash = {};
         stages_settings.forEach((setting) => {
