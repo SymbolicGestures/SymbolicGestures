@@ -57,13 +57,12 @@ export default class MateUiRightDrawer extends React.Component {
   }
 
   openDrawerAndPostEmptyAppToDB() {
-    console.log('open drawer');
     this.postEmptyApplicationToDB();
+    this.props.openDrawer();
     this.setState({ open: true });
     this.props.getApplicationsFromDB();
   }
   closeDrawer() {
-    console.log('close drawer');
     this.setState({ open: false });
     this.props.closeDrawer();
   }

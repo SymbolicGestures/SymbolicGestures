@@ -18,7 +18,8 @@ export default class DrawerAndApplicationTable extends React.Component {
       isDrawerOpen: false,
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.openDrawerWhenOneAppClick = this.openDrawerWhenOneAppClick.bind(this);
+    this.openDrawer = this.openDrawer.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
   }
 
@@ -30,7 +31,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     }
   }
 
-  handleClick(application, idx) {
+  openDrawerWhenOneAppClick(application, idx) {
     this.setState({
       selectAppIdx: idx,
       selectedApplication: application,
@@ -38,6 +39,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     });
   }
 
+  openDrawer() { this.setState({ isDrawerOpen: true }); }
   closeDrawer() { this.setState({ isDrawerOpen: false }); }
 
   render() {
@@ -50,6 +52,7 @@ export default class DrawerAndApplicationTable extends React.Component {
           application={this.state.selectedApplication}
           isDrawerOpen={this.state.isDrawerOpen}
           handleAddButtonClick={this.handleAddButtonClick}
+          openDrawer={this.openDrawer}
           closeDrawer={this.closeDrawer}
           getApplicationsFromDB={this.props.getApplicationsFromDB}
         />
@@ -71,7 +74,7 @@ export default class DrawerAndApplicationTable extends React.Component {
           <Table.Body>
             {applications.map((application, idx) => {
               return (
-                <Table.Row key={idx} onClick={() => (this.handleClick(application, idx))}>
+                <Table.Row key={idx} onClick={() => (this.openDrawerWhenOneAppClick(application, idx))}>
                   <Table.Cell>{application.created_at}</Table.Cell>
                   <Table.Cell>{application.company_name}</Table.Cell>
                   <Table.Cell>{application.job_title}</Table.Cell>
