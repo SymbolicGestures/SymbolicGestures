@@ -19,6 +19,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     };
 
     this.openDrawerWhenOneAppClick = this.openDrawerWhenOneAppClick.bind(this);
+    this.setSelectAppToNewApp = this.setSelectAppToNewApp.bind(this);
     this.openDrawer = this.openDrawer.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
   }
@@ -31,6 +32,15 @@ export default class DrawerAndApplicationTable extends React.Component {
     }
   }
 
+
+  setSelectAppToNewApp() {
+    console.log('setSelect:', this.props.applications[0]);
+    this.setState({
+      selectAppIdx: 0,
+      selectedApplication: this.props.applications[0]
+    });
+  }
+
   openDrawerWhenOneAppClick(application, idx) {
     this.setState({
       selectAppIdx: idx,
@@ -38,7 +48,6 @@ export default class DrawerAndApplicationTable extends React.Component {
       isDrawerOpen: true
     });
   }
-
   openDrawer() { this.setState({ isDrawerOpen: true }); }
   closeDrawer() { this.setState({ isDrawerOpen: false }); }
 
@@ -55,6 +64,7 @@ export default class DrawerAndApplicationTable extends React.Component {
           openDrawer={this.openDrawer}
           closeDrawer={this.closeDrawer}
           getApplicationsFromDB={this.props.getApplicationsFromDB}
+          setSelectAppToNewApp={this.setSelectAppToNewApp}
         />
       </MuiThemeProvider>
       <Segment style={segmentStyle}>

@@ -60,7 +60,8 @@ export default class MateUiRightDrawer extends React.Component {
     this.postEmptyApplicationToDB();
     this.props.openDrawer();
     this.setState({ open: true });
-    this.props.getApplicationsFromDB();
+    console.log('why?');
+    this.props.getApplicationsFromDB(this.props.setSelectAppToNewApp);
   }
   closeDrawer() {
     this.setState({ open: false });
@@ -73,7 +74,7 @@ export default class MateUiRightDrawer extends React.Component {
         {/* #00bcd4 */}
         {/* <Button color="vk" style={{ backgroundColor: '#00bcd4' }}> */}
         <Button color="vk" onClick={this.openDrawerAndPostEmptyAppToDB} >
-          <Icon name="plus" /> Add Aplication
+          <Icon name="plus" /> Add Application
         </Button>
         {/* {console.log('open state:', this.state.open)} */}
         <Drawer width={'70%'} openSecondary={true} open={this.state.open}>

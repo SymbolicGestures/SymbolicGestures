@@ -57,7 +57,7 @@ class App extends React.Component {
    * Counts applications stages.
    * @async
    */
-  getApplicationsFromDB() {
+  getApplicationsFromDB(callback) {
     axios.get('/api/profiles')
       .then((userData) => {
         let stages_settings = userData.data.stages_settings;
@@ -97,6 +97,9 @@ class App extends React.Component {
             });
 
             this.setState({ applications });
+            if (typeof callback === 'function') {
+              callback();
+            }
           })
           .catch((err) => {
             // console.log('err from api/applications');
