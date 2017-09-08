@@ -40,6 +40,7 @@ export default class MateUiRightDrawer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps.isDrawerOpen);
     this.setState({ open: nextProps.isDrawerOpen });
   }
 
