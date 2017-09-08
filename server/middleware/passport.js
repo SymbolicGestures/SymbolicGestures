@@ -121,7 +121,8 @@ passport.use('facebook', new FacebookStrategy({
   callbackURL: config.Facebook.callbackURL,
   profileFields: ['id', 'emails', 'name']
 },
-(accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('facebook', profile, done))
+(accessToken, refreshToken, profile, done) => {
+  return getOrCreateOAuthProfile('facebook', profile, done)})
 );
 
 // REQUIRES PERMISSIONS FROM TWITTER TO OBTAIN USER EMAIL ADDRESSES
@@ -138,8 +139,8 @@ passport.use('linkedin', new LinkedInStrategy({
   clientID: config.LinkedIn.consumerKey,
   clientSecret: config.LinkedIn.consumerSecret,
   callbackURL: config.LinkedIn.callbackURL,
-},
-(accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('linkedin', profile, done))
+  scope: ['r_emailaddress', 'r_basicprofile']
+},(accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('linkedin', profile, done))
 );
 
 const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
@@ -147,7 +148,6 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
     withRelated: ['profile']
   })
     .then(oauthAccount => {
-
       if (oauthAccount) {
         throw oauthAccount;
       }
@@ -159,7 +159,6 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
       return models.Profile.where({ email: oauthProfile.emails[0].value }).fetch();
     })
     .then(profile => {
-
       let profileInfo = {
         first: oauthProfile.name.givenName,
         last: oauthProfile.name.familyName,
