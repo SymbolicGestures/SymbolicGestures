@@ -4,6 +4,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
+var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 const config = require('config')['passport'];
 const models = require('../../db/models');
 
@@ -120,7 +121,8 @@ passport.use('facebook', new FacebookStrategy({
   callbackURL: config.Facebook.callbackURL,
   profileFields: ['id', 'emails', 'name']
 },
-(accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('facebook', profile, done))
+(accessToken, refreshToken, profile, done) => {
+  return getOrCreateOAuthProfile('facebook', profile, done)})
 );
 
 // REQUIRES PERMISSIONS FROM TWITTER TO OBTAIN USER EMAIL ADDRESSES
@@ -133,12 +135,19 @@ passport.use('twitter', new TwitterStrategy({
 (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('twitter', profile, done))
 );
 
+passport.use('linkedin', new LinkedInStrategy({
+  clientID: config.LinkedIn.consumerKey,
+  clientSecret: config.LinkedIn.consumerSecret,
+  callbackURL: config.LinkedIn.callbackURL,
+  scope: ['r_emailaddress', 'r_basicprofile']
+},(accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('linkedin', profile, done))
+);
+
 const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
   return models.Auth.where({ type, oauth_id: oauthProfile.id }).fetch({
     withRelated: ['profile']
   })
     .then(oauthAccount => {
-
       if (oauthAccount) {
         throw oauthAccount;
       }
@@ -150,7 +159,6 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
       return models.Profile.where({ email: oauthProfile.emails[0].value }).fetch();
     })
     .then(profile => {
-
       let profileInfo = {
         first: oauthProfile.name.givenName,
         last: oauthProfile.name.familyName,
