@@ -4,6 +4,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
+var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 const config = require('config')['passport'];
 const models = require('../../db/models');
 
@@ -131,6 +132,14 @@ passport.use('twitter', new TwitterStrategy({
   userProfileURL: 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true'
 },
 (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('twitter', profile, done))
+);
+
+passport.use('linkedin', new LinkedInStrategy({
+  clientID: config.LinkedIn.consumerKey,
+  clientSecret: config.LinkedIn.consumerSecret,
+  callbackURL: config.LinkedIn.callbackURL,
+},
+(accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('linkedin', profile, done))
 );
 
 const getOrCreateOAuthProfile = (type, oauthProfile, done) => {

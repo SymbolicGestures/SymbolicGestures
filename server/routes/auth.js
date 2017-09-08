@@ -67,4 +67,13 @@ router.get('/auth/twitter/callback', middleware.passport.authenticate('twitter',
   failureRedirect: '/login'
 }));
 
+router.get('/auth/linkedin', middleware.passport.authenticate('linkedin', {
+  scope: ['r_emailaddress', 'r_basicprofile']
+}));
+
+router.get('/auth/linkedin/callback', middleware.passport.authenticate('linkedin', {
+  successRedirect: '/profile',
+  failureRedirect: '/login'
+}));
+
 module.exports = router;
