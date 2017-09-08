@@ -18,6 +18,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.closeDrawer = this.closeDrawer.bind(this);
   }
 
   handleClick(application) {
@@ -26,6 +27,8 @@ export default class DrawerAndApplicationTable extends React.Component {
       isDrawerOpen: true
     });
   }
+
+  closeDrawer() { this.setState({ isDrawerOpen: false }); }
 
   render() {
     const segmentStyle = { padding: 0 };
@@ -37,6 +40,7 @@ export default class DrawerAndApplicationTable extends React.Component {
           application={this.state.selectedApplication}
           isDrawerOpen={this.state.isDrawerOpen}
           handleAddButtonClick={this.handleAddButtonClick}
+          closeDrawer={this.closeDrawer}
           getApplicationsFromDB={this.props.getApplicationsFromDB}
         />
       </MuiThemeProvider>

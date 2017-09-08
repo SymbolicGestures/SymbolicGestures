@@ -61,7 +61,10 @@ export default class MateUiRightDrawer extends React.Component {
     this.setState({ open: true });
     this.props.getApplicationsFromDB();
   }
-  closeDrawer() { this.setState({ open: false }); }
+  closeDrawer() {
+    this.setState({ open: false });
+    this.props.closeDrawer();
+  }
 
   render() {
     return (
