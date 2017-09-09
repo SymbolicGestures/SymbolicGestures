@@ -5,7 +5,7 @@ import axios from 'axios';
 import { format } from 'date-fns';
 
 import MateUiRightDrawer from './MateUiRightDrawer.jsx';
-
+import DropdownExampleImage from './DropdownExampleImage.jsx';
 
 
 export default class DrawerAndApplicationTable extends React.Component {
@@ -48,6 +48,7 @@ export default class DrawerAndApplicationTable extends React.Component {
       isDrawerOpen: true
     });
   }
+
   openDrawer() { this.setState({ isDrawerOpen: true }); }
   closeDrawer() { this.setState({ isDrawerOpen: false }); }
 
@@ -84,7 +85,10 @@ export default class DrawerAndApplicationTable extends React.Component {
           <Table.Body>
             {applications.map((application, idx) => {
               return (
-                <Table.Row key={idx} onClick={() => (this.openDrawerWhenOneAppClick(application, idx))}>
+                <Table.Row
+                  key={idx}
+                  onClick={() => (this.openDrawerWhenOneAppClick(application, idx))}
+                >
                   <Table.Cell>{application.created_at}</Table.Cell>
                   <Table.Cell>{application.company_name}</Table.Cell>
                   <Table.Cell>{application.job_title}</Table.Cell>
@@ -92,6 +96,17 @@ export default class DrawerAndApplicationTable extends React.Component {
                     style={stageNameToColorHash[application.stage]}
                   >{application.stage}</Table.Cell>
                   <Table.Cell>{application.job_posting_link}</Table.Cell>
+                  <Table.Cell style={stageNameToColorHash[application.stage]}>
+                    <DropdownExampleImage
+                      stageNameToColorHash={stageNameToColorHash}
+                      stage={application.stage}
+                      updateaOneAppStage={this.props.updateaOneAppStage}
+                      applicationIdx={idx}
+                      stages_settings={this.props.stages_settings}
+                      application={application}
+                      getApplicationsFromDB={this.props.getApplicationsFromDB}
+                    />
+                  </Table.Cell> 
                   <Table.Cell>{application.job_posting_source}</Table.Cell>
                 </Table.Row>
               );

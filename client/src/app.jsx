@@ -53,6 +53,7 @@ class App extends React.Component {
     this.countApplicationStages = this.countApplicationStages.bind(this);
     this.onStagesChange = this.onStagesChange.bind(this);
     this.updateStages = this.updateStages.bind(this);
+    this.updateaOneAppStage = this.updateaOneAppStage.bind(this);
   }
 
   componentDidMount() {
@@ -131,13 +132,13 @@ class App extends React.Component {
    * @todo: Set both count and size of flex-grow
    */
   countApplicationStages() {
-    let applications = this.state.applications,
-        count = {};
+    let applications = this.state.applications;
+    let count = {};
     console.log('Counting: ', applications);
     // Count number of each stage.
     for (let i = 0; i < applications.length; i++) {
       let stage = applications[i].stage;
-      if(count[stage] && count[stage] < 6) {
+      if (count[stage] && count[stage] < 6) {
         count[stage]++;
       } else {
         count[stage] = 1;
@@ -188,6 +189,13 @@ class App extends React.Component {
     }
   }
 
+  updateaOneAppStage(idx, updatedState) {
+    this.state.applications[idx].stage = updatedState;
+    this.setState({
+      applications: this.state.applications
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -215,9 +223,10 @@ class App extends React.Component {
                 <div className={seanStyleBox.DrawerAndApplicationTable}>
                   <DrawerAndApplicationTable
                     applications={this.state.applications}
-                    stages_settings={this.state.applications}
+                    stages_settings={this.state.stages_settings}
                     stageNameToColorHash={this.state.stageNameToColorHash}
                     getApplicationsFromDB={this.getApplicationsFromDB}
+                    updateaOneAppStage={this.updateaOneAppStage}
                   />
                 </div>
               </div>
