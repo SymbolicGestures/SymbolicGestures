@@ -71,15 +71,6 @@ class App extends React.Component {
         let allData = userData.data;
         let stages_settings = userData.data.stages_settings;
         let userId = userData.data.id;
-<<<<<<< HEAD
-<<<<<<< HEAD
-        // console.log('stages_settings from database:', stages_settings);
-=======
-        console.log('all data:', allData);
-        console.log('stages_settings from database:', stages_settings);
->>>>>>> Change one space to zero space
-=======
->>>>>>> Clean up code before rebase
 
         let stageNameToColorHash = {};
         stages_settings.forEach((setting) => {
