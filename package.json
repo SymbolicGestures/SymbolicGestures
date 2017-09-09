@@ -2,11 +2,11 @@
   "name": "offer.overflow",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "webpack",
+    "postinstall": "webpack --config webpack.dev.config.babel.js",
     "start": "node server",
     "server-dev": "nodemon server",
     "test": "NODE_ENV=test grunt test",
-    "build": "webpack --watch",
+    "build": "webpack --config webpack.config.babel.js --watch",
     "knex": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "author": "Symbolic Gestures",
