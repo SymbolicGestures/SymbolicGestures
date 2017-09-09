@@ -201,7 +201,6 @@ class App extends React.Component {
             <Route
               key = {1}
               exact path = {'/'}
-
               render = {()=>{return (
                 <div>
                   <div className={seanStyleBox.box_94per_3perMg}>
