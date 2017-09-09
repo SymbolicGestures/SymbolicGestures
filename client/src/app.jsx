@@ -2,7 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { parse, getTime, format } from 'date-fns';
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 import Navbar from './components/Header/Navbar.jsx';
 import StageBar from './components/stageBar/StageBar.jsx';
 import DrawerAndApplicationTable from './components/DrawerAndApplicationTable.jsx';
@@ -162,6 +166,10 @@ class App extends React.Component {
       });
   }
 
+  /**
+   * Function to toggle nav bar on scroll. Scroll up displays navbar. Scroll down hides navbar. Does this by changing state of navBarIsHidden.
+   * @param  {number} scrollDirection From react onWheel event. event.deltaY. positive is a scroll up. negative is a scroll down.
+   */
   toggleNavBar(scrollDirection) {
     if (this.state.navBarIsHidden && scrollDirection < 0) {
       this.setState({
@@ -176,32 +184,63 @@ class App extends React.Component {
 
   render() {
     return (
-      <div onWheel={(event) => { this.toggleNavBar(event.deltaY); }}>
-        <Navbar navBarIsHidden={this.state.navBarIsHidden} />
-        {/* <div className="box_94per_3perMg"> */}
-        <div className={seanStyleBox.box_94per_3perMg}>
-          <div className={seanStyleBox.PatrickStatusBar}>
-            <StageBar
-              stages={this.state.stages_settings}
-              stagesCount={this.state.stagesCount}
-              applications={this.state.applications}
-              onStagesChange={this.onStagesChange}
-            />
-          </div>
-        </div>
+      <Router>
+        <div onWheel={(event) => { this.toggleNavBar(event.deltaY); }}>
+          <Navbar navBarIsHidden={this.state.navBarIsHidden} />
+          {/* <div className="box_94per_3perMg"> */}
+          <Route
+            key = {1}
+            path = {'/'}
+            exact = {true}
+            component = {()=>{return (
+              <div>
+                <div className={seanStyleBox.box_94per_3perMg}>
+                  <div className={seanStyleBox.PatrickStatusBar}>
+                    <StageBar
+                      stages={this.state.stages_settings}
+                      stagesCount={this.state.stagesCount}
+                      applications={this.state.applications}
+                      onStagesChange={this.onStagesChange}
+                    />
+                  </div>
+                </div>
 
 
-        <div className={seanStyleBox.DrawerAndApplicationTable}>
-          <DrawerAndApplicationTable
-            applications={this.state.applications}
-            stages_settings={this.state.applications}
-            stageNameToColorHash={this.state.stageNameToColorHash}
-            getApplicationsFromDB={this.getApplicationsFromDB}
+                <div className={seanStyleBox.DrawerAndApplicationTable}>
+                  <DrawerAndApplicationTable
+                    applications={this.state.applications}
+                    stages_settings={this.state.applications}
+                    stageNameToColorHash={this.state.stageNameToColorHash}
+                    getApplicationsFromDB={this.getApplicationsFromDB}
+                  />
+                </div>
+              </div>
+            )}}
+          />
+          <Route
+            key = {2}
+            path = {'/analytics'}
+            component = { () => {return (
+              <div>
+                <div className={seanStyleBox.box_94per_3perMg}></div>
+                <div> Analytics! </div>
+                <img src='https://files.slack.com/files-pri/T60JJS25A-F71K231M5/pasted_image_at_2017_09_08_05_47_pm.png' />
+              </div>
+            )}}
+          />
+          <Route
+            key = {3}
+            path = {'/connect'}
+            component = { () => {return (
+              <div>
+                <div className={seanStyleBox.box_94per_3perMg}></div>
+                <div> Connect! </div>
+                <img src='https://files.slack.com/files-pri/T60JJS25A-F70E8US1H/2017-09-08_06.00.10_pm.png' />
+              </div>
+            )}}
           />
         </div>
-
-
-      </div>
+      </Router>
     );
   }
 }

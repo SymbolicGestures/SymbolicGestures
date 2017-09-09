@@ -5,6 +5,7 @@ import {Nav} from 'react-bootstrap'
 import {NavItem} from 'react-bootstrap'
 import {MenuItem} from 'react-bootstrap'
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -25,9 +26,9 @@ class Header extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <NavItem eventKey={1} href="#Applications">Applications</NavItem>
-              <NavItem eventKey={2} href="#Analytics">Analytics</NavItem>
-              <NavItem eventKey={3} href="#Connect">Connect</NavItem>
+              <NavItem eventKey={1}><Link to="/">Applications</Link></NavItem>
+              <NavItem eventKey={2}><Link to="/analytics">Analytics</Link></NavItem>
+              <NavItem eventKey={3}><Link to="/connect">Connect</Link></NavItem>
             </Nav>
             <Nav pullRight>
               <NavItem eventKey={2} href="#Settings">Settings</NavItem>
