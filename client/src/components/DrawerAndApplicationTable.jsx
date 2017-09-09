@@ -92,10 +92,9 @@ export default class DrawerAndApplicationTable extends React.Component {
                   <Table.Cell>{application.created_at}</Table.Cell>
                   <Table.Cell>{application.company_name}</Table.Cell>
                   <Table.Cell>{application.job_title}</Table.Cell>
-                  <Table.Cell
+                  {/* <Table.Cell
                     style={stageNameToColorHash[application.stage]}
-                  >{application.stage}</Table.Cell>
-                  <Table.Cell>{application.job_posting_link}</Table.Cell>
+                  >{application.stage}</Table.Cell> */}
                   <Table.Cell style={stageNameToColorHash[application.stage]}>
                     <DropdownExampleImage
                       stageNameToColorHash={stageNameToColorHash}
@@ -107,6 +106,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                       getApplicationsFromDB={this.props.getApplicationsFromDB}
                     />
                   </Table.Cell> 
+                  <Table.Cell>{application.job_posting_link}</Table.Cell>
                   <Table.Cell>{application.job_posting_source}</Table.Cell>
                 </Table.Row>
               );
