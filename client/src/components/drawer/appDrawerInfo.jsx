@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField';
 
 import axios from 'axios';
 
+import DropDownEx01 from './DropDownEx01.jsx'
 
 class AppDrawerInfo extends React.Component {
   constructor(props) {
@@ -90,6 +91,7 @@ class AppDrawerInfo extends React.Component {
           value={this.state.created_at || ''}
           floatingLabelText='created_at'
         /> */}
+        <DropDownEx01 />
 
         <TextField
           onBlur={this.handleBlur}
@@ -107,13 +109,13 @@ class AppDrawerInfo extends React.Component {
           floatingLabelText='job_title'
         />
 
-        <TextField
+        {/* <TextField
           onBlur={this.handleBlur}
           onChange={this.handleChange}
           id="stage"
           value={this.state.stage || ''}
           floatingLabelText='stage'
-        />
+        /> */}
 
         <TextField
           onBlur={this.handleBlur}
