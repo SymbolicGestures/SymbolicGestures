@@ -18,11 +18,6 @@ fakestages_settings.forEach((setting) => {
 });
 
 
-// stages_settings
-// stageNameToColorHash
-// application.stage
-
-
 class AppDrawerInfoDropDown extends React.Component {
   constructor(props) {
     super(props);
@@ -41,10 +36,6 @@ class AppDrawerInfoDropDown extends React.Component {
         dropDownText: nextProps.stage
       });
     }
-    // console.log('nextProps:', nextProps)
-    // this.setState({
-    //   dropDownText
-    // });
   }
 
   handleClick(clickedText) {
@@ -64,17 +55,10 @@ class AppDrawerInfoDropDown extends React.Component {
     axios.post(route, body)
       .then(console.log('post stage succed'))
       .then((err) => { console.log(err); });
-      // .then(this.props.getApplicationsFromDB())
+    // .then(this.props.getApplicationsFromDB())
   }
 
   render() {
-    // stages_settings={this.props.stages_settings}
-    // stageNameToColorHash={this.props.stageNameToColorHash}
-    // console.log(this.props.stageNameToColorHash);
-    // console.log(this.props.stages_settings);
-    
-    // if (this.props.stageNameToColorHash !== undefined) {
-    //   if (this.props.stages_settings !== undefined) {
 
     return (<div>
       <Dropdown

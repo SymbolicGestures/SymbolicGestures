@@ -16,51 +16,12 @@ class AppDrawerInfo extends React.Component {
       job_posting_source: '',
       job_posting_link: ''
     };
-    this.handleChange = this.handleChange.bind(this)
-    this.handleBlur = this.handleBlur.bind(this)
-    this.createHistoryEntry = this.createHistoryEntry.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.createHistoryEntry = this.createHistoryEntry.bind(this);
   }
-
-  handleChange(event) {
-    var key = event.target.id;
-    var val = event.target.value;
-    var obj  = {};
-    obj[key] = val;
-    this.setState(obj);
-  }
-
-  handleBlur(event) {
-    let route = `/api/applications/${this.props.application.id}`;
-    let key = event.target.id;
-    let val = event.target.value;
-    let body  = {};
-    body[key] = val;
-    axios.post(route,body)
-    .then(this.props.getApplicationsFromDB())
-    // .then((message) => {console.log(message)})
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    var stageChanged = prevProps.application.stage !== this.props.application.stage;
-    var idChanged = prevProps.application.id !== this.props.application.id;
-    if (stageChanged && !idChanged) {
-      this.createHistoryEntry(this.props.application.id, prevProps.application.stage,this.props.application.stage)
-    }
-  }
-
-  createHistoryEntry(application_id, oldStage, newStage) {
-    let eventText = "Stage was changed from " + oldStage + " to " + newStage;
-    let route = '/api/histories/';
-    let body = {'event' : eventText, application_id};
-    // console.log(' new history: ', application_id, eventText)
-    axios.post(route,body)
-    .then(this.props.getApplicationsFromDB());
-  }
-
 
   componentWillReceiveProps(nextProps) {
-    // console.log('next props: ',nextProps.application.company_name)
-
     this.setState({
       company_name: nextProps.application.company_name,
       applied_at: nextProps.application.applied_at,
@@ -70,6 +31,44 @@ class AppDrawerInfo extends React.Component {
       job_posting_link: nextProps.application.job_posting_link
     });
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    let stageChanged = prevProps.application.stage !== this.props.application.stage;
+    let idChanged = prevProps.application.id !== this.props.application.id;
+    if (stageChanged && !idChanged) {
+      this.createHistoryEntry(this.props.application.id, prevProps.application.stage, this.props.application.stage);
+    }
+  }
+
+  handleChange(event) {
+    let key = event.target.id;
+    let val = event.target.value;
+    let obj = {};
+    obj[key] = val;
+    this.setState(obj);
+  }
+
+  handleBlur(event) {
+    let route = `/api/applications/${this.props.application.id}`;
+    let key = event.target.id;
+    let val = event.target.value;
+    let body = {};
+    body[key] = val;
+    axios.post(route, body)
+      .then(this.props.getApplicationsFromDB());
+    // .then((message) => {console.log(message)})
+  }
+
+
+  createHistoryEntry(application_id, oldStage, newStage) {
+    let eventText = "Stage was changed from " + oldStage + " to " + newStage;
+    let route = '/api/histories/';
+    let body = {'event' : eventText, application_id};
+    // console.log(' new history: ', application_id, eventText)
+    axios.post(route, body)
+      .then(this.props.getApplicationsFromDB());
+  }
+
 
   render() {
     return (
