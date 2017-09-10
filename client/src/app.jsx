@@ -11,7 +11,7 @@ import {
 import Navbar from './components/Header/Navbar.jsx';
 import StageBar from './components/stageBar/StageBar.jsx';
 import DrawerAndApplicationTable from './components/DrawerAndApplicationTable.jsx';
-
+import Analytics from './components/analytics/Analytics.jsx';
 const fakeApplicationsGenerator = require('./../../config/fakeApplicationsGenerator.js');
 
 let fakeApplications = fakeApplicationsGenerator(15);
@@ -282,13 +282,7 @@ class App extends React.Component {
             <Route
               key = {2}
               path = {'/analytics'}
-              render = { () => {return (
-                <div>
-                  <div className={seanStyleBox.box_94per_3perMg}></div>
-                  <div> Analytics! </div>
-                  <img src='https://files.slack.com/files-pri/T60JJS25A-F71K231M5/pasted_image_at_2017_09_08_05_47_pm.png' />
-                </div>
-              )}}
+              render = {Analytics}
             />
             <Route
               key = {3}

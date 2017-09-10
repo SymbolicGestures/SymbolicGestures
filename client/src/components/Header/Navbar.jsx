@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './../../../styles/navbarStyles.css'
-import {Navbar} from 'react-bootstrap'
-import {Nav} from 'react-bootstrap'
-import {NavItem} from 'react-bootstrap'
-import {MenuItem} from 'react-bootstrap'
+import {Navbar,
+  Nav,
+  NavItem,
+  MenuItem} from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 class Header extends React.Component {
