@@ -33,6 +33,18 @@ class DropDownEx01 extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.stage !== undefined) {
+      this.setState({
+        dropDownText: nextProps.stage
+      });
+    }
+    // console.log('nextProps:', nextProps)
+    // this.setState({
+    //   dropDownText
+    // });
+  }
+
   handleClick(clickedText) {
     this.setState({ dropDownText: clickedText });
   }
@@ -40,11 +52,11 @@ class DropDownEx01 extends React.Component {
   render() {
     // stages_settings={this.props.stages_settings}
     // stageNameToColorHash={this.props.stageNameToColorHash}
-    console.log(this.props.stageNameToColorHash);
-    console.log(this.props.stages_settings);
+    // console.log(this.props.stageNameToColorHash);
+    // console.log(this.props.stages_settings);
     
-    if (this.props.stageNameToColorHash !== undefined) {
-      if (this.props.stages_settings !== undefined) {
+    // if (this.props.stageNameToColorHash !== undefined) {
+    //   if (this.props.stages_settings !== undefined) {
 
     return (<div>
       <Dropdown
@@ -71,10 +83,10 @@ class DropDownEx01 extends React.Component {
     </div>);
 
 
-      }
-    }
+    //   }
+    // }
 
-    return (<div></div>);
+    // return (<div></div>);
 
   }
 }

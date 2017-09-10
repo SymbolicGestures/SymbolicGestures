@@ -48,8 +48,6 @@ class AppDrawerContact extends React.Component {
   };
 
   handleSubmit(event) {
-    // console.log('axios this:', this.props.application.id ,{name: this.state.name})
-
     let newContact = {
       application_id: this.props.application.id,
       name: this.state.name,
@@ -74,8 +72,6 @@ class AppDrawerContact extends React.Component {
     let application_id = this.props.application.id;
 
     let body = {'event' : eventText, application_id};
-    // console.log(' new history: ', application_id, eventText)
-
     axios.post(route,body)
     .then(this.props.getApplicationsFromDB());
   }
@@ -87,7 +83,6 @@ class AppDrawerContact extends React.Component {
     var obj  = {};
     obj[key] = val;
     this.setState(obj);
-    // console.log('need to pass this to server', this.state);
   };
 
 
