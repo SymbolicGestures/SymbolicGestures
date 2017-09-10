@@ -34,7 +34,7 @@ export default class DrawerAndApplicationTable extends React.Component {
 
 
   setSelectAppToNewApp() {
-    console.log('setSelect:', this.props.applications[0]);
+    // console.log('setSelect:', this.props.applications[0]);
     this.setState({
       selectAppIdx: 0,
       selectedApplication: this.props.applications[0]
@@ -73,6 +73,8 @@ export default class DrawerAndApplicationTable extends React.Component {
           setSelectAppToNewApp={this.setSelectAppToNewApp}
           stages_settings={this.props.stages_settings}
           stageNameToColorHash={this.props.stageNameToColorHash}
+          updateOneAppStage={this.props.updateOneAppStage}
+          selectAppIdx={this.state.selectAppIdx}
         />
       </MuiThemeProvider>
       <Segment style={segmentStyle}>

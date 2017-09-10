@@ -96,6 +96,8 @@ class AppDrawerInfo extends React.Component {
           stages_settings={this.props.stages_settings}
           stageNameToColorHash={this.props.stageNameToColorHash}
           stage={this.props.application.stage}
+          updateOneAppStage={this.props.updateOneAppStage}
+          selectAppIdx={this.props.selectAppIdx}
         />
 
         <TextField

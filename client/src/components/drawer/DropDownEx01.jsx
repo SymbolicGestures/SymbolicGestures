@@ -46,6 +46,7 @@ class DropDownEx01 extends React.Component {
   }
 
   handleClick(clickedText) {
+    this.props.updateOneAppStage(this.props.selectAppIdx, clickedText);
     this.setState({ dropDownText: clickedText });
   }
 
