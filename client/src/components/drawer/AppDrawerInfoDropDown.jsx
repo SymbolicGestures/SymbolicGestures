@@ -41,7 +41,7 @@ class AppDrawerInfoDropDown extends React.Component {
   handleClick(clickedText) {
     this.props.updateOneAppStage(this.props.selectAppIdx, clickedText);
     this.setState({ dropDownText: clickedText });
-    this.updateOneStageToDB(clickedText)
+    this.updateOneStageToDB(clickedText);
   }
 
   updateOneStageToDB(clickedText) {
