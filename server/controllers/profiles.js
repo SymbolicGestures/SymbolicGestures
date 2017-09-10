@@ -1,9 +1,9 @@
 const models = require('../../db/models');
 
-module.exports.getAll = (req, res) => {
-  models.Profile.fetchAll()
-    .then(profiles => {
-      res.status(200).send(profiles);
+module.exports.getUserProfile = (req, res) => {
+  models.Profile.where({ id: req.user.id }).fetch()
+    .then(profile => {
+      res.status(200).send(profile);
     })
     .catch(err => {
       // This code indicates an outside service (the database) did not respond in time
@@ -11,70 +11,23 @@ module.exports.getAll = (req, res) => {
     });
 };
 
-// module.exports.create = (req, res) => {
-//   models.Profile.forge({ username: req.body.username, password: req.body.password })
-//     .save()
-//     .then(result => {
-//       res.status(201).send(result.omit('password'));
-//     })
-//     .catch(err => {
-//       if (err.constraint === 'users_username_unique') {
-//         return res.status(403);
-//       }
-//       res.status(500).send(err);
-//     });
-// };
-
-module.exports.getOne = (req, res) => {
-  models.Profile.where({ id: req.params.id }).fetch()
-    .then(profile => {
-      if (!profile) {
-        throw profile;
-      }
-      res.status(200).send(profile);
-    })
-    .error(err => {
-      res.status(500).send(err);
-    })
-    .catch(() => {
-      res.sendStatus(404);
-    });
-};
-
-module.exports.update = (req, res) => {
-  models.Profile.where({ id: req.params.id }).fetch()
-    .then(profile => {
-      if (!profile) {
-        throw profile;
-      }
-      return profile.save(req.body, { method: 'update' });
+module.exports.updateUserProfile = (req, res) => {
+  let profile = req.body;
+  models.Profile.where({ id: req.user.id }).fetch()
+    .then(currentProfile => {
+      return currentProfile.save({
+        first: profile.first,
+        last: profile.last,
+        display: profile.display,
+        email: profile.email,
+        phone: profile.phone,
+        stages_settings: JSON.stringify(profile.stages_settings)
+      });
     })
     .then(() => {
-      res.sendStatus(201);
+      res.status(200).send('Profile successfully updated!');
     })
-    .error(err => {
-      res.status(500).send(err);
-    })
-    .catch(() => {
-      res.sendStatus(404);
+    .catch(err => {
+      res.status(503).send(err);
     });
 };
-
-// module.exports.deleteOne = (req, res) => {
-//   models.Profile.where({ id: req.params.id }).fetch()
-//     .then(profile => {
-//       if (!profile) {
-//         throw profile;
-//       }
-//       return profile.destroy();
-//     })
-//     .then(() => {
-//       res.sendStatus(200);
-//     })
-//     .error(err => {
-//       res.status(503).send(err);
-//     })
-//     .catch(() => {
-//       res.sendStatus(404);
-//     });
-// };
