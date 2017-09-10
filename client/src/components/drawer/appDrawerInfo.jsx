@@ -91,7 +91,10 @@ class AppDrawerInfo extends React.Component {
           value={this.state.created_at || ''}
           floatingLabelText='created_at'
         /> */}
-        <DropDownEx01 />
+        <DropDownEx01 
+          stages_settings={this.props.stages_settings}
+          stageNameToColorHash={this.props.stageNameToColorHash}
+        />
 
         <TextField
           onBlur={this.handleBlur}

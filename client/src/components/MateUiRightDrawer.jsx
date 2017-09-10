@@ -86,6 +86,8 @@ export default class MateUiRightDrawer extends React.Component {
           <AppDrawer
             application={this.props.application}
             getApplicationsFromDB={this.props.getApplicationsFromDB}
+            stages_settings={this.props.stages_settings}
+            stageNameToColorHash={this.props.stageNameToColorHash}
           />
         </Drawer>
       </div>

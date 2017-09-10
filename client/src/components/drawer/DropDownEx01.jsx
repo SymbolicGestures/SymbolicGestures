@@ -38,20 +38,28 @@ class DropDownEx01 extends React.Component {
   }
 
   render() {
+    // stages_settings={this.props.stages_settings}
+    // stageNameToColorHash={this.props.stageNameToColorHash}
+    console.log(this.props.stageNameToColorHash);
+    console.log(this.props.stages_settings);
+    
+    if (this.props.stageNameToColorHash !== undefined) {
+      if (this.props.stages_settings !== undefined) {
+
     return (<div>
       <Dropdown
         text={this.state.dropDownText}
         onChange={this.handleChange}
-        style={fakeStageNameToColorHash[this.state.dropDownText]}
+        style={this.props.stageNameToColorHash[this.state.dropDownText]}
         floating
         button
       >
         <Dropdown.Menu>
-          {fakestages_settings.map((dropDownItem, idx) => {
+          {this.props.stages_settings.map((dropDownItem, idx) => {
             return (
               <Dropdown.Item
                 onClick={() => { this.handleClick(dropDownItem.name); }}
-                style={fakeStageNameToColorHash[dropDownItem.name]}
+                style={this.props.stageNameToColorHash[dropDownItem.name]}
                 key={idx}
               >
                 {dropDownItem.name}
@@ -61,6 +69,13 @@ class DropDownEx01 extends React.Component {
         </Dropdown.Menu>
       </Dropdown>
     </div>);
+
+
+      }
+    }
+
+    return (<div></div>);
+
   }
 }
 

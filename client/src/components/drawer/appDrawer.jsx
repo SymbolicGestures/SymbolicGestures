@@ -17,6 +17,8 @@ class AppDrawer extends React.Component {
         <AppDrawerInfo
           application={this.props.application}
           getApplicationsFromDB={this.props.getApplicationsFromDB}
+          stages_settings={this.props.stages_settings}
+          stageNameToColorHash={this.props.stageNameToColorHash}
         />
         <AppDrawerNote application={this.props.application} getApplicationsFromDB={this.props.getApplicationsFromDB}/>
         <AppDrawerContact application={this.props.application} getApplicationsFromDB={this.props.getApplicationsFromDB}/>

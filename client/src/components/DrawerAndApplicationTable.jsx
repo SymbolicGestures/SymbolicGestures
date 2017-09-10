@@ -53,6 +53,11 @@ export default class DrawerAndApplicationTable extends React.Component {
   closeDrawer() { this.setState({ isDrawerOpen: false }); }
 
   render() {
+    // applications={this.state.applications}
+    // stages_settings={this.state.stages_settings}
+    // stageNameToColorHash={this.state.stageNameToColorHash}
+    // getApplicationsFromDB={this.getApplicationsFromDB}
+    // updateaOneAppStage={this.updateaOneAppStage}
     const segmentStyle = { padding: 0 };
     const applications = this.props.applications || [];
     const stageNameToColorHash = this.props.stageNameToColorHash || {};
@@ -66,6 +71,8 @@ export default class DrawerAndApplicationTable extends React.Component {
           closeDrawer={this.closeDrawer}
           getApplicationsFromDB={this.props.getApplicationsFromDB}
           setSelectAppToNewApp={this.setSelectAppToNewApp}
+          stages_settings={this.props.stages_settings}
+          stageNameToColorHash={this.props.stageNameToColorHash}
         />
       </MuiThemeProvider>
       <Segment style={segmentStyle}>
