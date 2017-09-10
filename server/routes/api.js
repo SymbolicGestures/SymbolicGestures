@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const ApplicationController = require('../controllers').Applications;
+const ProfilesController = require('../controllers').Profiles;
 
 /**
  * With a GET - Returns all applications of the user.
@@ -18,6 +19,13 @@ router.route('/applications')
  */
 router.route('/applications/:id')
   .post(ApplicationController.createOrUpdateApp);
+
+// /**
+//  * returns all apps with the stage - :id.
+//  * @return {String}     returns a string with success or error message.
+//  */
+// router.route('/analytics/:stage')
+//   .get(ApplicationController.getAllAppsWithStage);
 
 /**
  * With a GET - Returns all notes of the user.
@@ -77,7 +85,7 @@ router.route('/contacts/:id')
  * @return {Array}          returns an array of all stage preferences of the user.
  */
 router.route('/profiles')
-  .get(ApplicationController.getUserProfile)
-  .post(ApplicationController.updateUserProfile);
+  .get(ProfilesController.getUserProfile)
+  .post(ProfilesController.updateUserProfile);
 
 module.exports = router;
