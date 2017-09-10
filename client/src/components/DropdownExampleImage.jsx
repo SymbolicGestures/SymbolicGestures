@@ -37,7 +37,7 @@ class DropdownExampleImage extends React.Component {
   handleClick(clickedText, applicationIdx) {
     console.log(clickedText);
     this.setState({ dropDownText: clickedText });
-    this.props.updateaOneAppStage(applicationIdx, clickedText);
+    this.props.updateOneAppStage(applicationIdx, clickedText);
 
     let route = '/api/applications/' + this.props.application.id;
     let key = 'stage';

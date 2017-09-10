@@ -54,7 +54,7 @@ class App extends React.Component {
     this.countApplicationStages = this.countApplicationStages.bind(this);
     this.onStagesChange = this.onStagesChange.bind(this);
     this.updateStages = this.updateStages.bind(this);
-    this.updateaOneAppStage = this.updateaOneAppStage.bind(this);
+    this.updateOneAppStage = this.updateOneAppStage.bind(this);
   }
 
   componentDidMount() {
@@ -184,7 +184,7 @@ class App extends React.Component {
     }
   }
 
-  updateaOneAppStage(idx, updatedState) {
+  updateOneAppStage(idx, updatedState) {
     this.state.applications[idx].stage = updatedState;
     this.setState({
       applications: this.state.applications
@@ -221,7 +221,7 @@ class App extends React.Component {
                       stages_settings={this.state.stages_settings}
                       stageNameToColorHash={this.state.stageNameToColorHash}
                       getApplicationsFromDB={this.getApplicationsFromDB}
-                      updateaOneAppStage={this.updateaOneAppStage}
+                      updateOneAppStage={this.updateOneAppStage}
                     />
                   </div>
                 </div>

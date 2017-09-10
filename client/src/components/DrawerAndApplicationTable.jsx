@@ -57,7 +57,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     // stages_settings={this.state.stages_settings}
     // stageNameToColorHash={this.state.stageNameToColorHash}
     // getApplicationsFromDB={this.getApplicationsFromDB}
-    // updateaOneAppStage={this.updateaOneAppStage}
+    // updateOneAppStage={this.updateOneAppStage}
     const segmentStyle = { padding: 0 };
     const applications = this.props.applications || [];
     const stageNameToColorHash = this.props.stageNameToColorHash || {};
@@ -106,7 +106,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                     <DropdownExampleImage
                       stageNameToColorHash={stageNameToColorHash}
                       stage={application.stage}
-                      updateaOneAppStage={this.props.updateaOneAppStage}
+                      updateOneAppStage={this.props.updateOneAppStage}
                       applicationIdx={idx}
                       stages_settings={this.props.stages_settings}
                       application={application}
