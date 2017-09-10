@@ -282,7 +282,7 @@ class App extends React.Component {
             <Route
               key = {2}
               path = {'/analytics'}
-              render = {Analytics}
+              component = {Analytics}
             />
             <Route
               key = {3}
