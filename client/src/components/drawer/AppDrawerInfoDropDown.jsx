@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
-
+import axios from 'axios';
 
 let fakestages_settings = [
   { name: 'Applied', backgroundColor: '#FFC107', textColor: 'black' },
@@ -23,7 +23,7 @@ fakestages_settings.forEach((setting) => {
 // application.stage
 
 
-class DropDownEx01 extends React.Component {
+class AppDrawerInfoDropDown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +31,9 @@ class DropDownEx01 extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.updateOneStageToDB = this.updateOneStageToDB.bind(this);
   }
+
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.stage !== undefined) {
@@ -48,6 +50,21 @@ class DropDownEx01 extends React.Component {
   handleClick(clickedText) {
     this.props.updateOneAppStage(this.props.selectAppIdx, clickedText);
     this.setState({ dropDownText: clickedText });
+    this.updateOneStageToDB(clickedText)
+  }
+
+  updateOneStageToDB(clickedText) {
+    // console.log('application:', this.props.application);
+    let route = '/api/applications/' + this.props.application.id;
+    let key = 'stage';
+    let val = clickedText;
+    let body = {};
+    body[key] = val;
+
+    axios.post(route, body)
+      .then(console.log('post stage succed'))
+      .then((err) => { console.log(err); });
+      // .then(this.props.getApplicationsFromDB())
   }
 
   render() {
@@ -93,4 +110,4 @@ class DropDownEx01 extends React.Component {
 }
 
 
-export default DropDownEx01;
+export default AppDrawerInfoDropDown;

@@ -3,7 +3,7 @@ import TextField from 'material-ui/TextField';
 
 import axios from 'axios';
 
-import DropDownEx01 from './DropDownEx01.jsx'
+import AppDrawerInfoDropDown from './AppDrawerInfoDropDown.jsx'
 
 class AppDrawerInfo extends React.Component {
   constructor(props) {
@@ -92,7 +92,8 @@ class AppDrawerInfo extends React.Component {
           floatingLabelText='created_at'
         /> */}
         {/* {console.log('application:', this.props.application)} */}
-        <DropDownEx01 
+        <AppDrawerInfoDropDown 
+          application={this.props.application}
           stages_settings={this.props.stages_settings}
           stageNameToColorHash={this.props.stageNameToColorHash}
           stage={this.props.application.stage}
