@@ -81,7 +81,4 @@ router.route('/profiles')
   .get(ProfilesController.getUserProfile)
   .post(ProfilesController.updateUserProfile);
 
-router.route('/historyAnalytics')
-  .get(ApplicationController.getUserAnalytics);
-  
 module.exports = router;

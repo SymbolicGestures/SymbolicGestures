@@ -55,12 +55,6 @@ exports.up = function (knex, Promise) {
       table.string('email', 100).nullable();
       table.string('phone', 100).nullable();
       table.timestamps(true, true);
-    }),
-    knex.schema.createTableIfNotExists('history_analytics', function(table) {
-      table.increments('id').unsigned().primary();
-      table.integer('profile_id').references('profiles.id').onDelete('CASCADE').notNullable();
-      table.string('history_stage', 50).nullable();
-      table.timestamps(true, true);
     })
   ]);
 };
@@ -71,8 +65,6 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTableIfExists('histories'),
     knex.schema.dropTableIfExists('notes'),
     knex.schema.dropTableIfExists('contacts'),
-    knex.schema.dropTableIfExists('history_analytics'),
-    knex.schema.dropTableIfExists('profile_analytics'),
     knex.schema.dropTableIfExists('applications'),
     knex.schema.dropTableIfExists('profiles')
 
