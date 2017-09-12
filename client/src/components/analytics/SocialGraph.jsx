@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import C3Chart from 'react-c3js'
 
-let TimelineGraph = (props) => {
+let SocialGraph = (props) => {
   return(
     <div>
       <C3Chart
@@ -38,9 +38,9 @@ let TimelineGraph = (props) => {
   )
 }
 
-export default TimelineGraph;
+export default SocialGraph;
 
-TimelineGraph.propTypes = {
+SocialGraph.propTypes = {
   stage: PropTypes.string,
   dates: PropTypes.array,
   stageCounts: PropTypes.array
