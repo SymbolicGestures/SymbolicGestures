@@ -23,8 +23,6 @@ module.exports.createOrUpdateApp = (req, res) => {
     models.Application.forge({ id: req.params.id }).fetch()
       .then(currentApplication => {
         if (currentApplication) {
-          let oldStage = currentApplication.attributes.stage;
-
           //updating in case of a application with given id.
           return currentApplication.save({
             company_name: application.company_name,
@@ -34,7 +32,7 @@ module.exports.createOrUpdateApp = (req, res) => {
             location: application.location,
             job_posting_source: application.job_posting_source,
             job_posting_to_pdf_link: application.job_posting_to_pdf_link
-          })
+          });
         }
       })
       .then(() => {
@@ -44,11 +42,6 @@ module.exports.createOrUpdateApp = (req, res) => {
         res.status(503).send(err + 'application did not save');
       });
   } else {
-    //update profile application_count & count_by_stage
-    // models.Profile.forge({id: applicant.id}).fetch().then((profile)=>{
-    //   profile.increment(undefined, application.stage);
-    // });
-
     //create
     return models.Application.forge({
       company_name: application.company_name,
