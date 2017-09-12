@@ -8,9 +8,7 @@ exports.up = function (knex, Promise) {
       table.string('display', 100).nullable();
       table.string('email', 100).nullable().unique();
       table.string('phone', 100).nullable();
-      table.jsonb('stages_settings').defaultTo('[{"name":"Applied","backgroundColor":"#FFC107","textColor":"black"},{"name":"Phone Screen","backgroundColor":"#2196F3","textColor":"white"},{"name":"On Site","backgroundColor":"#9C27B0","textColor":"white"},{"name":"OFFER","backgroundColor":"#009688","textColor":"white"},{"name":"Denied","backgroundColor":"#F44336","textColor":"white"}]');
-      table.integer('application_count').defaultTo(0);
-      table.jsonb('count_by_stage', 100).defaultTo('{}');
+      table.jsonb('stages_settings').defaultTo('[{"name":"Saved","backgroundColor":"orange","textColor":"black"},{"name":"Applied","backgroundColor":"#FFC107","textColor":"black"},{"name":"Phone Screen","backgroundColor":"#2196F3","textColor":"white"},{"name":"On Site","backgroundColor":"#9C27B0","textColor":"white"},{"name":"Offer","backgroundColor":"#009688","textColor":"white"},{"name":"Denied","backgroundColor":"#F44336","textColor":"white"}]');
       table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
@@ -31,6 +29,7 @@ exports.up = function (knex, Promise) {
       table.string('location', 100).nullable();
       table.string('job_posting_source', 50).nullable();
       table.string('job_posting_to_pdf_link').nullable();
+      table.integer('salary').nullable();
       table.timestamp('applied_at').defaultTo(knex.fn.now());
       table.timestamps(true, true);
     }),
