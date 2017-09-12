@@ -4,7 +4,8 @@ const format = require('date-fns/format');
 let stages = ['Applied',
   'Phone Screen',
   'On Site',
-  'OFFER',
+  'Offer',
+  'Considering',
   'Denied'];
 
 let sources = ['LinkedIn',
