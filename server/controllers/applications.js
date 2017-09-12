@@ -31,7 +31,8 @@ module.exports.createOrUpdateApp = (req, res) => {
             job_title: application.job_title,
             location: application.location,
             job_posting_source: application.job_posting_source,
-            job_posting_to_pdf_link: application.job_posting_to_pdf_link
+            job_posting_to_pdf_link: application.job_posting_to_pdf_link,
+            salary: application.salary
           });
         }
       })
@@ -50,7 +51,8 @@ module.exports.createOrUpdateApp = (req, res) => {
       job_title: application.job_title,
       location: application.location,
       job_posting_source: application.job_posting_source,
-      job_posting_to_pdf_link: application.job_posting_to_pdf_link
+      job_posting_to_pdf_link: application.job_posting_to_pdf_link,
+      salary: application.salary
     })
       .save()
       .then((data) => {
