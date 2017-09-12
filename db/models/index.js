@@ -4,3 +4,4 @@ module.exports.Application = require('./applications');
 module.exports.Contact = require('./contacts');
 module.exports.Note = require('./notes');
 module.exports.History = require('./histories');
+module.exports.HistoryAnalytics = require('./historyAnalytics');

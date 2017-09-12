@@ -8,7 +8,9 @@ exports.up = function (knex, Promise) {
       table.string('display', 100).nullable();
       table.string('email', 100).nullable().unique();
       table.string('phone', 100).nullable();
-      table.json('stages_settings').defaultTo('[{"name":"Applied","backgroundColor":"#FFC107","textColor":"black"},{"name":"Phone Screen","backgroundColor":"#2196F3","textColor":"white"},{"name":"On Site","backgroundColor":"#9C27B0","textColor":"white"},{"name":"OFFER","backgroundColor":"#009688","textColor":"white"},{"name":"Denied","backgroundColor":"#F44336","textColor":"white"}]');
+      table.jsonb('stages_settings').defaultTo('[{"name":"Applied","backgroundColor":"#FFC107","textColor":"black"},{"name":"Phone Screen","backgroundColor":"#2196F3","textColor":"white"},{"name":"On Site","backgroundColor":"#9C27B0","textColor":"white"},{"name":"OFFER","backgroundColor":"#009688","textColor":"white"},{"name":"Denied","backgroundColor":"#F44336","textColor":"white"}]');
+      table.integer('application_count').defaultTo(0);
+      table.jsonb('count_by_stage', 100).defaultTo('{}');
       table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
@@ -53,6 +55,12 @@ exports.up = function (knex, Promise) {
       table.string('email', 100).nullable();
       table.string('phone', 100).nullable();
       table.timestamps(true, true);
+    }),
+    knex.schema.createTableIfNotExists('history_analytics', function(table) {
+      table.increments('id').unsigned().primary();
+      table.integer('profile_id').references('profiles.id').onDelete('CASCADE').notNullable();
+      table.string('history_stage', 50).nullable();
+      table.timestamps(true, true);
     })
   ]);
 };
@@ -63,7 +71,10 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTableIfExists('histories'),
     knex.schema.dropTableIfExists('notes'),
     knex.schema.dropTableIfExists('contacts'),
+    knex.schema.dropTableIfExists('history_analytics'),
+    knex.schema.dropTableIfExists('profile_analytics'),
     knex.schema.dropTableIfExists('applications'),
     knex.schema.dropTableIfExists('profiles')
+
   ]);
 };
