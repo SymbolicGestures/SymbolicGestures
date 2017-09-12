@@ -68,4 +68,9 @@ router.get('/auth/linkedin/callback', middleware.passport.authenticate('linkedin
   failureRedirect: '/login'
 }));
 
+router.route('/analytics|connect')
+  .get(middleware.auth.verify, (req, res) => {
+    res.render('index.ejs', {user: req.user});
+  });
+
 module.exports = router;
