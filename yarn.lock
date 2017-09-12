@@ -1082,6 +1082,12 @@ bytes@2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.4.0.tgz#7d97196f9d5baf7f6935e25985549edd2a6c2339"
 
+c3@^0.4.11, c3@^0.4.17:
+  version "0.4.17"
+  resolved "https://registry.yarnpkg.com/c3/-/c3-0.4.17.tgz#718b3e489fd70fe061a4ad7ffcdad36bd409ef68"
+  dependencies:
+    d3 "~3.5.0"
+
 caller-path@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/caller-path/-/caller-path-0.1.0.tgz#94085ef63581ecd3daa92444a8fe94e82577751f"
@@ -1563,6 +1569,10 @@ csso@~2.3.1:
   dependencies:
     clap "^1.0.9"
     source-map "^0.5.3"
+
+d3@~3.5.0:
+  version "3.5.17"
+  resolved "https://registry.yarnpkg.com/d3/-/d3-3.5.17.tgz#bc46748004378b21a360c9fc7cf5231790762fb8"
 
 d@1:
   version "1.0.0"
@@ -4692,6 +4702,12 @@ react-bootstrap@^0.31.2:
     react-prop-types "^0.4.0"
     uncontrollable "^4.1.0"
     warning "^3.0.0"
+
+react-c3js@^0.1.19:
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/react-c3js/-/react-c3js-0.1.19.tgz#6ab19778d9c6a8b78557e10fa974328af253e10a"
+  dependencies:
+    c3 "^0.4.11"
 
 react-color@^2.11.4:
   version "2.13.5"

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import TimelineGraph from './TimelineGraph.jsx'
 import { Dropdown } from 'semantic-ui-react'
 import axios from 'axios'
+import { parse, format, addDays, subDays, isToday } from 'date-fns';
 
 class Analytics extends React.Component {
   constructor() {
@@ -11,11 +12,22 @@ class Analytics extends React.Component {
     this.state={
       stage: 'OFFER',
       stages: [],
-      applications: []
+      dates: [],
+      stageCounts: []
     };
     this.handleStageChange = this.handleStageChange.bind(this);
   }
   componentWillMount() {
+    this.getAllStages()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.stage !== this.state.stage) {
+      this.getAllStages();
+    }
+  }
+
+  getAllStages() {
     axios.get('/api/profiles')
       .then((profile) => {
         let stagesData = profile.data.stages_settings.map((item) => {
@@ -24,19 +36,39 @@ class Analytics extends React.Component {
             value: item.name
           }
         })
-        this.setState({
-          stages: stagesData,
-          stage: this.state.stages || stagesData[stagesData.length - 1]['value']
-        })
+        axios.get('/api/historyAnalytics')
+          .then((analysis) => {
+            let datesSortedByCreation = (analysis.data.sort((a,b)=>{return new Date(a['created_at'])-new Date(b['created_at'])}));
+            let daysToToday = [];
+            let day = parse(datesSortedByCreation[0]['created_at']);
+            while(!isToday(subDays(day, 1))) {
+              daysToToday.push(format(day, 'YYYY-MM-DD'));
+              day = addDays(day, 1)
+            }
+            let stageArr = daysToToday.map(day => {
+
+            });
+          //   analysis.data.forEach(stage => {
+          //     //need to refactor with date parser instead of slice
+          //     if (stage.history_stage === this.state.stage) {
+          //       let date = stage.updated_at.slice(0, 10);
+          //       dateWithHistory[date] ? dateWithHistory[date]++ : dateWithHistory[date] = 1;
+          //     }
+          //   })
+          //   console.log(dateWithHistory)
+          //   let dateArray = [];
+          //   let stageCountArray = Object.keys(dateWithHistory).map((key) => {
+          //     dateArray.push(key)
+          //     return dateWithHistory[key];
+          //   })
+          //   this.setState({
+          //     stages: stagesData,
+          //     stage: this.state.stage || stagesData[stagesData.length - 1]['value'],
+          //     dates: dateArray,
+          //     stageCounts: stageCountArray
+          //   })
+          })
       })
-      // .then(() => {
-      //   axios.get(`/api/applications/${this.state.stage}`)
-      //     .then((applications) => {
-      //       this.setState({
-      //         applications: applications
-      //       })
-      //     })
-      // })
   }
 
   handleStageChange(e, data) {
@@ -54,6 +86,8 @@ class Analytics extends React.Component {
         </div>
         <TimelineGraph
           stage = {this.state.stage}
+          dates = {this.state.dates}
+          stageCounts = {this.state.stageCounts}
         />
       </div>
     )

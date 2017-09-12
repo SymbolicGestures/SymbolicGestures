@@ -20,13 +20,6 @@ router.route('/applications')
 router.route('/applications/:id')
   .post(ApplicationController.createOrUpdateApp);
 
-// /**
-//  * returns all apps with the stage - :id.
-//  * @return {String}     returns a string with success or error message.
-//  */
-// router.route('/analytics/:stage')
-//   .get(ApplicationController.getAllAppsWithStage);
-
 /**
  * With a GET - Returns all notes of the user.
  * With a POST - Adds a note for the user.
@@ -88,4 +81,7 @@ router.route('/profiles')
   .get(ProfilesController.getUserProfile)
   .post(ProfilesController.updateUserProfile);
 
+router.route('/historyAnalytics')
+  .get(ApplicationController.getUserAnalytics);
+  
 module.exports = router;

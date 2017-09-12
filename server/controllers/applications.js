@@ -22,7 +22,18 @@ module.exports.createOrUpdateApp = (req, res) => {
     //udate
     models.Application.forge({ id: req.params.id }).fetch()
       .then(currentApplication => {
+        //update history_analytics
         if (currentApplication) {
+          if(currentApplication.stage !== application.stage) {
+            models.HistoryAnalytics.forge().save({
+              profile_id: req.user.id,
+              history_stage: application.stage
+            })
+          }
+          let oldStage = currentApplication.attributes.stage;
+
+          // TODO: update profile application_count & count_by_stage
+          
           //updating in case of a application with given id.
           return currentApplication.save({
             company_name: application.company_name,
@@ -32,7 +43,7 @@ module.exports.createOrUpdateApp = (req, res) => {
             location: application.location,
             job_posting_source: application.job_posting_source,
             job_posting_to_pdf_link: application.job_posting_to_pdf_link
-          });
+          })
         }
       })
       .then(() => {
@@ -42,6 +53,17 @@ module.exports.createOrUpdateApp = (req, res) => {
         res.status(503).send(err + 'application did not save');
       });
   } else {
+    //update history_analytics
+    models.HistoryAnalytics.forge({
+      profile_id: req.user.id,
+      history_stage: application.stage
+    }).save()
+
+    //update profile application_count & count_by_stage
+    // models.Profile.forge({id: applicant.id}).fetch().then((profile)=>{
+    //   profile.increment(undefined, application.stage);
+    // });
+
     //create
     return models.Application.forge({
       company_name: application.company_name,
@@ -206,4 +228,16 @@ module.exports.createOrUpdateContact = (req, res) => {
         res.status(503).send(err);
       });
   }
+};
+
+module.exports.getUserAnalytics = (req, res) => {
+  let profileId = req.user.id;
+  models.HistoryAnalytics.where({ profile_id: profileId }).fetchAll()
+    .then(analysis => {
+      res.status(200).send(analysis);
+    })
+    .catch(err => {
+      // This code indicates an outside service (the database) did not respond in time
+      res.status(503).send(err);
+    });
 };
