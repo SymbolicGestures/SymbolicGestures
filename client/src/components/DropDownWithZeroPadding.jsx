@@ -60,7 +60,7 @@ class DropDownWithZeroPadding extends React.Component {
 
   render() {
     let padding0 = { padding: 0 };
-    let divStyle = { width: '100%', height: '100%', 'text-align': 'center', fontSize: '15px' };
+    let divStyle = { width: '100%', height: '100%', textAlign: 'center', fontSize: '15px' };
     return (<div>
       <Dropdown
         text={this.state.dropDownText}

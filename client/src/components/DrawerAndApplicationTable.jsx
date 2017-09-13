@@ -41,7 +41,10 @@ export default class DrawerAndApplicationTable extends React.Component {
     });
   }
 
-  openDrawerWhenOneAppClick(application, idx) {
+  openDrawerWhenOneAppClick(application, idx, e) {
+
+    e.preventDefault();
+
     this.setState({
       selectAppIdx: idx,
       selectedApplication: application,
@@ -94,27 +97,24 @@ export default class DrawerAndApplicationTable extends React.Component {
 
           <Table.Body>
             {applications.map((application, idx) => {
-              let tdStyle = { padding: '0px', height: '1px', 'padding-top': '0.2%' };
+              let tdStyle = { padding: '0px', height: '1px', paddingTop: '0.2%' };
               let combineStyle = Object.assign({}, tdStyle, stageNameToColorHash[application.stage]);
               return (
                 <Table.Row
                   key={idx}
-                  onClick={() => (this.openDrawerWhenOneAppClick(application, idx))}
                 >
-                  <Table.Cell color="olive" collapsing><Icon name='chevron left' /></Table.Cell>
-                  <Table.Cell width={2}>{application.created_at}</Table.Cell>
-                  <Table.Cell width={4}>{application.company_name}</Table.Cell>
-                  <Table.Cell width={5}>{application.job_title}</Table.Cell>
-                  {console.log(Object.assign({}, tdStyle))}
-                  {console.log(Object.assign({}, tdStyle, stageNameToColorHash[application.stage]))} 
-                  {console.log(combineStyle)} 
+                  <Table.Cell
+                    onClick={(e) => (this.openDrawerWhenOneAppClick(application, idx, e))}
+                    style={{ cursor: 'pointer' }}
+                    collapsing
+                  >
+                    <Icon style={{ color: 'black' }} name="chevron left" />
+                  </Table.Cell>
+                  <Table.Cell>{application.created_at}</Table.Cell>
+                  <Table.Cell>{application.company_name}</Table.Cell>
+                  <Table.Cell>{application.job_title}</Table.Cell>
 
-                  {/* <Table.Cell
-                    style={stageNameToColorHash[application.stage]}
-                  >{application.stage}</Table.Cell> */}
-                  {/* <Table.Cell width={3} style={stageNameToColorHash[application.stage]}> */}
-                  {/* <Table.Cell width={2} style={Object.assgin(tdStyle, stageNameToColorHash[application.stage])}> */}
-                  <Table.Cell width={2} style={combineStyle}>
+                  <Table.Cell style={combineStyle}>
                     <DropDownWithZeroPadding
                       getApplicationsFromDB={this.props.getApplicationsFromDB}
                       application={application}
@@ -124,9 +124,9 @@ export default class DrawerAndApplicationTable extends React.Component {
                       selectAppIdx={idx}
                       stages_settings={this.props.stages_settings}
                     />
-                  </Table.Cell>  
-                  <Table.Cell width={1}><a href={application.job_posting_link}>Link</a></Table.Cell>
-                  <Table.Cell width={2}>{application.job_posting_source}</Table.Cell>
+                  </Table.Cell>
+                  <TableCellLink job_posting_link={application.job_posting_link} />
+                  <Table.Cell>{application.job_posting_source}</Table.Cell>
                 </Table.Row>
               );
             })}
@@ -135,65 +135,27 @@ export default class DrawerAndApplicationTable extends React.Component {
 
       </Segment>
 
-      <Table celled compact definition>
-        <Table.Header fullWidth>
-          <Table.Row>
-            <Table.HeaderCell>Date Applied</Table.HeaderCell>
-            <Table.HeaderCell>Company Name</Table.HeaderCell>
-            <Table.HeaderCell>Job Title</Table.HeaderCell>
-            <Table.HeaderCell>Stage</Table.HeaderCell>
-            <Table.HeaderCell>Link</Table.HeaderCell>
-            <Table.HeaderCell>Source</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell collapsing>
-              <Checkbox slider />
-            </Table.Cell>
-            <Table.Cell>John Lilki</Table.Cell>
-            <Table.Cell>September 14, 2013</Table.Cell>
-            <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-            <Table.Cell>No</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell collapsing>
-              <Checkbox slider />
-            </Table.Cell>
-            <Table.Cell>Jamie Harington</Table.Cell>
-            <Table.Cell>January 11, 2014</Table.Cell>
-            <Table.Cell>jamieharingonton@yahoo.com</Table.Cell>
-            <Table.Cell>Yes</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell collapsing>
-              <Checkbox slider />
-            </Table.Cell>
-            <Table.Cell>Jill Lewis</Table.Cell>
-            <Table.Cell>May 11, 2014</Table.Cell>
-            <Table.Cell>jilsewris22@yahoo.com</Table.Cell>
-            <Table.Cell>Yes</Table.Cell>
-          </Table.Row>
-        </Table.Body>
-
-        <Table.Footer fullWidth>
-          <Table.Row>
-            <Table.HeaderCell />
-            <Table.HeaderCell colSpan='4'>
-              <Button floated='right' icon labelPosition='left' primary size='small'>
-                <Icon name='user' /> Add User
-              </Button>
-              <Button size='small'>Approve</Button>
-              <Button disabled size='small'>Approve All</Button>
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Footer>
-      </Table>
     </div>
     );
   }
 }
+
+
+const TableCellLink = ({ job_posting_link }) => {
+  if (job_posting_link) {
+    return (
+      <Table.Cell
+        style={{ textAlign: 'center' }}
+      ><a href={job_posting_link}><u>Link</u></a></Table.Cell>  
+    );
+  }
+  return (
+    <Table.Cell
+      style={{ textAlign: 'center' }}
+    >No Link</Table.Cell>
+  );
+};
+
 
 
 // {/* <DropdownExampleImage

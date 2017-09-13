@@ -53,7 +53,6 @@ class AppDrawerInfoDropDown extends React.Component {
   }
 
   render() {
-    console.log('stage ??:', this.props.stage);
     return (<div>
       <Dropdown
         text={this.state.dropDownText}
