@@ -2,7 +2,7 @@ import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
 
-class AppDrawerInfoDropDown extends React.Component {
+class DropDownWithZeroPadding extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,6 +10,7 @@ class AppDrawerInfoDropDown extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.updateOneStageToDB = this.updateOneStageToDB.bind(this);
   }
 
@@ -29,13 +30,19 @@ class AppDrawerInfoDropDown extends React.Component {
     let eventText = "Stage was changed to " + clickedText;
     let route = '/api/histories/';
     let application_id = this.props.application.id
-    let body = {'event' : eventText, 'application_id' : application_id};
+    let body = { 'event' : eventText, 'application_id' : application_id};
     axios.post(route, body)
 
-    this.props.updateOneAppStage( this.props.selectAppIdx, clickedText);
+    this.props.updateOneAppStage(this.props.selectAppIdx, clickedText);
     this.setState({ dropDownText: clickedText });
     this.updateOneStageToDB(clickedText);
     this.props.getApplicationsFromDB();
+  }
+
+  handleChange(clickedText) {
+
+    console.log('Am I capturing this ???');
+
   }
 
   updateOneStageToDB(clickedText) {
@@ -47,18 +54,17 @@ class AppDrawerInfoDropDown extends React.Component {
     body[key] = val;
 
     axios.post(route, body)
-      // .then(console.log('post stage succed'))
+      .then(console.log('post stage succed'))
       .then((err) => { console.log(err); });
-    // .then(this.props.getApplicationsFromDB())
   }
 
   render() {
-    console.log('stage ??:', this.props.stage);
+    let padding0 = { padding: 0 };
+    let divStyle = { width: '100%', height: '100%', 'text-align': 'center', fontSize: '15px' };
     return (<div>
       <Dropdown
         text={this.state.dropDownText}
-        onChange={this.handleChange}
-        style={this.props.stageNameToColorHash[this.state.dropDownText]}
+        style={Object.assign(divStyle, this.props.stageNameToColorHash[this.state.dropDownText])}
         floating
         button
       >
@@ -66,6 +72,7 @@ class AppDrawerInfoDropDown extends React.Component {
           {this.props.stages_settings.map((dropDownItem, idx) => {
             return (
               <Dropdown.Item
+                onChange={this.handleChange}
                 onClick={() => { this.handleClick(dropDownItem.name); }}
                 style={this.props.stageNameToColorHash[dropDownItem.name]}
                 key={idx}
@@ -77,15 +84,8 @@ class AppDrawerInfoDropDown extends React.Component {
         </Dropdown.Menu>
       </Dropdown>
     </div>);
-
-
-    //   }
-    // }
-
-    // return (<div></div>);
-
   }
 }
 
 
-export default AppDrawerInfoDropDown;
+export default DropDownWithZeroPadding;

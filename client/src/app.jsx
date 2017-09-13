@@ -138,9 +138,15 @@ class App extends React.Component {
    * @todo: Set both count and size of flex-grow
    */
   countApplicationStages() {
+<<<<<<< HEAD
     let applications = this.state.applications,
         count = {};
     console.log(this.state.applications)
+=======
+    let applications = this.state.applications;
+    let count = {};
+    // console.log('Counting: ', applications);
+>>>>>>> Almost done with drop down styling
     // Count number of each stage.
     for (let i = 0; i < applications.length; i++) {
       let stage = applications[i].stage;
