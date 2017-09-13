@@ -53,7 +53,7 @@ export default class MateUiRightDrawer extends React.Component {
           application_id: response.data.id,
           type: 'note',
           note: "sample note"
-        })
+        });
       })
       .catch(function (error) {
         // console.log('post req empty application failed');

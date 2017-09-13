@@ -66,7 +66,6 @@ class App extends React.Component {
     this.onStagesChange = this.onStagesChange.bind(this);
     this.updateStages = this.updateStages.bind(this);
     this.updateOneAppStage = this.updateOneAppStage.bind(this);
-    this.updateApplications = this.updateApplications.bind(this);
   }
 
   componentDidMount() {
@@ -204,22 +203,6 @@ class App extends React.Component {
       });
   }
 
-  /**
-   * Updates to database the application passed in.
-   * @param  {object} application A job application object
-   * @async post to database
-   */
-  updateApplications(application) {
-    axios.post(`/api/applications/${applications.id}`, application)
-      .then(function (response) {
-        console.log('post update application succeed');
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log('post update application failed');
-        console.log(error);
-      });
-  }
 
   /**
    * Function to toggle nav bar on scroll. Scroll up displays navbar. Scroll down hides navbar. Does this by changing state of navBarIsHidden.
@@ -272,7 +255,6 @@ class App extends React.Component {
                         stagesCount={this.state.stagesCount}
                         stageNameToColorHash={this.state.stageNameToColorHash}
                         applications={this.state.applications}
-                        updateApplications={this.updateApplications}
                         updateOneAppStage={this.updateOneAppStage}
                         onStagesChange={this.onStagesChange}
                       />
