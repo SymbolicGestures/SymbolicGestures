@@ -17,7 +17,7 @@ const generateEmptyApplicaton = () => {
     // created_at: currentDate,
     company_name: '',
     job_title: '',
-    stage: 'Applied',
+    stage: 'Considering',
     job_posting_link: '',
     job_posting_source: '',
     // applied_at: '',
