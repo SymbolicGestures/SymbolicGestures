@@ -4,6 +4,8 @@ import AppDrawerNote from './AppDrawerNote.jsx';
 import AppDrawerHistory from './AppDrawerHistory.jsx';
 import AppDrawerContact from './AppDrawerContact.jsx';
 
+import styles from '../../../styles/jerryStyleBox.css';
+
 class AppDrawer extends React.Component {
   constructor(props) {
     super(props);
@@ -22,8 +24,12 @@ class AppDrawer extends React.Component {
           updateOneAppStage={this.props.updateOneAppStage}
           selectAppIdx={this.props.selectAppIdx}
         />
-        <AppDrawerNote application={this.props.application} getApplicationsFromDB={this.props.getApplicationsFromDB}/>
-        <AppDrawerContact application={this.props.application} getApplicationsFromDB={this.props.getApplicationsFromDB}/>
+        <AppDrawerNote application={this.props.application}
+          getApplicationsFromDB={this.props.getApplicationsFromDB}
+        />
+        <AppDrawerContact application={this.props.application}
+          getApplicationsFromDB={this.props.getApplicationsFromDB}
+        />
         <AppDrawerHistory application={this.props.application}/>
       </div>
     );

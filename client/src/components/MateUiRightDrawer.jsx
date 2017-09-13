@@ -47,12 +47,17 @@ export default class MateUiRightDrawer extends React.Component {
   postEmptyApplicationToDB() {
     axios.post('/api/applications', generateEmptyApplicaton())
       .then(function (response) {
-        console.log('post req empty application succeed');
-        console.log(response);
+        // console.log('post req empty application succeed');
+        // console.log('id: ', response.data.id);
+        axios.post('/api/notes', {
+          application_id: response.data.id,
+          type: '',
+          note: "sample note"
+        })
       })
       .catch(function (error) {
-        console.log('post req empty application failed');
-        console.log(error);
+        // console.log('post req empty application failed');
+        // console.log(error);
       });
   }
 

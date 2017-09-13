@@ -53,8 +53,9 @@ module.exports.createOrUpdateApp = (req, res) => {
       job_posting_to_pdf_link: application.job_posting_to_pdf_link
     })
       .save()
-      .then(() => {
-        res.status(200).send('application successfully created!');
+      .then((data) => {
+        console.log(data)
+        res.status(200).send(data);
       })
       .catch(err => {
         res.status(503).send(err + 'application did not save');

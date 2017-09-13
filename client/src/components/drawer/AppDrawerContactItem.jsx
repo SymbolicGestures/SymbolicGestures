@@ -52,7 +52,7 @@ class AppDrawerContactItem extends React.Component {
                 <div>
 
                   <List>
-                    <div style={iconIconMenu}>
+                    {/* <div style={iconIconMenu}>
                       <IconMenu
 
                         iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
@@ -62,7 +62,7 @@ class AppDrawerContactItem extends React.Component {
                           <MenuItem primaryText="Edit" onClick={this.handleEdit}/>
                           <MenuItem primaryText="Delete" onClick={this.handleDeleteContact}/>
                         </IconMenu>
-                      </div>
+                      </div> */}
                     <List.Item>
                       <List.Icon name='user circle' />
                       <List.Content>{this.props.contact.name}</List.Content>
