@@ -1,22 +1,16 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
 
-
-const TableCellCompanyName = ({ job_posting_link }) => {
-  if (job_posting_link) {
-    return (
-      <Table.Cell
-        style={{ textAlign: 'center' }}
-      ><a href={job_posting_link}><u>Link</u></a></Table.Cell>  
-    );
-  }
+const TableCellCompanyName = ({ company_name }) => {
+  if (company_name) { return (<Table.Cell>{company_name}</Table.Cell>); }
   return (
-    <Table.Cell
-      style={{ textAlign: 'center' }}
-    >No Link</Table.Cell>
+    <Form>
+      <Form.Field style={{ padding: '0.5%' }}>
+        <input placeholder='First Name' />
+      </Form.Field>
+    </Form>
   );
 };
-
 
 export default TableCellCompanyName;
 
