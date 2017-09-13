@@ -42,7 +42,8 @@ class App extends React.Component {
       stages_settings: [],
       stageNameToColorHash: {},
       stagesCount: {},
-      navBarIsHidden: false
+      navBarIsHidden: false,
+      profile: {}
     };
     // this.state = { // for data from fake data
     //   applications: fakeApplications,
@@ -73,11 +74,12 @@ class App extends React.Component {
       .then((userData) => {
         let allData = userData.data;
         let stages_settings = userData.data.stages_settings;
+        let profile = userData.data;
         let userId = userData.data.id;
 
         this.stageNameToColorHash(stages_settings);
 
-        this.setState({stages_settings, userId});
+        this.setState({stages_settings, profile, userId});
 
 
         // console.log('stageNameToColorHash:', stageNameToColorHash);
@@ -153,7 +155,7 @@ class App extends React.Component {
     // Set count state after counting.
     this.setState({
       stagesCount: count
-    }, () => {console.log(this.state.stagesCount)});
+    });
   }
 
   /**
@@ -217,11 +219,11 @@ class App extends React.Component {
    * @param  {number} scrollDirection From react onWheel event. event.deltaY. positive is a scroll up. negative is a scroll down.
    */
   toggleNavBar(scrollDirection) {
-    if (this.state.navBarIsHidden && scrollDirection < 0) {
+    if (this.state.navBarIsHidden && scrollDirection < -5) {
       this.setState({
         navBarIsHidden: !this.state.navBarIsHidden
       });
-    } else if (!this.state.navBarIsHidden && scrollDirection > 0) {
+    } else if (!this.state.navBarIsHidden && scrollDirection > 5) {
       this.setState({
         navBarIsHidden: !this.state.navBarIsHidden
       });
@@ -244,7 +246,11 @@ class App extends React.Component {
     return (
       <Router>
         <div onWheel={(event) => { this.toggleNavBar(event.deltaY); }}>
-          <Navbar navBarIsHidden={this.state.navBarIsHidden} />
+          <Navbar
+            navBarIsHidden={this.state.navBarIsHidden}
+            profileImg={this.state.profile.image_link || "./assets/default_avatar.png"}
+            displayName={this.state.profile.display || 'profile'}
+            />
           {/* <div className="box_94per_3perMg"> */}
           <Switch>
             <Route

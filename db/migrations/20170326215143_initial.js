@@ -8,6 +8,7 @@ exports.up = function (knex, Promise) {
       table.string('display', 100).nullable();
       table.string('email', 100).nullable().unique();
       table.string('phone', 100).nullable();
+      table.string('image_link').nullable();
       table.jsonb('stages_settings').defaultTo('[{"name":"Considering","backgroundColor":"orange","textColor":"black"},{"name":"Applied","backgroundColor":"#FFC107","textColor":"black"},{"name":"Phone Screen","backgroundColor":"#2196F3","textColor":"white"},{"name":"On Site","backgroundColor":"#9C27B0","textColor":"white"},{"name":"Offer","backgroundColor":"#009688","textColor":"white"},{"name":"Denied","backgroundColor":"#F44336","textColor":"white"}]');
       table.timestamps(true, true);
     }),

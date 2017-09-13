@@ -13,7 +13,8 @@
 .logo {
   align-items: center;
   font-size: x-large;
-  margin: auto 20px auto 10px;
+  margin: 20px 20px auto 10px;
+  line-height: 36px;
  }
 
 .hidden {
@@ -24,4 +25,14 @@
 .displayed {
   transform: translateY(0%);
   transition: .5s ease-in-out;
+}
+
+.profileButton {
+  border: transparent;
+  background: transparent;
+  padding: 0px;
+}
+
+.profileDropdown {
+  padding: 8px;
 }

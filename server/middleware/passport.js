@@ -119,7 +119,7 @@ passport.use('facebook', new FacebookStrategy({
   clientID: config.Facebook.clientID,
   clientSecret: config.Facebook.clientSecret,
   callbackURL: config.Facebook.callbackURL,
-  profileFields: ['id', 'emails', 'name']
+  profileFields: ['id', 'emails', 'name', 'picture', 'displayName']
 },
 (accessToken, refreshToken, profile, done) => {
   return getOrCreateOAuthProfile('facebook', profile, done)})
@@ -159,11 +159,13 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
       return models.Profile.where({ email: oauthProfile.emails[0].value }).fetch();
     })
     .then(profile => {
+      console.log(oauthProfile)
       let profileInfo = {
         first: oauthProfile.name.givenName,
         last: oauthProfile.name.familyName,
         display: oauthProfile.displayName || `${oauthProfile.name.givenName} ${oauthProfile.name.familyName}`,
-        email: oauthProfile.emails[0].value
+        email: oauthProfile.emails[0].value,
+        image_link: oauthProfile.photos[0].value
       };
 
       if (profile) {

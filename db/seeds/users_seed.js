@@ -11,7 +11,8 @@ exports.seed = function (knex, Promise) {
         first: 'Test',
         last: 'User',
         display: 'testUser',
-        email: 'test@gmail.com'
+        email: 'test@gmail.com',
+        image_link: 'http://www.material-ui.com/images/uxceo-128.jpg'
       }).save();
     })
     .error(err => {
