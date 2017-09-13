@@ -5,6 +5,9 @@ const Profile = db.Model.extend({
   hasTimestamps: true,
   auths: function() {
     return this.hasMany('Auth');
+  },
+  organizations: function() {
+    return this.hasOne('Organization');
   }
 });
 

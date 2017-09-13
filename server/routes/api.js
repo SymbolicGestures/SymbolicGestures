@@ -45,6 +45,13 @@ router.route('/notes/:id')
   .post(ApplicationController.createOrUpdateNote);
 
 /**
+ * deletes a note with id = :id.
+ * @return {String}     returns a string with success or error message.
+ */
+router.route('/deleteNote/:id')
+  .post(ApplicationController.deleteNote);
+
+/**
  * With a GET - Returns all histories of the user.
  * With a POST - Adds a history for the user.
  * @param  {Object} reqBody post request body form is {"date":"2018-05-09","event":"molestiae"}
@@ -62,6 +69,13 @@ router.route('/histories/:id')
   .post(ApplicationController.createOrUpdateHistory);
 
 /**
+ * deletes a history with id = :id.
+ * @return {String}     returns a string with success or error message.
+ */
+router.route('/deleteHistory/:id')
+  .post(ApplicationController.deleteHistory);
+
+/**
  * With a GET - Returns all contacts of the user.
  * With a POST - Adds a contact for the user.
  * @param  {Object} reqBody post request body form is {"name":"Aliza Collins","role":"Direct","email":"Jess.Fadel43@hotmail.com","phone":"209.536.2021 x66536"}
@@ -77,6 +91,13 @@ router.route('/contacts')
  */
 router.route('/contacts/:id')
   .post(ApplicationController.createOrUpdateContact);
+
+/**
+ * deletes a contact with id = :id.
+ * @return {String}     returns a string with success or error message.
+ */
+router.route('/deleteContact/:id')
+  .post(ApplicationController.deleteContact);
 
 /**
  * With a GET - Returns user's stage preference.

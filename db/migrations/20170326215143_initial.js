@@ -9,8 +9,14 @@ exports.up = function (knex, Promise) {
       table.string('email', 100).nullable().unique();
       table.string('phone', 100).nullable();
       table.string('image_link').nullable();
+      table.integer('organization_id').references('organizations.id').onDelete('CASCADE');
       table.jsonb('stages_settings').defaultTo('[{"name":"Considering","backgroundColor":"orange","textColor":"black"},{"name":"Applied","backgroundColor":"#FFC107","textColor":"black"},{"name":"Phone Screen","backgroundColor":"#2196F3","textColor":"white"},{"name":"On Site","backgroundColor":"#9C27B0","textColor":"white"},{"name":"Offer","backgroundColor":"#009688","textColor":"white"},{"name":"Denied","backgroundColor":"#F44336","textColor":"white"}]');
       table.timestamps(true, true);
+    }),
+    knex.schema.createTableIfNotExists('organizations', function(table) {
+      table.increments('id').unsigned().primary();
+      table.string('organization_name', 8).notNullable();
+      table.integer('member_count').defaultTo(0);
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
       table.increments('id').unsigned().primary();
@@ -66,7 +72,7 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTableIfExists('notes'),
     knex.schema.dropTableIfExists('contacts'),
     knex.schema.dropTableIfExists('applications'),
+    knex.schema.dropTableIfExists('organizations'),
     knex.schema.dropTableIfExists('profiles')
-
   ]);
 };

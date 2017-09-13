@@ -10,7 +10,8 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      open: false
+      open: false,
+      displayName: ''
     };
     this.toggleModal = this.toggleModal.bind(this)
   }

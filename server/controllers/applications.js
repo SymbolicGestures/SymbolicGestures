@@ -136,6 +136,21 @@ module.exports.createOrUpdateNote = (req, res) => {
 
 };
 
+module.exports.deleteNote = (req, res) => {
+  bookshelf.transaction((t) => {
+    return models.Note.where({id: req.params.id}).fetch()
+      .then(note => {
+        return note.destroy()
+          .then(()=>{
+            res.status(200).send('note successfully deleted');
+          });
+      })
+      .catch((err)=>{
+        console.error(err)
+      });
+  })
+};
+
 module.exports.getAllHistories = (req, res) => {
   models.History.where({ application_id: req.user.id }).fetchAll()
     .then(histories => {
@@ -180,6 +195,21 @@ module.exports.createOrUpdateHistory = (req, res) => {
         res.status(503).send(err + 'failed to create history');
       });
   }
+};
+
+module.exports.deleteHistory = (req, res) => {
+  bookshelf.transaction((t) => {
+    return models.History.where({id: req.params.id}).fetch()
+      .then(history => {
+        return history.destroy()
+          .then(()=>{
+            res.status(200).send('history successfully deleted');
+          });
+      })
+      .catch((err)=>{
+        console.error(err)
+      });
+  })
 };
 
 module.exports.getAllContacts = (req, res) => {
@@ -231,4 +261,19 @@ module.exports.createOrUpdateContact = (req, res) => {
         res.status(503).send(err);
       });
   }
+};
+
+module.exports.deleteContact = (req, res) => {
+  bookshelf.transaction((t) => {
+    return models.Contact.where({id: req.params.id}).fetch()
+      .then(contact => {
+        return contact.destroy()
+          .then(()=>{
+            res.status(200).send('contact successfully deleted');
+          });
+      })
+      .catch((err)=>{
+        console.error(err)
+      });
+  })
 };
