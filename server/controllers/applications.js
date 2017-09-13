@@ -1,5 +1,5 @@
 const models = require('../../db/models');
-
+const bookshelf = require('../../db');
 /**
  * returns all apps of the user.
  * @return {Array}     Returns an array of applications tree of the user.
@@ -13,6 +13,29 @@ module.exports.getAllApps = (req, res) => {
       // This code indicates an outside service (the database) did not respond in time
       res.status(503).send(err);
     });
+};
+
+module.exports.deleteApplication = (req, res) => {
+  bookshelf.transaction((t) => {
+    return models.Application.where({id: req.params.id}).fetch({withRelated: ['contacts', 'histories', 'notes']})
+      .then(application => {
+        Promise.all(
+          [application.related('contacts').invokeThen('destroy'),
+          application.related('histories').invokeThen('destroy'),
+          application.related('notes').invokeThen('destroy')]
+        );
+        return application;
+      })
+      .then((application)=>{
+        return application.destroy()
+          .then(()=>{
+            res.status(200).send('application successfully deleted');
+          });
+      })
+      .catch((err)=>{
+        console.error(err)
+      });
+  })
 };
 
 module.exports.createOrUpdateApp = (req, res) => {

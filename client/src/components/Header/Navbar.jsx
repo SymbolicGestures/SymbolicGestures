@@ -3,8 +3,8 @@ import styles from './../../../styles/navbarStyles.css'
 import {Navbar, Nav, NavItem, MenuItem, NavDropdown, Image, Modal, OverlayTrigger, Popover, Tooltip, Button} from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import { LinkContainer } from 'react-router-bootstrap';
-import Dialog from 'material-ui/Dialog';
+import { LinkContainer } from 'react-router-bootstrap'
+import Dialog from 'material-ui/Dialog'
 
 class Header extends React.Component {
   constructor(props) {
@@ -75,8 +75,8 @@ class Header extends React.Component {
             <h4>Text in a modal</h4>
             <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
           </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.toggleModal}>Close</Button>
+          <Modal.Footer style={{'borderTop': '0px'}}>
+            <Button onClick={this.toggleModal}>Update Profile</Button>
           </Modal.Footer>
         </Modal>
       </Navbar>

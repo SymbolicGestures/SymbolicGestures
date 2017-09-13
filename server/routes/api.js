@@ -21,6 +21,13 @@ router.route('/applications/:id')
   .post(ApplicationController.createOrUpdateApp);
 
 /**
+ * delete an application and all related data (notes, histories, etc.) with id = :id.
+ * @return {String}     returns a string with success or error message.
+ */
+router.route('/deleteApplication/:id')
+  .post(ApplicationController.deleteApplication);
+
+/**
  * With a GET - Returns all notes of the user.
  * With a POST - Adds a note for the user.
  * @param  {Object} reqBody post request body form is {"type":"codeSnippet","note":"Aliquam beatae quae rem quidem."}
