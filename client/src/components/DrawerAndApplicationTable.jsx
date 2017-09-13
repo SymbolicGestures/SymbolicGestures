@@ -12,6 +12,7 @@ import DropDownWithZeroPadding from './DropDownWithZeroPadding.jsx';
 import TableCellJPLink from './TableCells/TableCellJPLink.jsx';
 import TableCellJobTitle from './TableCells/TableCellJobTitle.jsx';
 import TableCellCompanyName from './TableCells/TableCellCompanyName.jsx';
+import TableCellJPSource from './TableCells/TableCellJPSource.jsx';
 
 
 export default class DrawerAndApplicationTable extends React.Component {
@@ -116,9 +117,9 @@ export default class DrawerAndApplicationTable extends React.Component {
                   >
                     <Icon style={{ color: 'black' }} name="chevron left" /></Table.Cell>
                   <Table.Cell>{application.created_at}</Table.Cell>
-                  <Table.Cell>{application.company_name}</Table.Cell> 
-                  {/* <TableCellCompanyName /> */}
-                  {/* <Table.Cell>{application.job_title}</Table.Cell> */}
+                   {/* <Table.Cell>{application.company_name}</Table.Cell> */}
+                   <TableCellCompanyName company_name={application.company_name} /> 
+                  {/* <TableCellCompanyName company_name={application.company_name} /> */}
                   <TableCellJobTitle job_title={application.job_title} />
 
                   <Table.Cell style={combineStyle}>
@@ -132,7 +133,9 @@ export default class DrawerAndApplicationTable extends React.Component {
                       stages_settings={this.props.stages_settings}
                     /></Table.Cell>
                   <TableCellJPLink job_posting_link={application.job_posting_link} />
-                  <Table.Cell>{application.job_posting_source}</Table.Cell>
+                  {/* <Table.Cell>{application.job_posting_source}</Table.Cell> */}
+                  {/* <Table.Cell>{application.job_posting_source}</Table.Cell> */}
+                  <TableCellJPSource job_posting_source={application.job_posting_source}/>
                 </Table.Row>
               );
             })}

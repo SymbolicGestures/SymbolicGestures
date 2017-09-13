@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Form } from 'semantic-ui-react';
 
 const TableCellJPLink = ({ job_posting_link }) => {
   if (job_posting_link) {
@@ -10,9 +10,13 @@ const TableCellJPLink = ({ job_posting_link }) => {
     );
   }
   return (
-    <Table.Cell
-      style={{ textAlign: 'center' }}
-    >No Link</Table.Cell>
+    <Table.Cell style={{ padding: '0.2% 0.2% 0px 0.2%', width: '7.5%' }}>
+      <Form>
+        <Form.Field>
+          <input placeholder="Link" />
+        </Form.Field>
+      </Form>
+    </Table.Cell>
   );
 };
 
