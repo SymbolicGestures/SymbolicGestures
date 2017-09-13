@@ -49,9 +49,11 @@
     "react": "^15.4.2",
     "react-bootstrap": "^0.31.2",
     "react-dom": "^15.4.2",
+    "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "redis": "^2.7.1",
+    "redux": "^3.7.2",
     "semantic-ui-react": "^0.72.0",
     "style-loader": "^0.18.2",
     "webpack": "^2.3.2"

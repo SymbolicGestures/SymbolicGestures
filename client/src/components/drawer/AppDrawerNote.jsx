@@ -12,11 +12,15 @@ class AppDrawerNote extends React.Component {
     return (
       <div>
         <h2>Notes</h2>
-        {this.props.application.notes.map((note,index) => {
-          return (
-            <AppDrawerNoteItem note={note} key={index}/>
-          );
-        })}
+        <AppDrawerNoteItem
+          note={this.props.application.notes}
+          key={0}
+          getApplicationsFromDB={this.props.getApplicationsFromDB}
+        />
+
+        {/* {this.props.application.notes.map((note,index) => {
+          return ( );
+        })} */}
       </div>
     );
   }
