@@ -29,7 +29,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     this.setSelectAppToNewApp = this.setSelectAppToNewApp.bind(this);
     this.openDrawer = this.openDrawer.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
-    this.updateJobPostingSource = this.updateJobPostingSource.bind(this);
+    // this.updateJobPostingSource = this.updateJobPostingSource.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
