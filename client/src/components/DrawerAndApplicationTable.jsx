@@ -7,6 +7,11 @@ import { format } from 'date-fns';
 import MateUiRightDrawer from './MateUiRightDrawer.jsx';
 import DropDownWithZeroPadding from './DropDownWithZeroPadding.jsx';
 
+// TableCells
+// import TableCellJPLink from './TableCells/TableCellJPLink.jsx';
+import TableCellJPLink from './TableCells/TableCellJPLink.jsx';
+import TableCellJobTitle from './TableCells/TableCellJobTitle.jsx';
+
 
 export default class DrawerAndApplicationTable extends React.Component {
   constructor(props) {
@@ -113,6 +118,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                   <Table.Cell>{application.created_at}</Table.Cell>
                   <Table.Cell>{application.company_name}</Table.Cell>
                   <Table.Cell>{application.job_title}</Table.Cell>
+                  <TableCellJobTitle job_title={application.job_title} />
 
                   <Table.Cell style={combineStyle}>
                     <DropDownWithZeroPadding
@@ -125,7 +131,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                       stages_settings={this.props.stages_settings}
                     />
                   </Table.Cell>
-                  <TableCellLink job_posting_link={application.job_posting_link} />
+                  <TableCellJPLink job_posting_link={application.job_posting_link} />
                   <Table.Cell>{application.job_posting_source}</Table.Cell>
                 </Table.Row>
               );
@@ -141,38 +147,19 @@ export default class DrawerAndApplicationTable extends React.Component {
 }
 
 
-const TableCellLink = ({ job_posting_link }) => {
-  if (job_posting_link) {
-    return (
-      <Table.Cell
-        style={{ textAlign: 'center' }}
-      ><a href={job_posting_link}><u>Link</u></a></Table.Cell>  
-    );
-  }
-  return (
-    <Table.Cell
-      style={{ textAlign: 'center' }}
-    >No Link</Table.Cell>
-  );
-};
 
 
-
-// {/* <DropdownExampleImage
-//   getApplicationsFromDB={this.props.getApplicationsFromDB}
-//   application={application}
-//   stageNameToColorHash={stageNameToColorHash}
-//   stage={application.stage}
-//   updateOneAppStage={this.props.updateOneAppStage}
-//   applicationIdx={idx}
-//   stages_settings={this.props.stages_settings}
-// /> */}
-// {/* <AppDrawerInfoDropDown
-//   getApplicationsFromDB={this.props.getApplicationsFromDB}
-//   application={application}
-//   stageNameToColorHash={this.props.stageNameToColorHash}
-//   stage={application.stage}
-//   updateOneAppStage={this.props.updateOneAppStage}
-//   selectAppIdx={idx}
-//   stages_settings={this.props.stages_settings}
-// />  */}
+// const TableCellJPLink = ({ job_posting_link }) => {
+//   if (job_posting_link) {
+//     return (
+//       <Table.Cell
+//         style={{ textAlign: 'center' }}
+//       ><a href={job_posting_link}><u>Link</u></a></Table.Cell>  
+//     );
+//   }
+//   return (
+//     <Table.Cell
+//       style={{ textAlign: 'center' }}
+//     >No Link</Table.Cell>
+//   );
+// };

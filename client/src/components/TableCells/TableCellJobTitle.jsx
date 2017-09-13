@@ -1,0 +1,16 @@
+import React from 'react';
+import { Table, Form } from 'semantic-ui-react';
+
+const TableCellJobTitle = ({ job_title }) => {
+  if (job_title) { return (<Table.Cell>{job_title}</Table.Cell>); }
+  return (
+    <Form>
+      <Form.Field>
+        <input placeholder='First Name' />
+      </Form.Field>
+    </Form>
+  );
+};
+
+export default TableCellJobTitle;
+
