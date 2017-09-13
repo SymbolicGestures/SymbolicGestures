@@ -29,6 +29,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     this.setSelectAppToNewApp = this.setSelectAppToNewApp.bind(this);
     this.openDrawer = this.openDrawer.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
+    this.updateJobPostingSource = this.updateJobPostingSource.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -105,7 +106,6 @@ export default class DrawerAndApplicationTable extends React.Component {
           <Table.Body>
             {applications.map((application, idx) => {
               let tdStyle = { padding: '0px', height: '1px', paddingTop: '0.2%' };
-              let combineStyle = Object.assign({}, tdStyle, stageNameToColorHash[application.stage]);
               return (
                 <Table.Row
                   key={idx}
@@ -122,7 +122,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                   {/* <TableCellCompanyName company_name={application.company_name} /> */}
                   <TableCellJobTitle job_title={application.job_title} />
 
-                  <Table.Cell style={combineStyle}>
+                  <Table.Cell style={tdStyle}>
                     <DropDownWithZeroPadding
                       getApplicationsFromDB={this.props.getApplicationsFromDB}
                       application={application}

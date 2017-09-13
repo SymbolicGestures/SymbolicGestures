@@ -6,7 +6,7 @@ class DropDownWithZeroPadding extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dropDownText: 'Applied'
+      dropDownText: this.props.stage
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -14,7 +14,10 @@ class DropDownWithZeroPadding extends React.Component {
     this.updateOneStageToDB = this.updateOneStageToDB.bind(this);
   }
 
+<<<<<<< HEAD
   
+=======
+>>>>>>> Clean up code
   componentWillReceiveProps(nextProps) {
     if (nextProps.stage) {
       console.log(nextProps.stage)
@@ -60,9 +63,15 @@ class DropDownWithZeroPadding extends React.Component {
   }
 
   render() {
-    let padding0 = { padding: 0 };
+    // let padding0 = { padding: 0 };
     let divStyle = { width: '100%', height: '100%', textAlign: 'center', fontSize: '15px' };
     return (<div>
+      {/* <Dropdown
+        text={this.state.dropDownText}
+        style={Object.assign(divStyle, this.props.stageNameToColorHash[this.state.dropDownText])}
+        floating
+        button
+      > */}
       <Dropdown
         text={this.state.dropDownText}
         style={Object.assign(divStyle, this.props.stageNameToColorHash[this.state.dropDownText])}
