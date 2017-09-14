@@ -7,7 +7,7 @@ class ConditionalTableCell extends Component {
     super(props);
     this.state = {
       userInput: '',
-      formView: true,
+      formView: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,8 +37,8 @@ class ConditionalTableCell extends Component {
       .catch((message) => { console.log(message); });
   }
 
-  activateFormView() {
-    this.setState({ formView: true });
+  activateFormView(value) {
+    this.setState({ userInput: value, formView: true });
   }
 
   deActivateFormView(idx, updatedField, application) {
@@ -50,15 +50,17 @@ class ConditionalTableCell extends Component {
   render() {
     if (this.props.appKey === 'job_posting_link'
       && this.props.application[this.props.appKey] !== ''
+      && this.state.formView === false
       && this.props.application[this.props.appKey] !== null) {
       return (
         <Table.Cell
+          onClick={() => this.activateFormView(this.props.application[this.props.appKey])}
           style={{ textAlign: 'center' }}
         ><a href={this.props.application[this.props.appKey]}><u>Link</u></a></Table.Cell>
       );
     }
   
-    if (this.props.application[this.props.appKey] === null) {
+    if (this.props.application[this.props.appKey] === null || this.state.formView === true) {
       return (
         <Table.Cell style={this.props.cellStyle}>
           <Form onSubmit={e => this.handleSubmit(this.props.idx, this.props.appKey, this.props.application, e)}>
@@ -66,7 +68,7 @@ class ConditionalTableCell extends Component {
               <input
                 onChange={this.handleChange}
                 onBlur={() => this.deActivateFormView(this.props.idx, this.props.appKey, this.props.application)}
-                value={this.state.value}
+                value={this.state.userInput}
                 placeholder={this.props.placeHolder}
               />
             </Form.Field>
@@ -76,8 +78,12 @@ class ConditionalTableCell extends Component {
     }
   
 
-    if (this.props.application[this.props.appKey].length !== 0) {
-      return (<Table.Cell>{this.props.application[this.props.appKey]}</Table.Cell>);
+    if (this.props.application[this.props.appKey].length !== 0 && this.state.formView === false) {
+      return (<Table.Cell
+        onClick={() => this.activateFormView(this.props.application[this.props.appKey])}
+      >
+        {this.props.application[this.props.appKey]}
+      </Table.Cell>);
     }
 
     return (
@@ -87,7 +93,7 @@ class ConditionalTableCell extends Component {
             <input
               onChange={this.handleChange}
               onBlur={() => this.deActivateFormView(this.props.idx, this.props.appKey, this.props.application)}
-              value={this.state.value}
+              value={this.state.userInput}
               placeholder={this.props.placeHolder}
             />
           </Form.Field>
