@@ -118,11 +118,22 @@ export default class DrawerAndApplicationTable extends React.Component {
                   >
                     <Icon style={{ color: 'black' }} name="chevron left" /></Table.Cell>
                   <Table.Cell>{application.created_at}</Table.Cell>
-                   {/* <Table.Cell>{application.company_name}</Table.Cell> */}
-                   <TableCellCompanyName company_name={application.company_name} /> 
-                  {/* <TableCellCompanyName company_name={application.company_name} /> */}
-                  <TableCellJobTitle job_title={application.job_title} />
-
+                  <ConditionalTableCell
+                    applicationKey={application.company_name}
+                    applicationKeyInStr={'company_name'}
+                    placeHolder={'Company Name'}
+                    updateOneAppInFrontEnd={this.props.updateOneAppInFrontEnd}
+                    idx={idx}
+                    cellStyle={{ padding: '0.2% 0.2% 0px 0.2%' }}
+                  />
+                  <ConditionalTableCell
+                    applicationKey={application.job_title}
+                    applicationKeyInStr={'job_title'}
+                    placeHolder={'Job Title'}
+                    updateOneAppInFrontEnd={this.props.updateOneAppInFrontEnd}
+                    idx={idx}
+                    cellStyle={{ padding: '0.2% 0.2% 0px 0.2%' }}
+                  />
                   <Table.Cell style={tdStyle}>
                     <DropDownWithZeroPadding
                       getApplicationsFromDB={this.props.getApplicationsFromDB}
@@ -133,14 +144,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                       selectAppIdx={idx}
                       stages_settings={this.props.stages_settings}
                     /></Table.Cell>
-                  <TableCellJPLink job_posting_link={application.job_posting_link} /> 
-                  {/* <Table.Cell>{application.job_posting_source}</Table.Cell> */}
-                  {/* <Table.Cell>{application.job_posting_source}</Table.Cell> */}
-                  {/* <TableCellJPSource
-                    job_posting_source={application.job_posting_source}
-                    updateOneAppInFrontEnd={this.props.updateOneAppInFrontEnd}
-                    idx={idx}
-                  /> */}
+                  <TableCellJPLink job_posting_link={application.job_posting_link} />  
                   <ConditionalTableCell
                     applicationKey={application.job_posting_source}
                     applicationKeyInStr={'job_posting_source'}
