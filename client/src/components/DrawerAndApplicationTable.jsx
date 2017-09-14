@@ -119,18 +119,18 @@ export default class DrawerAndApplicationTable extends React.Component {
                     <Icon style={{ color: 'black' }} name="chevron left" /></Table.Cell>
                   <Table.Cell>{application.created_at}</Table.Cell>
                   <ConditionalTableCell
-                    applicationKey={application.company_name}
-                    applicationKeyInStr={'company_name'}
+                    application={application}
+                    appKey={'company_name'}
                     placeHolder={'Company Name'}
-                    updateOneAppInFrontEnd={this.props.updateOneAppInFrontEnd}
+                    updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
                     idx={idx}
                     cellStyle={{ padding: '0.2% 0.2% 0px 0.2%' }}
                   />
                   <ConditionalTableCell
-                    applicationKey={application.job_title}
-                    applicationKeyInStr={'job_title'}
+                    application={application}
+                    appKey={'job_title'}
                     placeHolder={'Job Title'}
-                    updateOneAppInFrontEnd={this.props.updateOneAppInFrontEnd}
+                    updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
                     idx={idx}
                     cellStyle={{ padding: '0.2% 0.2% 0px 0.2%' }}
                   />
@@ -146,10 +146,10 @@ export default class DrawerAndApplicationTable extends React.Component {
                     /></Table.Cell>
                   <TableCellJPLink job_posting_link={application.job_posting_link} />  
                   <ConditionalTableCell
-                    applicationKey={application.job_posting_source}
-                    applicationKeyInStr={'job_posting_source'}
+                    application={application}
+                    appKey={'job_posting_source'}
                     placeHolder={'Source'}
-                    updateOneAppInFrontEnd={this.props.updateOneAppInFrontEnd}
+                    updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
                     idx={idx}
                     cellStyle={{ padding: '0.2% 0.2% 0px 0.2%', width: '10%' }}
                   />

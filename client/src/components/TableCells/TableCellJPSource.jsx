@@ -22,13 +22,13 @@ class TableCellJPSource extends Component {
     console.log('idx', idx);
     console.log('updatedField', updatedField);
     console.log('value', this.state.userInput);
-    // this.props.updateOneAppInFrontEnd()
-    this.props.updateOneAppInFrontEnd(idx, updatedField, this.state.userInput)
+    // this.props.updateOneKeyValPairInFE()
+    this.props.updateOneKeyValPairInFE(idx, updatedField, this.state.userInput)
     e.preventDefault();
   }
 
   render() {
-    console.log('udtOneAppInFE:', this.props.updateOneAppInFrontEnd);
+    console.log('udtOneAppInFE:', this.props.updateOneKeyValPairInFE);
     if (this.props.job_posting_source) {
       return (<Table.Cell>{this.props.job_posting_source}</Table.Cell>);
     }
