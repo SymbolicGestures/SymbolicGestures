@@ -138,7 +138,7 @@ class App extends React.Component {
         color: setting.textColor,
       };
     });
-    this.setState({stageNameToColorHash});
+    this.setState({ stageNameToColorHash });
   }
 
   /**

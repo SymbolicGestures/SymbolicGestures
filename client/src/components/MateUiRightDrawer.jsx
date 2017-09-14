@@ -49,6 +49,7 @@ export default class MateUiRightDrawer extends React.Component {
       .then(function (response) {
         // console.log('post req empty application succeed');
         // console.log('id: ', response.data.id);
+        console.log('application_id', response.data.id);
         axios.post('/api/notes', {
           application_id: response.data.id,
           type: 'note',
