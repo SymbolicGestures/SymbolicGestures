@@ -109,4 +109,22 @@ router.route('/profiles')
   .get(ProfilesController.getUserProfile)
   .post(ProfilesController.updateUserProfile);
 
+/**
+ * With a GET - Returns all current organizations.
+ * With a POST - creates an organization
+ * @param  {Object} reqBody post request body form is {organization_name: 'HR80', member_count: 1}
+ * @return {Array}          returns an array of all organizations.
+ */
+router.route('/organizations')
+  .get(ProfilesController.getAllOrganizations)
+  .post(ProfilesController.createOrUpdateOrganization);
+
+/**
+ * With a POST - updates an organization. member_count is given with amount to add to member_count
+ * @param  {Object} reqBody post request body form is {organization_name: 'HR80', member_count: 1}
+ * @return {Array}          returns the updated organization.
+ */
+router.route('/organizations/:id')
+  .post(ProfilesController.createOrUpdateOrganization);
+
 module.exports = router;

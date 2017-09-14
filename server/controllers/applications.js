@@ -227,6 +227,7 @@ module.exports.createOrUpdateContact = (req, res) => {
   let contact = req.body;
   let applicant = req.user;
   if (req.params.id) {
+    //update
     models.Contact.forge({ id: req.params.id }).fetch()
       .then(currentContact => {
         if (currentContact) {
@@ -246,6 +247,7 @@ module.exports.createOrUpdateContact = (req, res) => {
         res.status(503).send(err);
       });
   } else {
+    //create
     return models.Contact.forge({
       application_id: contact.application_id,
       role: contact.role,

@@ -4,8 +4,7 @@ import {Navbar, Nav, NavItem, MenuItem, NavDropdown, Image, Modal, OverlayTrigge
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
-import Dialog from 'material-ui/Dialog'
-
+import MaterialMenuItem from './MenuItem.jsx'
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -68,18 +67,9 @@ class Header extends React.Component {
           </Nav>
           {(()=>{return this.conditionalNavProfile()})()}
         </Navbar.Collapse>
-        <Modal show={this.state.open} onHide={this.toggleModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>Profile</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>Text in a modal</h4>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-          </Modal.Body>
-          <Modal.Footer style={{'borderTop': '0px'}}>
-            <Button onClick={this.toggleModal}>Update Profile</Button>
-          </Modal.Footer>
-        </Modal>
+        <MaterialMenuItem
+          show={this.state.open} onHide={this.toggleModal}
+        />
       </Navbar>
     )
   }

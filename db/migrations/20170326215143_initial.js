@@ -15,8 +15,9 @@ exports.up = function (knex, Promise) {
     }),
     knex.schema.createTableIfNotExists('organizations', function(table) {
       table.increments('id').unsigned().primary();
-      table.string('organization_name', 8).notNullable();
+      table.string('organization_name', 50).notNullable().unique();
       table.integer('member_count').defaultTo(0);
+      table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
       table.increments('id').unsigned().primary();
@@ -72,7 +73,7 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTableIfExists('notes'),
     knex.schema.dropTableIfExists('contacts'),
     knex.schema.dropTableIfExists('applications'),
-    knex.schema.dropTableIfExists('organizations'),
-    knex.schema.dropTableIfExists('profiles')
+    knex.schema.dropTableIfExists('profiles'),
+    knex.schema.dropTableIfExists('organizations')
   ]);
 };
