@@ -13,22 +13,28 @@ class TableCellJPSource extends Component {
 
   handleChange(e) {
     console.log(console.log('val:', e.target.value));
-    this.setState({ value: e.target.value });
+    this.setState({ userInput: e.target.value });
   }
 
-  handleSubmit(e) {
+  handleSubmit(idx, updatedField, e) {
     // alert('A name was submitted: ' + this.state.value);
     console.log('handle submit');
+    console.log('idx', idx);
+    console.log('updatedField', updatedField);
+    console.log('value', this.state.userInput);
+    // this.props.updateOneAppInFrontEnd()
+    this.props.updateOneAppInFrontEnd(idx, updatedField, this.state.userInput)
     e.preventDefault();
   }
 
   render() {
+    console.log('udtOneAppInFE:', this.props.updateOneAppInFrontEnd);
     if (this.props.job_posting_source) {
       return (<Table.Cell>{this.props.job_posting_source}</Table.Cell>);
     }
     return (
       <Table.Cell style={{ padding: '0.2% 0.2% 0px 0.2%', width: '10%' }}>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={(e) => (this.handleSubmit(this.props.idx, 'job_posting_source', e))}>
           <Form.Field>
             <input onChange={this.handleChange} value={this.state.value} placeholder="Source" />
           </Form.Field>

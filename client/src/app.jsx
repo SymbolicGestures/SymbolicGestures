@@ -66,6 +66,7 @@ class App extends React.Component {
     this.onStagesChange = this.onStagesChange.bind(this);
     this.updateStages = this.updateStages.bind(this);
     this.updateOneAppStage = this.updateOneAppStage.bind(this);
+    this.updateOneAppInFrontEnd = this.updateOneAppInFrontEnd.bind(this);
   }
 
   componentDidMount() {
@@ -232,6 +233,19 @@ class App extends React.Component {
     }, this.countApplicationStages);
   }
 
+  updateOneAppInFrontEnd(idx, updatedField, updatedText) {
+    console.log('app', this.state.applications[idx]);
+    console.log('upFi', updatedField);
+    if (this.state.applications[idx][updatedField] || this.state.applications[idx][updatedField] === '') {
+      this.state.applications[idx][updatedField] = updatedText;
+      this.setState({
+        applications: this.state.applications
+      });
+    } else {
+      console.log('update one app in front end did not work bc field does not exist');
+    }
+  }
+
   render() {
     return (
       <Router>
@@ -269,6 +283,7 @@ class App extends React.Component {
                       stageNameToColorHash={this.state.stageNameToColorHash}
                       getApplicationsFromDB={this.getApplicationsFromDB}
                       updateOneAppStage={this.updateOneAppStage}
+                      updateOneAppInFrontEnd={this.updateOneAppInFrontEnd}
                     />
                   </div>
                 </div>

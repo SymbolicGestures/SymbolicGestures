@@ -135,7 +135,11 @@ export default class DrawerAndApplicationTable extends React.Component {
                   <TableCellJPLink job_posting_link={application.job_posting_link} />
                   {/* <Table.Cell>{application.job_posting_source}</Table.Cell> */}
                   {/* <Table.Cell>{application.job_posting_source}</Table.Cell> */}
-                  <TableCellJPSource job_posting_source={application.job_posting_source}/>
+                  <TableCellJPSource
+                    job_posting_source={application.job_posting_source}
+                    updateOneAppInFrontEnd={this.props.updateOneAppInFrontEnd}
+                    idx={idx}
+                  />
                 </Table.Row>
               );
             })}
