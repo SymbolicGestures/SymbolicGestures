@@ -145,7 +145,15 @@ export default class DrawerAndApplicationTable extends React.Component {
                       selectAppIdx={idx}
                       stages_settings={this.props.stages_settings}
                     /></Table.Cell>
-                  <TableCellJPLink job_posting_link={application.job_posting_link} />  
+                  {/* <TableCellJPLink job_posting_link={application.job_posting_link} /> */}
+                  <ConditionalTableCell
+                    application={application}
+                    appKey={'job_posting_link'}
+                    placeHolder={'Link'}
+                    updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
+                    idx={idx}
+                    cellStyle={{ padding: '0.2% 0.2% 0px 0.2%', width: '7.5%' }}
+                  />
                   <ConditionalTableCell
                     application={application}
                     appKey={'job_posting_source'}

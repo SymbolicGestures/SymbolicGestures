@@ -6,11 +6,14 @@ class ConditionalTableCell extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInput: ''
+      userInput: '',
+      formView: true,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateOneKeyValPairToDB = this.updateOneKeyValPairToDB.bind(this);
+    this.activateFormView = this.activateFormView.bind(this);
+    this.deActivateFormView = this.deActivateFormView.bind(this);
   }
 
   handleChange(e) {
@@ -34,21 +37,67 @@ class ConditionalTableCell extends Component {
       .catch((message) => { console.log(message); });
   }
 
+  activateFormView() {
+    this.setState({ formView: true });
+  }
+
+  deActivateFormView(idx, updatedField, application) {
+    this.props.updateOneKeyValPairInFE(idx, updatedField, this.state.userInput);
+    this.updateOneKeyValPairToDB(application, updatedField);
+    this.setState({ formView: false });
+  }
+
   render() {
-    // if (this.props.appKey === 'job_posting_source') {
-      // console.log(this.props.application);
-      // console.log('appkey', this.props.application[this.props.appKey]);
+    // if (this.props.appKey === 'job_posting_link') {
+    //   console.log('jpLink:', this.props.application[this.props.appKey]);
+    //   return (
+    //     <Table.Cell style={{ padding: '0.2% 0.2% 0px 0.2%', width: '7.5%' }}>
+    //       <Form>
+    //         <Form.Field>
+    //           <input placeholder="Link" />
+    //         </Form.Field>
+    //       </Form>
+    //     </Table.Cell>
+    //   );
     // }
 
-    if (this.props.application[this.props.appKey]) {
+    if (this.props.appKey === 'job_posting_link' && this.props.application[this.props.appKey] !== null) {
+      return (
+        <Table.Cell
+          style={{ textAlign: 'center' }}
+        ><a href={this.props.application[this.props.appKey]}><u>Link</u></a></Table.Cell>
+      );
+    }
+  
+    if (this.props.application[this.props.appKey] === null) {
+      return (
+        <Table.Cell style={this.props.cellStyle}>
+          <Form onSubmit={e => this.handleSubmit(this.props.idx, this.props.appKey, this.props.application, e)}>
+            <Form.Field>
+              <input
+                onChange={this.handleChange}
+                onBlur={() => this.deActivateFormView(this.props.idx, this.props.appKey, this.props.application)}
+                value={this.state.value}
+                placeholder={this.props.placeHolder}
+              />
+            </Form.Field>
+          </Form>
+        </Table.Cell>
+      );
+    }
+  
+
+    if (this.props.application[this.props.appKey].length !== 0) {
       return (<Table.Cell>{this.props.application[this.props.appKey]}</Table.Cell>);
     }
+
     return (
       <Table.Cell style={this.props.cellStyle}>
         <Form onSubmit={e => this.handleSubmit(this.props.idx, this.props.appKey, this.props.application, e)}>
           <Form.Field>
             <input
               onChange={this.handleChange}
+              onBlur={() => this.deActivateFormView(this.props.idx, this.props.appKey, this.props.application)}
               value={this.state.value}
               placeholder={this.props.placeHolder}
             />

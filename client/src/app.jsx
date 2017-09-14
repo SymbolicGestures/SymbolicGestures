@@ -237,7 +237,9 @@ class App extends React.Component {
   updateOneKeyValPairInFE(idx, updatedField, updatedText) {
     // console.log('app', this.state.applications[idx]);
     // console.log('upFi', updatedField);
-    if (this.state.applications[idx][updatedField] || this.state.applications[idx][updatedField] === '') {
+    if (this.state.applications[idx][updatedField]
+      || this.state.applications[idx][updatedField] === ''
+      || this.state.applications[idx][updatedField] === null) {
       this.state.applications[idx][updatedField] = updatedText;
       this.setState({
         applications: this.state.applications
