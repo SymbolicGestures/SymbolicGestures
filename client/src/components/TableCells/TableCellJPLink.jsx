@@ -6,7 +6,7 @@ const TableCellJPLink = ({ job_posting_link }) => {
     return (
       <Table.Cell
         style={{ textAlign: 'center' }}
-      ><a href={job_posting_link}><u>Link</u></a></Table.Cell>  
+      ><a href={job_posting_link}><u>Link</u></a></Table.Cell>
     );
   }
   return (

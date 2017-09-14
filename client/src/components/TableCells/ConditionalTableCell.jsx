@@ -12,23 +12,15 @@ class ConditionalTableCell extends Component {
   }
 
   handleChange(e) {
-    console.log(console.log('val:', e.target.value));
     this.setState({ userInput: e.target.value });
   }
 
   handleSubmit(idx, updatedField, e) {
-    // alert('A name was submitted: ' + this.state.value);
-    console.log('handle submit');
-    console.log('idx', idx);
-    console.log('updatedField', updatedField);
-    console.log('value', this.state.userInput);
-    // this.props.updateOneAppInFrontEnd()
     this.props.updateOneAppInFrontEnd(idx, updatedField, this.state.userInput);
     e.preventDefault();
   }
 
   render() {
-    console.log('udtOneAppInFE:', this.props.updateOneAppInFrontEnd);
     if (this.props.applicationKey) {
       return (<Table.Cell>{this.props.applicationKey}</Table.Cell>);
     }
