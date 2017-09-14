@@ -14,13 +14,10 @@ class DropDownWithZeroPadding extends React.Component {
     this.updateOneStageToDB = this.updateOneStageToDB.bind(this);
   }
 
-<<<<<<< HEAD
-  
-=======
->>>>>>> Clean up code
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.stage) {
-      console.log(nextProps.stage)
+      // console.log(nextProps.stage)
       this.setState({
         dropDownText: nextProps.stage
       });
@@ -28,7 +25,6 @@ class DropDownWithZeroPadding extends React.Component {
   }
 
   handleClick(clickedText) {
-
     console.log('clickText:', clickedText);
 
     let eventText = "Stage was changed to " + clickedText;

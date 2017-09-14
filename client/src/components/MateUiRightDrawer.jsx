@@ -53,7 +53,7 @@ export default class MateUiRightDrawer extends React.Component {
         axios.post('/api/notes', {
           application_id: response.data.id,
           type: 'note',
-          note: "sample note"
+          note: 'sample note'
         });
       })
       .catch(function (error) {
