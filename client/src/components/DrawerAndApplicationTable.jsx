@@ -87,6 +87,7 @@ export default class DrawerAndApplicationTable extends React.Component {
           stageNameToColorHash={this.props.stageNameToColorHash}
           updateOneAppStage={this.props.updateOneAppStage}
           selectAppIdx={this.state.selectAppIdx}
+          createNewApplicationInFE={this.props.createNewApplicationInFE}
         />
       </MuiThemeProvider>
       <Segment style={segmentStyle}>

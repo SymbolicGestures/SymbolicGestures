@@ -44,12 +44,12 @@ export default class MateUiRightDrawer extends React.Component {
     this.setState({ open: nextProps.isDrawerOpen });
   }
 
-  postEmptyApplicationToDB() {
-    axios.post('/api/applications', generateEmptyApplicaton())
+  postEmptyApplicationToDB(newApplication) {
+    axios.post('/api/applications', newApplication)
       .then(function (response) {
         // console.log('post req empty application succeed');
         // console.log('id: ', response.data.id);
-        console.log('application_id', response.data.id);
+        // console.log('application_id', response.data.id);
         axios.post('/api/notes', {
           application_id: response.data.id,
           type: 'note',
@@ -63,10 +63,12 @@ export default class MateUiRightDrawer extends React.Component {
   }
 
   openDrawerAndPostEmptyAppToDB() {
-    this.postEmptyApplicationToDB();
+    let newApplication = generateEmptyApplicaton();
+    this.props.createNewApplicationInFE(newApplication);
+    this.postEmptyApplicationToDB(newApplication);
     this.props.openDrawer();
     this.setState({ open: true });
-    console.log('why?');
+    // console.log('why?');
     this.props.getApplicationsFromDB(this.props.setSelectAppToNewApp);
   }
   closeDrawer() {

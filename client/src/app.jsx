@@ -67,6 +67,7 @@ class App extends React.Component {
     this.updateStages = this.updateStages.bind(this);
     this.updateOneAppStage = this.updateOneAppStage.bind(this);
     this.updateOneKeyValPairInFE = this.updateOneKeyValPairInFE.bind(this);
+    this.createNewApplicationInFE = this.createNewApplicationInFE.bind(this);
   }
 
   componentDidMount() {
@@ -246,6 +247,10 @@ class App extends React.Component {
     }
   }
 
+  createNewApplicationInFE(newApplication) {
+    let updatedApplications = [newApplication].concat(this.state.applications);
+    this.setState({ applications: updatedApplications });
+  }
 
   render() {
     return (
@@ -285,6 +290,7 @@ class App extends React.Component {
                       getApplicationsFromDB={this.getApplicationsFromDB}
                       updateOneAppStage={this.updateOneAppStage}
                       updateOneKeyValPairInFE={this.updateOneKeyValPairInFE}
+                      createNewApplicationInFE={this.createNewApplicationInFE}
                     />
                   </div>
                 </div>
