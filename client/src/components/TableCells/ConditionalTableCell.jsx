@@ -35,6 +35,11 @@ class ConditionalTableCell extends Component {
   }
 
   render() {
+    // if (this.props.appKey === 'job_posting_source') {
+      // console.log(this.props.application);
+      // console.log('appkey', this.props.application[this.props.appKey]);
+    // }
+
     if (this.props.application[this.props.appKey]) {
       return (<Table.Cell>{this.props.application[this.props.appKey]}</Table.Cell>);
     }

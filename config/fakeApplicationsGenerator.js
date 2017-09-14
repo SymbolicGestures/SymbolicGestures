@@ -12,7 +12,8 @@ let sources = ['LinkedIn',
   'Indeed',
   'Referrer',
   'Monster',
-  'Hired.com'];
+  'Hired.com',
+  'Offer.com'];
 
 let oneFakeApplication = () => {
   let randIdx = Math.floor(Math.random() * stages.length);

@@ -28,8 +28,8 @@ class TableCellJPSource extends Component {
   }
 
   render() {
-    console.log('udtOneAppInFE:', this.props.updateOneKeyValPairInFE);
-    if (this.props.job_posting_source) {
+    console.log('udtOneAppInFE:', this.props.job_posting_source.length !== 0);
+    if (this.props.job_posting_source.length !== 0) {
       return (<Table.Cell>{this.props.job_posting_source}</Table.Cell>);
     }
     return (
