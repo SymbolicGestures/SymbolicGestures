@@ -48,20 +48,9 @@ class ConditionalTableCell extends Component {
   }
 
   render() {
-    // if (this.props.appKey === 'job_posting_link') {
-    //   console.log('jpLink:', this.props.application[this.props.appKey]);
-    //   return (
-    //     <Table.Cell style={{ padding: '0.2% 0.2% 0px 0.2%', width: '7.5%' }}>
-    //       <Form>
-    //         <Form.Field>
-    //           <input placeholder="Link" />
-    //         </Form.Field>
-    //       </Form>
-    //     </Table.Cell>
-    //   );
-    // }
-
-    if (this.props.appKey === 'job_posting_link' && this.props.application[this.props.appKey] !== null) {
+    if (this.props.appKey === 'job_posting_link'
+      && this.props.application[this.props.appKey] !== ''
+      && this.props.application[this.props.appKey] !== null) {
       return (
         <Table.Cell
           style={{ textAlign: 'center' }}
