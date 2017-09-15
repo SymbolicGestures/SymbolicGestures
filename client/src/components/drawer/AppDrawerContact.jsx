@@ -146,7 +146,11 @@ class AppDrawerContact extends React.Component {
 
         {this.props.application.contacts.map((contact,index) => {
           return (
-            <AppDrawerContactItem contact={contact} key={index}/>
+            <AppDrawerContactItem
+              contact={contact}
+              key={index}
+              getApplicationsFromDB={this.props.getApplicationsFromDB}
+            />
           );
         })}
 

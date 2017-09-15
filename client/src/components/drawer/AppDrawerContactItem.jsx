@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 import { Card } from 'semantic-ui-react'
 import { Icon } from 'semantic-ui-react'
@@ -14,7 +15,9 @@ class AppDrawerContactItem extends React.Component {
   }
 
   handleDeleteContact(event) {
-   console.log('delete the contact with this id:' , this.props.contact.id)
+   let route = `/api/deleteContact/${this.props.contact.id}`
+   axios.post(route)
+     .then(this.props.getApplicationsFromDB())
   }
   handleEdit(event) {
    console.log('edit the contact with this id:' , this.props.contact.id)
@@ -25,8 +28,11 @@ class AppDrawerContactItem extends React.Component {
       <div className={styles.contact}>
           <Card>
             <Card.Content>
+              <Card.Header>
+                <Icon link name='close' onClick={this.handleDeleteContact}/>
+              </Card.Header>
               <Card.Header>{this.props.contact.name}</Card.Header>
-              {/* <Icon link name='close'/> */}
+
               <Card.Meta>{this.props.contact.role}</Card.Meta>
               <Card.Description>{this.props.contact.email}</Card.Description>
               <Card.Description>{this.props.contact.phone}</Card.Description>

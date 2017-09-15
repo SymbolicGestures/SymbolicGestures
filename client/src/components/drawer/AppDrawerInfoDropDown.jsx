@@ -24,7 +24,7 @@ class AppDrawerInfoDropDown extends React.Component {
 
   handleClick(clickedText) {
 
-    console.log('clickText:', clickedText);
+    // console.log('clickText:', clickedText);
 
     let eventText = "Stage was changed to " + clickedText;
     let route = '/api/histories/';

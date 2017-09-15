@@ -173,7 +173,7 @@ class App extends React.Component {
    * @param  {array} applications Array of applications.
    */
   onStagesChange(stages, applications) {
-    console.log('previous stages', this.state.stages_settings)
+    // console.log('previous stages', this.state.stages_settings)
     this.setState({
       'stages_settings': stages
     }, () => {
@@ -182,9 +182,9 @@ class App extends React.Component {
       this.stageNameToColorHash(stages);
       this.countApplicationStages();
     });
-    console.log(!!applications);
+    // console.log(!!applications);
     if (applications !== undefined) {
-      console.log(this.state.applications);
+      // console.log(this.state.applications);
       this.setState({'applications': applications}, this.countApplicationStages);
     }
   }

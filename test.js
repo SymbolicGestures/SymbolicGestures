@@ -9,3 +9,5 @@ let obj3 = Object.assign({}, obj1, obj2);
 console.log(obj1, obj2, obj3);
 obj3[3] = 'aaa';
 console.log(obj1, obj2, obj3);
+
+console.log('jerry');
