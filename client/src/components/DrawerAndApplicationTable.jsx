@@ -15,6 +15,10 @@ import TableCellCompanyName from './TableCells/TableCellCompanyName.jsx';
 import TableCellJPSource from './TableCells/TableCellJPSource.jsx';
 import ConditionalTableCell from './TableCells/ConditionalTableCell.jsx';
 
+import TableCellWArrowIcon from './TableCells/TableCellWArrowIcon.jsx';
+
+
+
 
 export default class DrawerAndApplicationTable extends React.Component {
   constructor(props) {
@@ -24,6 +28,7 @@ export default class DrawerAndApplicationTable extends React.Component {
       selectedAppIdx: 0,
       selectedApplication: this.props.applications[0] || [],
       isDrawerOpen: false,
+      selectedAppIdxForArrowIcon: '',
     };
 
     this.openDrawerWhenOneAppClick = this.openDrawerWhenOneAppClick.bind(this);
@@ -57,12 +62,13 @@ export default class DrawerAndApplicationTable extends React.Component {
     this.setState({
       selectedAppIdx: idx,
       selectedApplication: application,
-      isDrawerOpen: true
+      isDrawerOpen: true,
+      selectedAppIdxForArrowIcon: idx,
     });
   }
 
   openDrawer() { this.setState({ isDrawerOpen: true }); }
-  closeDrawer() { this.setState({ isDrawerOpen: false }); }
+  closeDrawer() { this.setState({ isDrawerOpen: false, selectedAppIdxForArrowIcon: '', }); }
 
   render() {
     // applications={this.state.applications}
@@ -108,16 +114,22 @@ export default class DrawerAndApplicationTable extends React.Component {
           <Table.Body>
             {applications.map((application, idx) => {
               let tdStyle = { padding: '0px', height: '1px', paddingTop: '0.2%' };
+              let rowColor = idx === this.state.selectedAppIdxForArrowIcon ? 'red' : '';
+
               return (
-                <Table.Row
-                  key={idx}
-                >
-                  <Table.Cell
+                <Table.Row key={idx}>
+                  {/* <Table.Cell
                     onClick={(e) => (this.openDrawerWhenOneAppClick(application, idx, e))}
                     style={{ cursor: 'pointer' }}
                     collapsing
                   >
-                    <Icon style={{ color: 'black' }} name="chevron left" /></Table.Cell>
+                    <Icon style={{ color: 'black' }} name="chevron left" /></Table.Cell> */}
+                  <TableCellWArrowIcon
+                    openDrawerWhenOneAppClick={this.openDrawerWhenOneAppClick}
+                    application={application}
+                    idx={idx}
+                    selectedAppIdxForArrowIcon={this.state.selectedAppIdxForArrowIcon}
+                  />
                   <Table.Cell>{application.created_at}</Table.Cell>
                   <ConditionalTableCell
                     application={application}
@@ -192,3 +204,9 @@ export default class DrawerAndApplicationTable extends React.Component {
 //     >No Link</Table.Cell>
 //   );
 // };
+
+
+// {/* <Table.Row
+//   key={idx}
+//   style={{ backgroundColor: rowColor }}
+// > */}
