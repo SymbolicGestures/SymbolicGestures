@@ -89,6 +89,7 @@ export default class AutoFillOrgMenuItem extends React.Component {
                   if(this.state.isSelectedFromList) {
                     this.updateProfile(this.state.organizationId, this.state.organization);
                   } else {
+                    console.log(this.state.organization)
                     this.addOrganizationAndUpdateProfile(this.state.organization);
                   }
                 }}
@@ -105,9 +106,16 @@ export default class AutoFillOrgMenuItem extends React.Component {
               maxSearchResults={10}
               onNewRequest={(value, i)=>{
                 let isSelectedFromList = i >= 0 ? true : false;
-                this.setState({organization: value.text, organizationId: value.index, isSelectedFromList: isSelectedFromList})
+                if(isSelectedFromList) {
+                  this.setState({organization: value.text, organizationId: value.index, isSelectedFromList: isSelectedFromList})
+                } else {
+                  this.setState({organization: this.state.organization, isSelectedFromList: isSelectedFromList})
+                }
               }}
-              onUpdateInput={(search)=>{this.getOrganizations(search, 10)}}
+              onUpdateInput={(search)=>{
+                this.getOrganizations(search, 10);
+                this.setState({organization: search});
+              }}
             />
           </Dialog>
         </div>
