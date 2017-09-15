@@ -44,7 +44,7 @@ class ConditionalTableCell extends Component {
   deActivateFormView(idx, updatedField, application) {
     this.props.updateOneKeyValPairInFE(idx, updatedField, this.state.userInput);
     this.updateOneKeyValPairToDB(application, updatedField);
-    this.setState({ formView: false });
+    this.setState({ userInput: '', formView: false });
   }
 
   render() {
