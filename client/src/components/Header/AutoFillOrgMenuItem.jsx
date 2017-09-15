@@ -89,7 +89,6 @@ export default class AutoFillOrgMenuItem extends React.Component {
                   if(this.state.isSelectedFromList) {
                     this.updateProfile(this.state.organizationId, this.state.organization);
                   } else {
-                    console.log(this.state.organization)
                     this.addOrganizationAndUpdateProfile(this.state.organization);
                   }
                 }}
