@@ -23,7 +23,7 @@ const MiniStageBarEntry = (props) => {
         style={style}
         onMouseOver={onHoverOpacity}
         onMouseOut={outHoverOpacity}
-        onClick={() => {props.updateOneAppStage(props.selectAppIdx, props.stage.name)}}
+        onClick={() => {props.updateOneAppStage(props.selectedAppIdx, props.stage.name)}}
       >
         {props.stage.name}
       </li>
@@ -33,7 +33,7 @@ const MiniStageBarEntry = (props) => {
     return (
       <li
         style={style}
-        onClick={() => {props.updateOneAppStage(props.selectAppIdx, props.stage.name)}}
+        onClick={() => {props.updateOneAppStage(props.selectedAppIdx, props.stage.name)}}
       >
         {props.stage.name}
       </li>

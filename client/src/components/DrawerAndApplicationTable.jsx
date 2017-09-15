@@ -21,7 +21,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     super(props);
     this.state = {
       items: [],
-      selectAppIdx: 0,
+      selectedAppIdx: 0,
       selectedApplication: this.props.applications[0] || [],
       isDrawerOpen: false,
     };
@@ -36,7 +36,7 @@ export default class DrawerAndApplicationTable extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.applications.length > 0) {
       this.setState({
-        selectedApplication: nextProps.applications[this.state.selectAppIdx]
+        selectedApplication: nextProps.applications[this.state.selectedAppIdx]
       });
     }
   }
@@ -45,7 +45,7 @@ export default class DrawerAndApplicationTable extends React.Component {
   setSelectAppToNewApp() {
     // console.log('setSelect:', this.props.applications[0]);
     this.setState({
-      selectAppIdx: 0,
+      selectedAppIdx: 0,
       selectedApplication: this.props.applications[0]
     });
   }
@@ -55,7 +55,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     e.preventDefault();
 
     this.setState({
-      selectAppIdx: idx,
+      selectedAppIdx: idx,
       selectedApplication: application,
       isDrawerOpen: true
     });
@@ -86,7 +86,7 @@ export default class DrawerAndApplicationTable extends React.Component {
           stages_settings={this.props.stages_settings}
           stageNameToColorHash={this.props.stageNameToColorHash}
           updateOneAppStage={this.props.updateOneAppStage}
-          selectAppIdx={this.state.selectAppIdx}
+          selectedAppIdx={this.state.selectedAppIdx}
           createNewApplicationInFE={this.props.createNewApplicationInFE}
         />
       </MuiThemeProvider>
@@ -142,7 +142,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                       stageNameToColorHash={this.props.stageNameToColorHash}
                       stage={application.stage}
                       updateOneAppStage={this.props.updateOneAppStage}
-                      selectAppIdx={idx}
+                      selectedAppIdx={idx}
                       stages_settings={this.props.stages_settings}
                     /></Table.Cell>
                   {/* <TableCellJPLink job_posting_link={application.job_posting_link} /> */}

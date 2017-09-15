@@ -28,7 +28,7 @@ const MiniStageBarList = (props) => {
                   opacity={opacity}
                   addOnHover={addOnHover}
                   key={key}
-                  selectAppIdx={props.selectAppIdx}
+                  selectedAppIdx={props.selectedAppIdx}
                   updateOneAppStage={props.updateOneAppStage}
                 />;
         })}

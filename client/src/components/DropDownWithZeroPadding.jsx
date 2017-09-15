@@ -33,7 +33,7 @@ class DropDownWithZeroPadding extends React.Component {
     let body = { 'event' : eventText, 'application_id' : application_id};
     axios.post(route, body)
 
-    this.props.updateOneAppStage(this.props.selectAppIdx, clickedText);
+    this.props.updateOneAppStage(this.props.selectedAppIdx, clickedText);
     this.setState({ dropDownText: clickedText });
     this.updateOneStageToDB(clickedText);
     this.props.getApplicationsFromDB();

@@ -22,7 +22,7 @@ class AppDrawer extends React.Component {
           stages_settings={this.props.stages_settings}
           stageNameToColorHash={this.props.stageNameToColorHash}
           updateOneAppStage={this.props.updateOneAppStage}
-          selectAppIdx={this.props.selectAppIdx}
+          selectedAppIdx={this.props.selectedAppIdx}
         />
       <div className={styles.notesAndContacts}>
         <AppDrawerNote application={this.props.application} getApplicationsFromDB={this.props.getApplicationsFromDB}/>

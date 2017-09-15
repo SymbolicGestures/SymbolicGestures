@@ -81,7 +81,7 @@ class AppDrawerInfo extends React.Component {
           stage={this.props.application.stage}
           application={this.props.application}
           updateOneAppStage={this.props.updateOneAppStage}
-          selectAppIdx={this.props.selectAppIdx}
+          selectedAppIdx={this.props.selectedAppIdx}
         />
       {/*
         <AppDrawerInfoDropDown
@@ -92,7 +92,7 @@ class AppDrawerInfo extends React.Component {
         stageNameToColorHash={this.props.stageNameToColorHash}
         stage={this.props.application.stage}
         updateOneAppStage={this.props.updateOneAppStage}
-        selectAppIdx={this.props.selectAppIdx}
+        selectedAppIdx={this.props.selectedAppIdx}
         />
         */}
         <div className={styles.applicationInfo}>

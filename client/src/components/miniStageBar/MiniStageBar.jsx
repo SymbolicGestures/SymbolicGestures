@@ -23,7 +23,7 @@ class MiniStageBar extends React.Component {
         <MiniStageBarList
           stages={this.props.stages}
           stage={this.props.stage}
-          selectAppIdx={this.props.selectAppIdx}
+          selectedAppIdx={this.props.selectedAppIdx}
           updateOneAppStage={this.props.updateOneAppStage}
           />
       </div>
