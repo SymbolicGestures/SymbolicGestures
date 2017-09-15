@@ -261,6 +261,7 @@ class App extends React.Component {
           <Navbar
             navBarIsHidden={this.state.navBarIsHidden}
             profileImg={this.state.profile.image_link || "./assets/default_avatar.png"}
+            profile={this.state.profile}
             displayName={this.state.profile.display || 'profile'}
             />
           {/* <div className="box_94per_3perMg"> */}

@@ -7,7 +7,7 @@ const Profile = db.Model.extend({
     return this.hasMany('Auth');
   },
   organizations: function() {
-    return this.hasOne('Organization');
+    return this.belongsTo('Organization');
   }
 });
 

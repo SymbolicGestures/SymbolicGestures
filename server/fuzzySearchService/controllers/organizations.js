@@ -1,37 +1,5 @@
-const models = require('../../db/models');
-
-module.exports.getUserProfile = (req, res) => {
-  models.Profile.where({ id: req.user.id }).fetch({withRelated: "organizations"})
-    .then(profile => {
-      res.status(200).send(profile);
-    })
-    .catch(err => {
-      // This code indicates an outside service (the database) did not respond in time
-      res.status(503).send(err);
-    });
-};
-
-module.exports.updateUserProfile = (req, res) => {
-  let profile = req.body;
-  models.Profile.where({ id: req.user.id }).fetch()
-    .then(currentProfile => {
-      return currentProfile.save({
-        first: profile.first,
-        last: profile.last,
-        display: profile.display,
-        email: profile.email,
-        phone: profile.phone,
-        stages_settings: JSON.stringify(profile.stages_settings),
-        organization_id: profile.organization_id
-      });
-    })
-    .then(() => {
-      res.status(200).send('Profile successfully updated!');
-    })
-    .catch(err => {
-      res.status(503).send(err);
-    });
-};
+const models = require('../db/models');
+const bookshelf = require('../db');
 
 module.exports.getAllOrganizations = (req, res) => {
   return models.Organization.forge().fetchAll()
@@ -43,6 +11,13 @@ module.exports.getAllOrganizations = (req, res) => {
     });
 };
 
+module.exports.getFuzzyOrganizations = (req, res) => {
+  bookshelf.knex.raw(`SELECT * from organizations WHERE  '${req.body.organization_name}' % organization_name LIMIT ${req.body.limit || 10}`)
+    .then(organizations => {
+      res.status(200).send(organizations)
+    })
+};
+
 module.exports.createOrUpdateOrganization = (req, res) => {
   let organization = req.body;
   if (req.params.id) {
@@ -50,6 +25,7 @@ module.exports.createOrUpdateOrganization = (req, res) => {
     return models.Organization.forge({id: req.params.id}).fetch()
       .then(newOrganization => {
         if(newOrganization) {
+          console.log(organization)
           return newOrganization.save({
             organization_name: organization.organization_name,
             member_count: (organization.member_count > 0 ? newOrganization.attributes.member_count + organization.member_count : undefined)
@@ -60,7 +36,7 @@ module.exports.createOrUpdateOrganization = (req, res) => {
           res.status(200).send(organization);
         })
       .catch(err => {
-        res.status(503).send('no such organization exists');
+        res.status(503).send('Cannot update organization. There may be an organization with that name already.');
       })
   } else {
     //create

@@ -4,7 +4,7 @@ import {Navbar, Nav, NavItem, MenuItem, NavDropdown, Image, Modal, OverlayTrigge
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
-import MaterialMenuItem from './MenuItem.jsx'
+import AutoFillOrgMenuItem from './AutoFillOrgMenuItem.jsx'
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -67,8 +67,9 @@ class Header extends React.Component {
           </Nav>
           {(()=>{return this.conditionalNavProfile()})()}
         </Navbar.Collapse>
-        <MaterialMenuItem
+        <AutoFillOrgMenuItem
           show={this.state.open} onHide={this.toggleModal}
+          profile={this.props.profile}
         />
       </Navbar>
     )
@@ -80,5 +81,6 @@ export default Header;
 Header.propTypes = {
   navBarIsHidden: PropTypes.bool,
   profileImg: PropTypes.string,
-  displayName: PropTypes.string
+  displayName: PropTypes.string,
+  profile: PropTypes.object
 }

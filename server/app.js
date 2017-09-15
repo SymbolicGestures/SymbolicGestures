@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const middleware = require('./middleware');
 const routes = require('./routes');
+const fuzzyRoutes = require('./fuzzySearchService/routes');
 
 const app = express();
 
@@ -22,5 +23,5 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', routes.auth);
 app.use('/api', routes.api);
-
+app.use('/fuzzy', fuzzyRoutes.fuzzy)
 module.exports = app;

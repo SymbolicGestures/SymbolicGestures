@@ -16,7 +16,7 @@ exports.up = function (knex, Promise) {
     knex.schema.createTableIfNotExists('organizations', function(table) {
       table.increments('id').unsigned().primary();
       table.string('organization_name', 50).notNullable().unique();
-      table.integer('member_count').defaultTo(0);
+      table.integer('member_count').defaultTo(1);
       table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
@@ -62,7 +62,8 @@ exports.up = function (knex, Promise) {
       table.string('email', 100).nullable();
       table.string('phone', 100).nullable();
       table.timestamps(true, true);
-    })
+    }),
+    knex.raw('CREATE EXTENSION IF NOT EXISTS pg_trgm')
   ]);
 };
 
