@@ -56,6 +56,7 @@ export default class DrawerAndApplicationTable extends React.Component {
   }
 
   openDrawerWhenOneAppClick(application, idx, e) {
+    console.log('openDrawerWhenOneAppClick');
 
     e.preventDefault();
 
@@ -128,6 +129,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                     <Icon style={{ color: 'black' }} name="chevron left" /></Table.Cell> */}
                   <TableCellWArrowIcon
                     openDrawerWhenOneAppClick={this.openDrawerWhenOneAppClick}
+                    closeDrawer={this.closeDrawer}
                     application={application}
                     idx={idx}
                     selectedAppIdxForArrowIcon={this.state.selectedAppIdxForArrowIcon}

@@ -16,7 +16,7 @@ class TableCellWArrowIcon extends Component {
     if (idx === this.props.selectedAppIdxForArrowIcon) {
       return (
         <Table.Cell
-          onClick={(e) => (openDrawerWhenOneAppClick(application, idx, e))}
+          onClick={this.props.closeDrawer}
           style={{ cursor: 'pointer' }}
           collapsing
         >
@@ -26,7 +26,7 @@ class TableCellWArrowIcon extends Component {
     }
     return (
       <Table.Cell
-        onClick={(e) => (openDrawerWhenOneAppClick(application, idx, e))}
+        onClick={(e) => openDrawerWhenOneAppClick(application, idx, e)}
         style={{ cursor: 'pointer' }}
         collapsing
       >
