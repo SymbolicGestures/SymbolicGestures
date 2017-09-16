@@ -188,20 +188,21 @@ export default class DrawerAndApplicationTable extends React.Component {
                   <TableCellWStarIcon
                     openDrawerWhenOneAppClick={this.openDrawerWhenOneAppClick}
                     closeDrawer={this.closeDrawer}
+                    applications={applications}
                     application={application}
                     idx={idx}
                     selectedAppIdxForArrowIcon={this.state.selectedAppIdxForArrowIcon}
+                    toggleIsFavoriteForOneAppInFE={this.props.toggleIsFavoriteForOneAppInFE}
                   />
-                  <Table.Cell
-                    style={dateStyle}
-                  >{format(parse(application.created_at), 'ddd, MMM DD, YY')}</Table.Cell>
+                  {/* style={dateStyle} */}
+                  <Table.Cell>{format(parse(application.created_at), 'ddd, MMM DD, YY')}</Table.Cell>
                   <ConditionalTableCell
                     application={application}
                     appKey={'company_name'}
                     placeHolder={'Company Name'}
                     updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
                     idx={idx}
-                    cellStyle={{ padding: '0.2% 0.2% 0px 0.2%' }}
+                    cellStyle={{ padding: '0.2% 0.2% 0px 0.2%' }}  
                   />
                   <ConditionalTableCell
                     application={application}

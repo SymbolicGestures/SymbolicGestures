@@ -10,24 +10,21 @@ class TableCellWStarIcon extends Component {
   }
 
   render() {
-    let openDrawerWhenOneAppClick = this.props.openDrawerWhenOneAppClick;
-    let application = this.props.application;
-    let idx = this.props.idx;
-    if (idx === this.props.selectedAppIdxForArrowIcon) {
+    if (this.props.application.isFavorite) {
       return (
         <Table.Cell
-          onClick={this.props.closeDrawer}
           style={{ cursor: 'pointer' }}
+          onClick={() => this.props.toggleIsFavoriteForOneAppInFE(this.props.applications, this.props.idx)}
           collapsing
         >
-          <Icon style={{ color: 'red' }} name="empty star" />
+          <Icon style={{ color: '#ffd042' }} name="star" />
         </Table.Cell>
       );
     }
     return (
       <Table.Cell
-        onClick={(e) => openDrawerWhenOneAppClick(application, idx, e)}
         style={{ cursor: 'pointer' }}
+        onClick={() => this.props.toggleIsFavoriteForOneAppInFE(this.props.applications, this.props.idx)}
         collapsing
       >
         <Icon style={{ color: 'black' }} name="empty star" />

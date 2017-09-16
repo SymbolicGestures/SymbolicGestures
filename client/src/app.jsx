@@ -76,6 +76,7 @@ class App extends React.Component {
     this.sortAppsByStageOrder = this.sortAppsByStageOrder.bind(this);
     this.sortAppsByDate = this.sortAppsByDate.bind(this);
     this.setStageNameToAppsHash = this.setStageNameToAppsHash.bind(this);
+    this.toggleIsFavoriteForOneAppInFE = this.toggleIsFavoriteForOneAppInFE.bind(this);
   }
 
   componentDidMount() {
@@ -139,10 +140,15 @@ class App extends React.Component {
               return strDateToMiliSec(b.created_at) - strDateToMiliSec(a.created_at);
             });
 
+            applications.forEach((application) => {
+              application.isFavorite = false;
+            });
             // applications = applications.map((application) => {
             //   application.created_at = format(parse(application.created_at), 'ddd, MMM DD, YY');
             //   return application;
             // });
+
+            // console.log(applications);
 
             // this.setState({ applications }, this.countApplicationStages);
             // this.setState({ applications }, this.setStageNameToAppsHash);
@@ -345,6 +351,11 @@ class App extends React.Component {
     this.setState({ applications: updatedApplications });
   }
 
+  toggleIsFavoriteForOneAppInFE(applications, idx) {
+    applications[idx].isFavorite = !applications[idx].isFavorite;
+    this.setState({ applications });
+  }
+
   render() {
     return (
       <Router>
@@ -391,6 +402,7 @@ class App extends React.Component {
                       isDateDescendingOrder={this.state.isDateDescendingOrder}
                       sortAppsByStageOrder={this.sortAppsByStageOrder}
                       sortAppsByDate={this.sortAppsByDate}
+                      toggleIsFavoriteForOneAppInFE={this.toggleIsFavoriteForOneAppInFE}
                     />
                   </div>
                 </div>
