@@ -162,11 +162,6 @@ class App extends React.Component {
       });
   }
 
-
-
-
-
-
   setStageNameToAppsHash() {
     let applications = this.state.applications;
     // console.log('setStage: ', applications);
@@ -226,15 +221,16 @@ class App extends React.Component {
 
   sortAppsByStageOrder() {
     let sortedApplications = [];
-    console.log('->', this.state.stageNameToAppsHash);
-    console.log('-->', Object.values(this.state.stageNameToAppsHash));
+    // console.log('->', this.state.stageNameToAppsHash);
+    // console.log('-->', Object.values(this.state.stageNameToAppsHash));
     let tempArr = Object.values(this.state.stageNameToAppsHash);
 
     tempArr.forEach((arr) => {
       sortedApplications = sortedApplications.concat(arr);
     });
+    this.setState({ applications: sortedApplications });
 
-    console.log('--->', sortedApplications);
+    // console.log('--->', sortedApplications);
   }
 
   /**
