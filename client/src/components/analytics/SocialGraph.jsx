@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import C3Chart from 'react-c3js'
 
 let SocialGraph = (props) => {
+  console.log("1: ", props)
   return(
     <div>
       <div style={{'padding': "10px"}}></div>
@@ -59,8 +60,8 @@ let SocialGraph = (props) => {
         legend={{hide: ['percentage']}}
         tooltip={{
           format: {
-            name: function (name, ratio, id, index) { return 'Count:'; },
-            value: function (value, ratio, id, index) { return props.socialGraphData[index].count; }
+            name: (name, ratio, id, index) => { return 'Count:'; },
+            value: (value, ratio, id, index) => {  return props.socialGraphData[index].count; }
           }
         }}
       />

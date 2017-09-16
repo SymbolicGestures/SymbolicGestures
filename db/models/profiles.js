@@ -8,6 +8,9 @@ const Profile = db.Model.extend({
   },
   organizations: function() {
     return this.belongsTo('Organization');
+  },
+  applications: function() {
+    return this.hasOne('Application')
   }
 });
 

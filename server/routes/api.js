@@ -21,6 +21,13 @@ router.route('/applications/:id')
   .post(ApplicationController.createOrUpdateApp);
 
 /**
+ * With a GET - Returns all highest salaries of members in own org.
+ * @return {Array}     returns an Array with salaries of those in user's org from least to greatest.
+ */
+router.route('/orgSalary')
+  .get(ProfilesController.getHighestSalariesWithinOrg)
+
+/**
  * delete an application and all related data (notes, histories, etc.) with id = :id.
  * @return {String}     returns a string with success or error message.
  */

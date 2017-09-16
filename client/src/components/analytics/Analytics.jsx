@@ -1,50 +1,75 @@
 import React from 'react'
-// import styles from './../../../styles/analyticsStyles.css'
 import PropTypes from 'prop-types'
 import SocialGraph from './SocialGraph.jsx'
-import { Dropdown } from 'semantic-ui-react'
 import axios from 'axios'
-import { parse, format, addDays, subDays, isToday } from 'date-fns';
 
 class Analytics extends React.Component {
   constructor() {
     super();
     this.state={
-
+      socialGraphData: []
     };
+    this.salaryIncrements = 10000;
+    this.salaryStartPoint = 60000;
+    this.getOrgSalaries = this.getOrgSalaries.bind(this);
   }
+
   componentWillMount() {
-
+    this.getOrgSalaries()
   }
 
-  componentDidUpdate(prevProps, prevState) {
-
+  getOrgSalaries() {
+    axios.get('api/orgSalary')
+      .then(salaries => {
+        let socialGraphData = [{name: `under $${Math.round(this.salaryStartPoint/1000)}k`, count: 0, percentage: undefined}];
+        let graphStartingPoint = this.salaryIncrements;
+        salaries.data.forEach((salary)=>{
+          if(salary < this.salaryStartPoint) {
+            socialGraphData[socialGraphData.length - 1].count++;
+          } else {
+            while(salary >= this.salaryStartPoint) {
+              this.salaryStartPoint += this.salaryIncrements;
+              if(salary >= this.salaryStartPoint) {
+                socialGraphData.push({
+                  name: `$${this.salaryStartPoint - 10000} to ${this.salaryStartPoint - 1}`,
+                  count: 0,
+                  percentage: undefined
+                });
+              } else {
+                socialGraphData.push({
+                  name: `$${this.salaryStartPoint - 10000} to ${this.salaryStartPoint - 1}`,
+                  count: 1,
+                  percentage: undefined
+                });
+              }
+            }
+          }
+        });
+        socialGraphData.map(data => {
+          data.percentage = Math.floor(data.count/salaries.data.length*100)
+          return data;
+        });
+        this.setState({
+          socialGraphData: socialGraphData
+        });
+      });
   }
 
-  getAllStages() {
-
-  }
-
-  handleStageChange(e, data) {
-    this.setState({
-    });
-
-  }
   render() {
+    let socialGraph = null;
+    if (this.state.socialGraphData.length > 0) {
+      socialGraph = (
+        <SocialGraph
+          socialGraphData={this.state.socialGraphData}
+        />
+      );
+    } else {
+      socialGraph = (<div></div>)
+    }
     return (
       <div>
         <div style={{height:"66px"}}></div>
-        <div>
-          {/* Analytics by stage: <Dropdown onChange={this.handleStageChange} inline options={this.state.stages} defaultValue={this.state.stage}/> */}
-        </div>
-        <SocialGraph
-          socialGraphData={[
-            {name: 'under $60K', count: 2, percentage: 20},
-            {name: '$60K to $69,999', count: 1, percentage: 35},
-            {name: '$70K to $79,999', count: 3, percentage: 40},
-            {name: 'over $80K', count: 4, percentage: 10}
-          ]}
-        />
+        {socialGraph}
       </div>
     )
   }

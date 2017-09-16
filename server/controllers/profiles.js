@@ -76,3 +76,22 @@ module.exports.createOrUpdateOrganization = (req, res) => {
       })
   }
 };
+
+module.exports.getHighestSalariesWithinOrg = (req, res) => {
+  let savedMaxSalary = [];
+  models.Profile.where({organization_id: req.user.organization_id}).fetchAll({withRelated: [
+    { applications: function (qb) {
+       qb.orderByRaw('salary DESC NULLS LAST').where({stage: 'Offer'}).column("id", "salary", "profile_id", "stage");
+     }}
+  ], columns: ['id']})
+  .then(profiles => {
+    let orderedSalaries = []
+    profiles.toJSON().forEach((profile)=>{
+      if(profile.applications.salary) {
+        orderedSalaries.push(profile.applications.salary);
+      }
+    })
+    orderedSalaries.sort((a,b)=>{return ++a - ++b})
+    res.status(200).send(orderedSalaries)
+  })
+};
