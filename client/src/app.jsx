@@ -75,6 +75,7 @@ class App extends React.Component {
     this.sortAppsByAlphaOrder = this.sortAppsByAlphaOrder.bind(this);
     this.sortAppsByStageOrder = this.sortAppsByStageOrder.bind(this);
     this.sortAppsByDate = this.sortAppsByDate.bind(this);
+    this.sortAppsByIsFavorite = this.sortAppsByIsFavorite.bind(this);
     this.setStageNameToAppsHash = this.setStageNameToAppsHash.bind(this);
     this.toggleIsFavoriteForOneAppInFE = this.toggleIsFavoriteForOneAppInFE.bind(this);
   }
@@ -263,6 +264,27 @@ class App extends React.Component {
     });
   }
 
+  sortAppsByIsFavorite() {
+    console.log('sortAppsByFav');
+    let sortedApplications = this.state.applications.slice();
+
+    sortedApplications.sort((a, b) => {
+      let B = a.isFavorite.toString();
+      let A = b.isFavorite.toString();
+      // if (isAlphabetOrder) {
+      //   A = a.isFavorite.toString();
+      //   B = b.isFavorite.toString();
+      // }
+
+      if (A === B) { return 0; }
+      return A < B ? -1 : 1;
+    });
+
+    this.setState({
+      applications: sortedApplications,
+    });
+  }
+
   /**
    * Counts how many applications each stage has for
    * dynamic rendering of stage length.
@@ -402,6 +424,7 @@ class App extends React.Component {
                       isDateDescendingOrder={this.state.isDateDescendingOrder}
                       sortAppsByStageOrder={this.sortAppsByStageOrder}
                       sortAppsByDate={this.sortAppsByDate}
+                      sortAppsByIsFavorite={this.sortAppsByIsFavorite}
                       toggleIsFavoriteForOneAppInFE={this.toggleIsFavoriteForOneAppInFE}
                     />
                   </div>

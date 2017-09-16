@@ -7,6 +7,10 @@ import { parse, getTime, format } from 'date-fns';
 import MateUiRightDrawer from './MateUiRightDrawer.jsx';
 import DropDownWithZeroPadding from './DropDownWithZeroPadding.jsx';
 
+// Table Header Cells
+import THCellStarIcon from './TableHeadCells/THCellStarIcon.jsx';
+import THCellDateApplied from './TableHeadCells/THCellDateApplied.jsx';
+
 // TableCells
 // import TableCellJPLink from './TableCells/TableCellJPLink.jsx';
 import TableCellJPLink from './TableCells/TableCellJPLink.jsx';
@@ -103,6 +107,14 @@ export default class DrawerAndApplicationTable extends React.Component {
   openDrawer() { this.setState({ isDrawerOpen: true }); }
   closeDrawer() { this.setState({ isDrawerOpen: false, selectedAppIdxForArrowIcon: '', }); }
 
+
+  handleMouseEnter() {
+    console.log('hover!!!');
+  }
+  handleMouseLeave() {
+    console.log('leave!!!');
+  }
+
   render() {
     // applications={this.state.applications}
     // stages_settings={this.state.stages_settings}
@@ -137,12 +149,25 @@ export default class DrawerAndApplicationTable extends React.Component {
           <Table.Header fullWidth>
             <Table.Row>
               <Table.HeaderCell> {' '} </Table.HeaderCell>
-              <Table.HeaderCell> {' '} </Table.HeaderCell>
-              <Table.HeaderCell
+              {/* <Table.HeaderCell
+                onClick={this.props.sortAppsByIsFavorite}
+                style={{ cursor: 'pointer' }}
+              > <Icon style={{ color: '#ffd042' }} name="star" /> </Table.HeaderCell> */}
+              <THCellStarIcon
+                sortAppsByIsFavorite={this.props.sortAppsByIsFavorite}
+              />
+              {/* <Table.HeaderCell
                 onClick={() => this.props.sortAppsByDate(this.props.isDateDescendingOrder)}
                 style={{ cursor: 'pointer' }}
-              >Date Applied</Table.HeaderCell>
-              <Table.HeaderCell 
+              >Date Applied
+                <Icon name="sort" />
+                <Icon name="sort" color="red"/>
+              </Table.HeaderCell>  */}
+              <THCellDateApplied
+                sortAppsByDate={this.props.sortAppsByDate}
+                isDateDescendingOrder={this.props.isDateDescendingOrder}
+              />
+              <Table.HeaderCell
                 onClick={() => this.props.sortAppsByAlphaOrder('company_name', this.props.isAlphabetOrder)}
                 style={{ cursor: 'pointer' }}
               >Company Name</Table.HeaderCell>

@@ -66,6 +66,7 @@ class ConditionalTableCell extends Component {
           <Form onSubmit={e => this.handleSubmit(this.props.idx, this.props.appKey, this.props.application, e)}>
             <Form.Field>
               <input
+                ref={input => input && input.focus()}
                 onChange={this.handleChange}
                 onBlur={() => {
                   this.deActivateFormView(this.props.idx, this.props.appKey, this.props.application);
