@@ -2,7 +2,7 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Table, Segment, Button, Icon, Checkbox } from 'semantic-ui-react';
 import axios from 'axios';
-import { format } from 'date-fns';
+import { parse, getTime, format } from 'date-fns';
 
 import MateUiRightDrawer from './MateUiRightDrawer.jsx';
 import DropDownWithZeroPadding from './DropDownWithZeroPadding.jsx';
@@ -106,10 +106,13 @@ export default class DrawerAndApplicationTable extends React.Component {
           <Table.Header fullWidth>
             <Table.Row>
               <Table.HeaderCell> {' '} </Table.HeaderCell>
-              <Table.HeaderCell>Date Applied</Table.HeaderCell>
+              <Table.HeaderCell
+                onClick={() => this.props.sortAppsByDate(this.props.isDateDescendingOrder)}
+                style={{ cursor: 'pointer' }}
+              >Date Applied</Table.HeaderCell>
               <Table.HeaderCell 
                 onClick={() => this.props.sortAppsByAlphaOrder('company_name', this.props.isAlphabetOrder)}
-                style={{ cursor: 'pointer' }} 
+                style={{ cursor: 'pointer' }}
               >Company Name</Table.HeaderCell>
               <Table.HeaderCell 
                 onClick={() => this.props.sortAppsByAlphaOrder('job_title', this.props.isAlphabetOrder)}
@@ -117,7 +120,7 @@ export default class DrawerAndApplicationTable extends React.Component {
               >Job Title</Table.HeaderCell>
               {/* <Table.HeaderCell>Stage</Table.HeaderCell> */}
               <Table.HeaderCell
-                onClick={this.props.sortAppsByStageOrder}
+                onClick={() => this.props.sortAppsByStageOrder(this.props.isStageOrder)}
                 style={{ cursor: 'pointer' }}
               >Stage</Table.HeaderCell>
               <Table.HeaderCell>Link</Table.HeaderCell>
@@ -145,7 +148,8 @@ export default class DrawerAndApplicationTable extends React.Component {
                     idx={idx}
                     selectedAppIdxForArrowIcon={this.state.selectedAppIdxForArrowIcon}
                   />
-                  <Table.Cell>{application.created_at}</Table.Cell>
+                  {/* <Table.Cell>{application.created_at}</Table.Cell> */}
+                  <Table.Cell>{format(parse(application.created_at), 'ddd, MMM DD, YY')}</Table.Cell>
                   <ConditionalTableCell
                     application={application}
                     appKey={'company_name'}

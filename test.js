@@ -14,4 +14,4 @@ let arr = ['Ccc', 'zzz', 'aaa', 'fff', 'ddd'];
 
 let arr1 = arr.slice();
 
-console.log(arr1);
+console.log(arr1.reverse());

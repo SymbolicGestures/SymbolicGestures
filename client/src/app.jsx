@@ -55,6 +55,8 @@ class App extends React.Component {
         { name: 'Denied', backgroundColor: '#eb3d34', textColor: 'white' }
       ],
       isAlphabetOrder: true,
+      isStageOrder: true,
+      isDateDescendingOrder: true,
     };
     // this.state = { // for data from fake data
     //   applications: fakeApplications,
@@ -72,6 +74,7 @@ class App extends React.Component {
     this.createNewApplicationInFE = this.createNewApplicationInFE.bind(this);
     this.sortAppsByAlphaOrder = this.sortAppsByAlphaOrder.bind(this);
     this.sortAppsByStageOrder = this.sortAppsByStageOrder.bind(this);
+    this.sortAppsByDate = this.sortAppsByDate.bind(this);
     this.setStageNameToAppsHash = this.setStageNameToAppsHash.bind(this);
   }
 
@@ -136,10 +139,10 @@ class App extends React.Component {
               return strDateToMiliSec(b.created_at) - strDateToMiliSec(a.created_at);
             });
 
-            applications = applications.map((application) => {
-              application.created_at = format(parse(application.created_at), 'ddd, MMM DD, YY');
-              return application;
-            });
+            // applications = applications.map((application) => {
+            //   application.created_at = format(parse(application.created_at), 'ddd, MMM DD, YY');
+            //   return application;
+            // });
 
             // this.setState({ applications }, this.countApplicationStages);
             // this.setState({ applications }, this.setStageNameToAppsHash);
@@ -219,7 +222,7 @@ class App extends React.Component {
     });
   }
 
-  sortAppsByStageOrder() {
+  sortAppsByStageOrder(isStageOrder) {
     let sortedApplications = [];
     // console.log('->', this.state.stageNameToAppsHash);
     // console.log('-->', Object.values(this.state.stageNameToAppsHash));
@@ -228,9 +231,34 @@ class App extends React.Component {
     tempArr.forEach((arr) => {
       sortedApplications = sortedApplications.concat(arr);
     });
-    this.setState({ applications: sortedApplications });
+
+    if (!isStageOrder) {
+      sortedApplications = sortedApplications.reverse();
+    }
+    this.setState({
+      applications: sortedApplications,
+      isStageOrder: !isStageOrder,
+    });
 
     // console.log('--->', sortedApplications);
+  }
+
+  sortAppsByDate(isDateDescendingOrder) {
+    let sortedApplications = this.state.applications;
+    sortedApplications.sort((a, b) => {
+      return getTime(parse((b.created_at))) - getTime(parse((a.created_at)));
+    });
+
+    if (!isDateDescendingOrder) {
+      sortedApplications = sortedApplications.reverse();
+    }
+
+    // console.log('sorted date:', sortedApplications);
+
+    this.setState({
+      applications: sortedApplications,
+      isDateDescendingOrder: !isDateDescendingOrder,
+    });
   }
 
   /**
@@ -363,7 +391,10 @@ class App extends React.Component {
                       createNewApplicationInFE={this.createNewApplicationInFE}
                       sortAppsByAlphaOrder={this.sortAppsByAlphaOrder}
                       isAlphabetOrder={this.state.isAlphabetOrder}
+                      isStageOrder={this.state.isStageOrder}
+                      isDateDescendingOrder={this.state.isDateDescendingOrder}
                       sortAppsByStageOrder={this.sortAppsByStageOrder}
+                      sortAppsByDate={this.sortAppsByDate}
                     />
                   </div>
                 </div>
