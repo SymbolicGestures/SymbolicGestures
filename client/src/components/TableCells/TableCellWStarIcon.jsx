@@ -1,0 +1,39 @@
+import React, { Component } from 'react';
+import { Table, Segment, Button, Icon, Checkbox } from 'semantic-ui-react';
+
+class TableCellWStarIcon extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      something: '',
+    };
+  }
+
+  render() {
+    let openDrawerWhenOneAppClick = this.props.openDrawerWhenOneAppClick;
+    let application = this.props.application;
+    let idx = this.props.idx;
+    if (idx === this.props.selectedAppIdxForArrowIcon) {
+      return (
+        <Table.Cell
+          onClick={this.props.closeDrawer}
+          style={{ cursor: 'pointer' }}
+          collapsing
+        >
+          <Icon style={{ color: 'red' }} name="empty star" />
+        </Table.Cell>
+      );
+    }
+    return (
+      <Table.Cell
+        onClick={(e) => openDrawerWhenOneAppClick(application, idx, e)}
+        style={{ cursor: 'pointer' }}
+        collapsing
+      >
+        <Icon style={{ color: 'black' }} name="empty star" />
+      </Table.Cell>
+    );
+  }
+}
+
+export default TableCellWStarIcon;

@@ -16,6 +16,7 @@ import TableCellJPSource from './TableCells/TableCellJPSource.jsx';
 import ConditionalTableCell from './TableCells/ConditionalTableCell.jsx';
 
 import TableCellWArrowIcon from './TableCells/TableCellWArrowIcon.jsx';
+import TableCellWStarIcon from './TableCells/TableCellWStarIcon.jsx';
 
 const seanStyleBox = require('./../../styles/seanStyleBox.css');
 
@@ -136,6 +137,7 @@ export default class DrawerAndApplicationTable extends React.Component {
           <Table.Header fullWidth>
             <Table.Row>
               <Table.HeaderCell> {' '} </Table.HeaderCell>
+              <Table.HeaderCell> {' '} </Table.HeaderCell>
               <Table.HeaderCell
                 onClick={() => this.props.sortAppsByDate(this.props.isDateDescendingOrder)}
                 style={{ cursor: 'pointer' }}
@@ -166,7 +168,7 @@ export default class DrawerAndApplicationTable extends React.Component {
             {applications.map((application, idx) => {
               let tdStyle = { padding: '0px', height: '1px', paddingTop: '0.2%' };
               let rowColor = idx === this.state.selectedAppIdxForArrowIcon ? 'red' : '';
-
+              let dateStyle = { paddingLeft: 0, paddingRight: 0, width: '7.5%' };
               return (
                 <Table.Row key={idx}>
                   {/* <Table.Cell
@@ -183,7 +185,16 @@ export default class DrawerAndApplicationTable extends React.Component {
                     selectedAppIdxForArrowIcon={this.state.selectedAppIdxForArrowIcon}
                   />
                   {/* <Table.Cell>{application.created_at}</Table.Cell> */}
-                  <Table.Cell>{format(parse(application.created_at), 'ddd, MMM DD, YY')}</Table.Cell>
+                  <TableCellWStarIcon
+                    openDrawerWhenOneAppClick={this.openDrawerWhenOneAppClick}
+                    closeDrawer={this.closeDrawer}
+                    application={application}
+                    idx={idx}
+                    selectedAppIdxForArrowIcon={this.state.selectedAppIdxForArrowIcon}
+                  />
+                  <Table.Cell
+                    style={dateStyle}
+                  >{format(parse(application.created_at), 'ddd, MMM DD, YY')}</Table.Cell>
                   <ConditionalTableCell
                     application={application}
                     appKey={'company_name'}
