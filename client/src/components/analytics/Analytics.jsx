@@ -38,6 +38,12 @@ class Analytics extends React.Component {
           {/* Analytics by stage: <Dropdown onChange={this.handleStageChange} inline options={this.state.stages} defaultValue={this.state.stage}/> */}
         </div>
         <SocialGraph
+          socialGraphData={[
+            {name: 'under $60K', count: 2, percentage: 20},
+            {name: '$60K to $69,999', count: 1, percentage: 35},
+            {name: '$70K to $79,999', count: 3, percentage: 40},
+            {name: 'over $80K', count: 4, percentage: 10}
+          ]}
         />
       </div>
     )
