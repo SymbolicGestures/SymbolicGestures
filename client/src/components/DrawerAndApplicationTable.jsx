@@ -17,7 +17,7 @@ import ConditionalTableCell from './TableCells/ConditionalTableCell.jsx';
 
 import TableCellWArrowIcon from './TableCells/TableCellWArrowIcon.jsx';
 
-
+const seanStyleBox = require('./../../styles/seanStyleBox.css');
 
 
 export default class DrawerAndApplicationTable extends React.Component {
@@ -51,6 +51,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     // console.log('setSelect:', this.props.applications[0]);
     this.setState({
       selectedAppIdx: 0,
+      selectedAppIdxForArrowIcon: 0,
       selectedApplication: this.props.applications[0]
     });
   }
@@ -106,9 +107,19 @@ export default class DrawerAndApplicationTable extends React.Component {
             <Table.Row>
               <Table.HeaderCell> {' '} </Table.HeaderCell>
               <Table.HeaderCell>Date Applied</Table.HeaderCell>
-              <Table.HeaderCell>Company Name</Table.HeaderCell>
-              <Table.HeaderCell>Job Title</Table.HeaderCell>
-              <Table.HeaderCell>Stage</Table.HeaderCell>
+              <Table.HeaderCell 
+                onClick={() => this.props.sortAppsByAlphaOrder('company_name', this.props.isAlphabetOrder)}
+                style={{ cursor: 'pointer' }} 
+              >Company Name</Table.HeaderCell>
+              <Table.HeaderCell 
+                onClick={() => this.props.sortAppsByAlphaOrder('job_title', this.props.isAlphabetOrder)}
+                style={{ cursor: 'pointer' }}
+              >Job Title</Table.HeaderCell>
+              {/* <Table.HeaderCell>Stage</Table.HeaderCell> */}
+              <Table.HeaderCell
+                onClick={this.props.sortAppsByStageOrder}
+                style={{ cursor: 'pointer' }}
+              >Stage</Table.HeaderCell>
               <Table.HeaderCell>Link</Table.HeaderCell>
               <Table.HeaderCell>Source</Table.HeaderCell>
             </Table.Row>

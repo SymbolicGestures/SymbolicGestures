@@ -41,6 +41,7 @@ class App extends React.Component {
       userId: undefined,
       applications: [],
       stageNameToColorHash: {},
+      stageNameToAppsHash: {},
       stagesCount: {},
       navBarIsHidden: false,
       profile: {},
@@ -53,6 +54,7 @@ class App extends React.Component {
         { name: 'Offer', backgroundColor: '#0da17d', textColor: 'white' },
         { name: 'Denied', backgroundColor: '#eb3d34', textColor: 'white' }
       ],
+      isAlphabetOrder: true,
     };
     // this.state = { // for data from fake data
     //   applications: fakeApplications,
@@ -68,11 +70,39 @@ class App extends React.Component {
     this.updateOneAppStage = this.updateOneAppStage.bind(this);
     this.updateOneKeyValPairInFE = this.updateOneKeyValPairInFE.bind(this);
     this.createNewApplicationInFE = this.createNewApplicationInFE.bind(this);
+    this.sortAppsByAlphaOrder = this.sortAppsByAlphaOrder.bind(this);
+    this.sortAppsByStageOrder = this.sortAppsByStageOrder.bind(this);
+    this.setStageNameToAppsHash = this.setStageNameToAppsHash.bind(this);
   }
 
   componentDidMount() {
     this.getApplicationsFromDB();
   }
+
+
+  /**
+   * Function passed down and ran anytime a change to stages settings occurs,
+   * If second parameter(applications) is passed, update state of applications.
+   * @param  {array} stages Array of Stages containing settings for each different stage.
+   * @param  {array} applications Array of applications.
+   */
+  onStagesChange(stages, applications) {
+    // console.log('previous stages', this.state.stages_settings)
+    this.setState({
+      'stages_settings': stages
+    }, () => {
+      console.log(this.state.stages_settings)
+      this.updateStages();
+      this.stageNameToColorHash(stages);
+      this.countApplicationStages();
+    });
+    // console.log(!!applications);
+    if (applications !== undefined) {
+      // console.log(this.state.applications);
+      this.setState({applications}, this.countApplicationStages);
+    }
+  }
+
 
   /**
    * Retrieve users settings and applications from DB
@@ -111,7 +141,12 @@ class App extends React.Component {
               return application;
             });
 
-            this.setState({ applications }, this.countApplicationStages);
+            // this.setState({ applications }, this.countApplicationStages);
+            // this.setState({ applications }, this.setStageNameToAppsHash);
+            this.setState({ applications }, () => {
+              this.countApplicationStages();
+              this.setStageNameToAppsHash();
+            });
             if (typeof callback === 'function') {
               callback();
             }
@@ -127,6 +162,28 @@ class App extends React.Component {
       });
   }
 
+
+
+
+
+
+  setStageNameToAppsHash() {
+    let applications = this.state.applications;
+    // console.log('setStage: ', applications);
+    let tempHash = {};
+    this.state.stages_settings.forEach((item) => {
+      tempHash[item.name] = [];
+    });
+
+    applications.forEach((application) => {
+      let stage = application.stage;
+      tempHash[stage].push(application);
+    });
+
+    // console.log('tempHash: ', tempHash);
+    this.setState({ stageNameToAppsHash: tempHash });
+  }
+
   /**
    * Sets the state that each color on the table will get based on the stage name.
    * @param  {array} stages_settings All the stages the current user has.
@@ -140,6 +197,44 @@ class App extends React.Component {
       };
     });
     this.setState({ stageNameToColorHash });
+  }
+
+  sortAppsByAlphaOrder(columnName, isAlphabetOrder) {
+    let sortedApplications = this.state.applications.slice();
+    // console.log('before', sortedApplications);
+    if (isAlphabetOrder) {
+      sortedApplications.sort((a, b) => {
+        let A = a[columnName].toUpperCase();
+        let B = b[columnName].toUpperCase();
+        if (A === B) { return 0; }
+        return A < B ? -1 : 1;
+      });
+    } else {
+      sortedApplications.sort((a, b) => {
+        let A = a[columnName].toUpperCase();
+        let B = b[columnName].toUpperCase();
+        if (A === B) { return 0; }
+        return A > B ? -1 : 1;
+      });
+    }
+
+    this.setState({
+      applications: sortedApplications,
+      isAlphabetOrder: !isAlphabetOrder
+    });
+  }
+
+  sortAppsByStageOrder() {
+    let sortedApplications = [];
+    console.log('->', this.state.stageNameToAppsHash);
+    console.log('-->', Object.values(this.state.stageNameToAppsHash));
+    let tempArr = Object.values(this.state.stageNameToAppsHash);
+
+    tempArr.forEach((arr) => {
+      sortedApplications = sortedApplications.concat(arr);
+    });
+
+    console.log('--->', sortedApplications);
   }
 
   /**
@@ -164,29 +259,6 @@ class App extends React.Component {
     this.setState({
       stagesCount: count
     });
-  }
-
-  /**
-   * Function passed down and ran anytime a change to stages settings occurs,
-   * If second parameter(applications) is passed, update state of applications.
-   * @param  {array} stages Array of Stages containing settings for each different stage.
-   * @param  {array} applications Array of applications.
-   */
-  onStagesChange(stages, applications) {
-    // console.log('previous stages', this.state.stages_settings)
-    this.setState({
-      'stages_settings': stages
-    }, () => {
-      console.log(this.state.stages_settings)
-      this.updateStages();
-      this.stageNameToColorHash(stages);
-      this.countApplicationStages();
-    });
-    // console.log(!!applications);
-    if (applications !== undefined) {
-      // console.log(this.state.applications);
-      this.setState({'applications': applications}, this.countApplicationStages);
-    }
   }
 
   /**
@@ -262,7 +334,7 @@ class App extends React.Component {
             profileImg={this.state.profile.image_link || "./assets/default_avatar.png"}
             profile={this.state.profile}
             displayName={this.state.profile.display || 'profile'}
-            />
+          />
           {/* <div className="box_94per_3perMg"> */}
           <Switch>
             <Route
@@ -293,6 +365,9 @@ class App extends React.Component {
                       updateOneAppStage={this.updateOneAppStage}
                       updateOneKeyValPairInFE={this.updateOneKeyValPairInFE}
                       createNewApplicationInFE={this.createNewApplicationInFE}
+                      sortAppsByAlphaOrder={this.sortAppsByAlphaOrder}
+                      isAlphabetOrder={this.state.isAlphabetOrder}
+                      sortAppsByStageOrder={this.sortAppsByStageOrder}
                     />
                   </div>
                 </div>
