@@ -199,22 +199,18 @@ class App extends React.Component {
 
   sortAppsByAlphaOrder(columnName, isAlphabetOrder) {
     let sortedApplications = this.state.applications.slice();
-    // console.log('before', sortedApplications);
-    if (isAlphabetOrder) {
-      sortedApplications.sort((a, b) => {
-        let A = a[columnName].toUpperCase();
-        let B = b[columnName].toUpperCase();
-        if (A === B) { return 0; }
-        return A < B ? -1 : 1;
-      });
-    } else {
-      sortedApplications.sort((a, b) => {
-        let A = a[columnName].toUpperCase();
-        let B = b[columnName].toUpperCase();
-        if (A === B) { return 0; }
-        return A > B ? -1 : 1;
-      });
-    }
+
+    sortedApplications.sort((a, b) => {
+      let B = a[columnName].toUpperCase();
+      let A = b[columnName].toUpperCase();
+      if (isAlphabetOrder) {
+        A = a[columnName].toUpperCase();
+        B = b[columnName].toUpperCase();
+      }
+
+      if (A === B) { return 0; }
+      return A < B ? -1 : 1;
+    });
 
     this.setState({
       applications: sortedApplications,

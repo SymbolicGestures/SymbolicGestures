@@ -124,7 +124,11 @@ export default class DrawerAndApplicationTable extends React.Component {
                 style={{ cursor: 'pointer' }}
               >Stage</Table.HeaderCell>
               <Table.HeaderCell>Link</Table.HeaderCell>
-              <Table.HeaderCell>Source</Table.HeaderCell>
+              {/* <Table.HeaderCell>Source</Table.HeaderCell> */}
+              <Table.HeaderCell
+                onClick={() => this.props.sortAppsByAlphaOrder('job_posting_source', this.props.isAlphabetOrder)}
+                style={{ cursor: 'pointer' }}
+              >Source</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
