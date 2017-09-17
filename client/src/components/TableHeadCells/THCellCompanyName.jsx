@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Table, Segment, Button, Icon, Checkbox } from 'semantic-ui-react';
 
-export default class THCellDateApplied extends Component {
+export default class THCellCompanyName extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +24,7 @@ export default class THCellDateApplied extends Component {
           onMouseLeave={this.toggleSortIcon}
           onClick={() => this.props.sortAppsByDate(this.props.isDateDescendingOrder)}
           style={cellStyle}
-        >Date Applied
+        >Company Name
           <Icon name="sort" color="red" />
         </Table.HeaderCell>
       );
@@ -34,7 +34,7 @@ export default class THCellDateApplied extends Component {
         onMouseEnter={this.toggleSortIcon}
         onClick={() => this.props.sortAppsByDate(this.props.isDateDescendingOrder)}
         style={cellStyle}
-      >Date Applied
+      >Company Name
         <Icon name="sort" />
       </Table.HeaderCell>
     );

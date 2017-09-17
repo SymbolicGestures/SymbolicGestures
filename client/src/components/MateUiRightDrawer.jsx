@@ -121,11 +121,6 @@ export default class MateUiRightDrawer extends React.Component {
           </Button>
         </div>
 
-
-
-
-  
-        {/* {console.log('open state:', this.state.open)} */}
         <Drawer width={'70%'} openSecondary={true} open={this.state.open}>
           <Button
             attached="top"

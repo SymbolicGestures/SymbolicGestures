@@ -171,7 +171,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                 onClick={() => this.props.sortAppsByAlphaOrder('company_name', this.props.isAlphabetOrder)}
                 style={{ cursor: 'pointer' }}
               >Company Name</Table.HeaderCell>
-              <Table.HeaderCell 
+              <Table.HeaderCell
                 onClick={() => this.props.sortAppsByAlphaOrder('job_title', this.props.isAlphabetOrder)}
                 style={{ cursor: 'pointer' }}
               >Job Title</Table.HeaderCell>

@@ -37,11 +37,12 @@ export default class AddAppButtTriggerLinkInputForm extends Component {
         style={formStyle}
       >
         <Form.Field>
+          {/* ref={input => input && input.focus()} */}
           <input
-            ref={input => input && input.focus()}
             onChange={this.handleChange}
             value={this.state.userInput}
             placeholder="Type Indeed job posting link to auto-fill data "
+            onBlur={this.handleSubmit}
           />
         </Form.Field>
       </Form>
