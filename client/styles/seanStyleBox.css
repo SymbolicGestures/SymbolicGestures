@@ -29,6 +29,18 @@
   display: inline-block
 }
 
+.box_for_addApplicationButtAndOther {
+  width: 100%;
+  /* border: 1px dotted red;  */
+  display: flex
+}
+
+.box_for_addApplicationButt {
+  width: 30%;
+  border: 1px dotted red;
+  display: inline-block
+}
+
 .border {
   border: 1px dotted blue;
   background: blue;

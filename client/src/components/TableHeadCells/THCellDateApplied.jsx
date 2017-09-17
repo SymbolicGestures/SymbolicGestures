@@ -26,7 +26,7 @@ export default class THCellDateApplied extends Component {
           onClick={() => this.props.sortAppsByDate(this.props.isDateDescendingOrder)}
           style={cellStyle}
         >Date Applied
-          <Icon name="sort" sytle={sortCaretStyle} />
+          <Icon name="sort" />
         </Table.HeaderCell>
       );
     }
@@ -36,7 +36,7 @@ export default class THCellDateApplied extends Component {
         onClick={() => this.props.sortAppsByDate(this.props.isDateDescendingOrder)}
         style={cellStyle}
       >Date Applied
-        <Icon name="sort" color="red" sytle={sortCaretStyle} />
+        <Icon name="sort" color="red" />
       </Table.HeaderCell>
     );
   }

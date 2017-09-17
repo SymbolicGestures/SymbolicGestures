@@ -1,12 +1,14 @@
 import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Table, Segment, Button, Icon } from 'semantic-ui-react';
+import { Table, Segment, Button, Icon, Form } from 'semantic-ui-react';
 import axios from 'axios';
 import { format } from 'date-fns';
 
 
 import AppDrawer from './drawer/AppDrawer.jsx';
+
+import AddAppButtTriggerLinkInputForm from '../components/AddAppButtTriggerLinkInputForm.jsx';
 
 const seanStyleBox = require('./../../styles/seanStyleBox.css');
 
@@ -34,9 +36,14 @@ const generateEmptyApplicaton = () => {
 export default class MateUiRightDrawer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { open: false };
+    this.state = {
+      open: false,
+      isInputFormVisible: false,
+    };
     this.openDrawerAndPostEmptyAppToDB = this.openDrawerAndPostEmptyAppToDB.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
+    this.hideInputForm = this.hideInputForm.bind(this);
+    this.submitButtonClicked = this.submitButtonClicked.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -66,22 +73,58 @@ export default class MateUiRightDrawer extends React.Component {
     let newApplication = generateEmptyApplicaton();
     this.props.createNewApplicationInFE(newApplication);
     this.postEmptyApplicationToDB(newApplication);
-    this.props.openDrawer();
-    this.setState({ open: true });
-    // console.log('why?');
+    this.setState({
+      open: true,
+      isInputFormVisible: true,
+    });
     this.props.getApplicationsFromDB(this.props.setSelectAppToNewApp);
   }
+
   closeDrawer() {
     this.setState({ open: false });
     this.props.closeDrawer();
   }
 
+  hideInputForm() {
+    this.setState({ isInputFormVisible: false });
+  }
+
+  submitButtonClicked() {
+    // console.log('submit button clicked');
+    this.setState({ isInputFormVisible: false });
+  }
+
   render() {
+    let visibilityStyle = this.state.isInputFormVisible ? { visibility: 'visible' } : { visibility: 'hidden' };
+    let submitButtStyle = Object.assign({ width: '15%', marginLeft: '1%' }, visibilityStyle);
     return (
       <div>
-        <Button color="vk" onClick={this.openDrawerAndPostEmptyAppToDB} >
-          <Icon name="plus" /> Add Application
-        </Button>
+
+
+        <div className={seanStyleBox.box_for_addApplicationButtAndOther}>
+          <Button color="vk" onClick={this.openDrawerAndPostEmptyAppToDB} style={{width: '15%'}}>
+            <Icon name="plus" /> Add Application
+          </Button>
+
+          <AddAppButtTriggerLinkInputForm
+            isInputFormVisible={this.state.isInputFormVisible}
+            hideInputForm={this.hideInputForm}
+            submitButtonClicked={this.submitButtonClicked}
+            emptyUserInput={''}
+          />
+      
+          <Button
+            onClick={this.submitButtonClicked}
+            style={submitButtStyle}
+            type="submit"
+          > Submit
+          </Button>
+        </div>
+
+
+
+
+  
         {/* {console.log('open state:', this.state.open)} */}
         <Drawer width={'70%'} openSecondary={true} open={this.state.open}>
           <Button
