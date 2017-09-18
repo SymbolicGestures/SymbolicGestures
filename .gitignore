@@ -40,3 +40,5 @@ bower_components/
 # I(Sean) am ignoring below file because I want to create my own rule for eslint
 
 .eslintrc.js
+
+testFakerPastDate.js

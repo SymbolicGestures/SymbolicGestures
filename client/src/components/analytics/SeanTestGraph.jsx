@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import C3Chart from 'react-c3js';
 import 'c3';
 
+import dataFromOtherFile from '../../../../testFakerPastDate.js'
+
 const data = {
   columns: [
     ['data1', 30, 200, 100, 400, 150, 250],
@@ -14,6 +16,21 @@ const data = {
 
 let type = 'bar';
 
+const intMonthHash = {
+  '01': { name: 'January', color: '#e0a048' },
+  '02': { name: 'Feburary', color: '#cccccc' },
+  '03': { name: 'March', color: '#c7594a' },
+  '04': { name: 'April', color: '#d4a184' },
+  '05': { name: 'May', color: '#d9695e' },
+  '06': { name: 'June', color: '#1e7f6e' },
+  '07': { name: 'July', color: '#63b166' },
+  '08': { name: 'August', color: '#9dc8eb' },
+  '09': { name: 'September', color: '#b6698b' },
+  '10': { name: 'October', color: '#4d4d6f' },
+  '11': { name: 'November', color: '#6d554b' },
+  '12': { name: 'December', color: '#d82a41' },
+};
+
 
 // let exampleData = {[
 //   {appliedDate: 'under $60K', dateAppliedCount: 2, dateAppliedCount: 20},
@@ -22,28 +39,14 @@ let type = 'bar';
 //   {appliedDate: 'over $80K', dateAppliedCount: 4, dateAppliedCount: 10}
 // ]}
 
-let exampleData = [
-  { appliedDate: '09/11/17', dateAppliedCount: 2, },
-  { appliedDate: '09/12/17', dateAppliedCount: 1, },
-  { appliedDate: '09/13/17', dateAppliedCount: 3, },
-  { appliedDate: '09/14/17', dateAppliedCount: 4, },
-  { appliedDate: '09/15/17', dateAppliedCount: 0, },
-  { appliedDate: '09/16/17', dateAppliedCount: 1, },
-  { appliedDate: '09/17/17', dateAppliedCount: 3, },
-  { appliedDate: '09/18/17', dateAppliedCount: 4, },
-  { appliedDate: '09/11/11', dateAppliedCount: 2, },
-  { appliedDate: '09/12/12', dateAppliedCount: 1, },
-  { appliedDate: '09/13/13', dateAppliedCount: 3, },
-  { appliedDate: '09/14/14', dateAppliedCount: 4, },
-  { appliedDate: '09/11/15', dateAppliedCount: 2, },
-  { appliedDate: '09/12/16', dateAppliedCount: 1, },
-  { appliedDate: '09/13/17', dateAppliedCount: 3, },
-  { appliedDate: '09/14/18', dateAppliedCount: 4, },
-  { appliedDate: '09/11/19', dateAppliedCount: 2, },
-  { appliedDate: '09/12/20', dateAppliedCount: 1, },
-];
+// let exampleData = [
+//   { appliedDate: '09/11/17', dateAppliedCount: 2, },
+//   { appliedDate: '09/12/17', dateAppliedCount: 1, },
+// ];
 
-export default class componentappliedDate extends Component {
+// let exampleData = dataFromOtherFile;
+
+export default class SeanTestGraph extends Component {
   constructor(props) {
     super(props);
     this.state={
@@ -54,13 +57,17 @@ export default class componentappliedDate extends Component {
   render() {
     return (
       <div>
+        {/* {console.log('this', this.props.fakeSeanGraphData)} */}
         <C3Chart
-          padding={{ left: 200 }}
-          color={{ pattern: ['#41648a'] }}
+          padding={{ left: 100, right: 100 }}
+          color={{ pattern: [intMonthHash[this.props.intMonth].color] }}
           data={{
-            json: exampleData,
-            keys: { x: 'appliedDate', value: ['dateAppliedCount'] },
+            json: this.props.fakeSeanGraphData,
+            keys: { x: 'appliedDate', value: ['howManyApplied'] },
             type: 'bar',
+          }}
+          zoom={{
+            enabled: false
           }}
           axis={{
             x: {
@@ -77,8 +84,10 @@ export default class componentappliedDate extends Component {
             }
           }}
           grid={{ x: { show: true } }}
-          title={{ text: '# of Job Applied per Day' }}
-          legend={{ hide: ['dateAppliedCount'] }}
+          title={{ text: `# of Job Applied per Day in ${intMonthHash[this.props.intMonth].name}` }}
+          legend={{
+            show: false
+          }}
         />
       </div>
     );

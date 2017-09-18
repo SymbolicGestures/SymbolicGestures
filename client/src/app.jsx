@@ -13,7 +13,14 @@ import StageBar from './components/stageBar/StageBar.jsx';
 import DrawerAndApplicationTable from './components/DrawerAndApplicationTable.jsx';
 import Analytics from './components/Analytics/Analytics.jsx';
 import Connect from './components/Connect/Connect.jsx';
+
+import SeanTestGraph from './components/analytics/SeanTestGraph.jsx';
+
 const fakeApplicationsGenerator = require('./../../config/fakeApplicationsGenerator.js');
+
+let fakeSeanGraphDataGenerator = require('./../../config/fakeSeanGraphDataGenerator.js');
+
+let fakeSeanGraphData = fakeSeanGraphDataGenerator('01/01/17', new Date());
 
 let fakeApplications = fakeApplicationsGenerator(15);
 let fakestages_settings = [
@@ -34,6 +41,8 @@ fakestages_settings.forEach((setting) => {
 });
 
 const seanStyleBox = require('./../styles/seanStyleBox.css');
+
+
 
 class App extends React.Component {
   constructor(props) {
@@ -433,9 +442,25 @@ class App extends React.Component {
               )}}
             />
             <Route
-              key = {2}
-              path = {'/analytics'}
-              component = {Analytics}
+              key={2}
+              path={'/analytics'}
+              render={() => {
+                return (
+                  <div>
+                    <div style={{ height: 200 }} />
+                    {fakeSeanGraphData.map((data, idx) => {
+                      let intMonth = data[0].appliedDate.slice(5, 7);
+                      return (
+                        <SeanTestGraph
+                          key={idx}
+                          intMonth={intMonth}
+                          fakeSeanGraphData={data}
+                        />);
+                    })}
+
+                  </div>
+                );
+              }}
             />
             <Route
               key = {3}

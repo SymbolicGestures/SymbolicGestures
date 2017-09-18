@@ -66,6 +66,7 @@ class Analytics extends React.Component {
   }
 
   render() {
+    console.log('inAnalytic', this.props.fakeSeanGraphData);
     let socialGraph = null;
     if (this.state.socialGraphData.length > 0) {
       socialGraph = (
@@ -79,8 +80,9 @@ class Analytics extends React.Component {
     }
     return (
       <div>
-        <div style={{height:"66px"}}></div>
-        {socialGraph}
+        {/* <div style={{height:"66px"}}></div> */}
+        {/* {socialGraph} */}
+        <div style={{ height: 200 }}></div> 
         <SeanTestGraph />
       </div>
     );
