@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import SocialGraph from './SocialGraph.jsx'
 import axios from 'axios'
 
+import SeanTestGraph from './SeanTestGraph.jsx';
+
 class Analytics extends React.Component {
   constructor() {
     super();
@@ -79,8 +81,9 @@ class Analytics extends React.Component {
       <div>
         <div style={{height:"66px"}}></div>
         {socialGraph}
+        <SeanTestGraph />
       </div>
-    )
+    );
   }
 }
 
