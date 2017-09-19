@@ -40,6 +40,15 @@
     },
     "DATABASE_URL": {
       "required": true
+    },
+    "STREAM_KEY": {
+      "required": true
+    },
+    "STREAM_ID": {
+      "required": true
+    },
+    "STREAM_SECRET": {
+      "required": true
     }
   },
   "formation": {},
