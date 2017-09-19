@@ -15,6 +15,9 @@ import Analytics from './components/Analytics/Analytics.jsx';
 import Connect from './components/Connect/Connect.jsx';
 
 import SeanTestGraph from './components/analytics/SeanTestGraph.jsx';
+import DayPickerExample from './components/DayPickerExample.jsx';
+
+
 
 const fakeApplicationsGenerator = require('./../../config/fakeApplicationsGenerator.js');
 
@@ -448,6 +451,7 @@ class App extends React.Component {
                 return (
                   <div>
                     <div style={{ height: 200 }} />
+                    <DayPickerExample />
                     {fakeSeanGraphData.map((data, idx) => {
                       let intMonth = data[0].appliedDate.slice(5, 7);
                       return (
@@ -457,7 +461,7 @@ class App extends React.Component {
                           fakeSeanGraphData={data}
                         />);
                     })}
-
+                    <div style={{ height: 200 }} />
                   </div>
                 );
               }}
