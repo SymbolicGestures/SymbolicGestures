@@ -453,7 +453,7 @@ class App extends React.Component {
                     <div style={{ height: 200 }} />
                     <DayPickerExample />
                     {fakeSeanGraphData.map((data, idx) => {
-                      let intMonth = data[0].appliedDate.slice(5, 7);
+                      let intMonth = data[0].appliedDate.slice(5, 7);  
                       return (
                         <SeanTestGraph
                           key={idx}

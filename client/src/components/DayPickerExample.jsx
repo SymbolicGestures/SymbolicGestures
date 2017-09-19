@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import DatePicker from 'react-datepicker';
+// import DatePicker from 'react-datepicker';
 import { Calendar } from 'react-date-range';
 
 export default class componentName extends Component {
@@ -14,16 +14,17 @@ export default class componentName extends Component {
 
 
   handleSelect(date) {
-    console.log(typeof date._d); // Momentjs object
+    // console.log(typeof date._d); // Momentjs object
   }
 
   render() {
     return (
       <div>
-        {/* <Calendar
+        <h1>ss</h1>
+        <Calendar
           onInit={this.handleSelect}
           onChange={this.handleSelect}
-        /> */}
+        /> 
       </div>
     );
   }
