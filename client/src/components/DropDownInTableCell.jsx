@@ -20,7 +20,6 @@ class DropDownInTableCell extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.stage) {
-      // console.log(nextProps.stage)
       this.setState({
         dropDownText: nextProps.stage
       });
@@ -48,7 +47,6 @@ class DropDownInTableCell extends React.Component {
   }
 
   updateOneStageToDB(clickedText) {
-    // console.log('application:', this.props.application);
     let route = '/api/applications/' + this.props.application.id;
     let key = 'stage';
     let val = clickedText;
@@ -113,7 +111,6 @@ class DropDownInTableCell extends React.Component {
             let ddItemCombineStyle = Object.assign(dropDItemStyle, this.props.stageNameToColorHash[dropDownItem.name]);
             ddItemCombineStyle.backgroundColor = this.ColorLuminance(ddItemCombineStyle.backgroundColor, -0.1);
 
-            // console.log('s:', ddItemCombineStyle.backgroundColor); 
             return (
               <Dropdown.Item
                 onMouseEnter={this.toggleDarkStyle}

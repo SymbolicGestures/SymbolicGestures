@@ -35,20 +35,7 @@ class AppDrawerNoteItem extends React.Component {
     body[key] = val;
     axios.post(route, body)
       .then(this.props.getApplicationsFromDB());
-    // .then((message) => {console.log(message)})
   }
-
-  // handleBlur(event) {
-  //   let route = `/api/applications/${this.props.application.id}`;
-  //   let key = event.target.id;
-  //   let val = event.target.value;
-  //   let body = {};
-  //   body[key] = val;
-  //   axios.post(route, body)
-  //     .then(this.props.getApplicationsFromDB());
-  //   // .then((message) => {console.log(message)})
-  // }
-
 
   render() {
     return (

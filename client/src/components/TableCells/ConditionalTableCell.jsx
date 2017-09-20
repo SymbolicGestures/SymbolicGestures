@@ -49,7 +49,7 @@ class ConditionalTableCell extends Component {
   }
 
   render() {
-    if (this.props.appKey === 'job_posting_link'
+    if (this.props.appKey === 'job_posting_source'
       && this.props.application[this.props.appKey] !== ''
       && this.state.formView === false
       && this.props.application[this.props.appKey] !== null) {
@@ -57,7 +57,11 @@ class ConditionalTableCell extends Component {
         <Table.Cell
           onClick={() => this.activateFormView(this.props.application[this.props.appKey])}
           style={{ textAlign: 'center' }}
-        ><a href={this.props.application[this.props.appKey]}><u>Link</u></a></Table.Cell>
+        >
+          <a href={this.props.application['job_posting_link']}>
+            <u>{this.props.application[this.props.appKey]}</u>
+          </a>
+        </Table.Cell>
       );
     }
 
@@ -92,7 +96,7 @@ class ConditionalTableCell extends Component {
                 onChange={this.handleChange}
                 onBlur={() => {
                   this.deActivateFormView(this.props.idx, this.props.appKey, this.props.application);
-                  if (this.props.placeHolder === 'Link') {
+                  if (this.props.placeHolder === 'Source Link') {
                     this.props.attemptWebScrape(this.props.idx, this.state.userInput);
                   }
                 }}

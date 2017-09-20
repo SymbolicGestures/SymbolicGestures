@@ -103,7 +103,6 @@ class AppDrawerInfo extends React.Component {
     this.props.updateOneKeyValPairInFE(this.props.selectedAppIdx, key, val);
     axios.post(route, body)
       .then(this.props.getApplicationsFromDB());
-    // .then((message) => {console.log(message)})
   }
 
 
@@ -111,7 +110,6 @@ class AppDrawerInfo extends React.Component {
     let eventText = "Stage was changed from " + oldStage + " to " + newStage;
     let route = '/api/histories/';
     let body = {'event' : eventText, application_id};
-    // console.log(' new history: ', application_id, eventText)
     axios.post(route, body)
       .then(this.props.getApplicationsFromDB());
   }

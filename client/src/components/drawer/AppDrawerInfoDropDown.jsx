@@ -37,7 +37,6 @@ class AppDrawerInfoDropDown extends React.Component {
   }
 
   updateOneStageToDB(clickedText) {
-    // console.log('application:', this.props.application);
     let route = '/api/applications/' + this.props.application.id;
     let key = 'stage';
     let val = clickedText;
@@ -45,9 +44,7 @@ class AppDrawerInfoDropDown extends React.Component {
     body[key] = val;
 
     axios.post(route, body)
-      // .then(console.log('post stage succed'))
       .then((err) => { console.log(err); });
-    // .then(this.props.getApplicationsFromDB())
   }
 
   render() {

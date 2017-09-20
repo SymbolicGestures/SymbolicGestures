@@ -111,6 +111,9 @@ export default class MateUiRightDrawer extends React.Component {
             submitButtonClicked={this.submitButtonClicked}
             emptyUserInput={''}
             attemptWebScrape={this.props.attemptWebScrape}
+            updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
+            selectedAppIdx={this.props.selectedAppIdx}
+            application={this.props.application}
           />
 
           <Button

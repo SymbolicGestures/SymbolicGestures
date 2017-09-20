@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Segment, Button, Icon, Checkbox, Form } from 'semantic-ui-react';
+import axios from 'axios';
 
 
 export default class AddBtnTrigInputForm extends Component {
@@ -26,7 +27,25 @@ export default class AddBtnTrigInputForm extends Component {
   handleSubmit() {
     this.props.submitButtonClicked();
     this.props.attemptWebScrape(0, this.state.userInput);
+    this.props.updateOneKeyValPairInFE(this.props.selectedAppIdx, 'job_posting_link', this.state.userInput);
+    // updateOneKeyValPairInFE(idx, updatedField, updatedText)
+    this.updateOneKeyValPairToDB(this.props.application, 'job_posting_link', this.state.userInput);
     this.setState({ userInput: '' });
+  }
+
+  updateOneKeyValPairToDB(application, appKey, appVal) {
+    let route = `/api/applications/${application.id}`;
+    let key = appKey;
+    let val = appVal;
+    let body = {};
+    // console.log('keyVal in ADDBtnTrig:', key, val);
+    body[key] = val;
+    // console.log('body', body);
+    axios.post(route, body)
+      .then( (app) => {
+        // console.log(app);
+      })
+      .catch((message) => { console.log(message); });
   }
 
   render() {

@@ -52,6 +52,13 @@ export default class DrawerAndApplicationTable extends React.Component {
     }
   }
 
+  setSelectAppToNewApp() {
+    this.setState({
+      selectedAppIdx: 0,
+      selectedApplication: this.props.applications[0]
+    });
+  }
+
   /**
    * Attempts to scrape a website for the application information and update
    * info to it.
@@ -67,28 +74,18 @@ export default class DrawerAndApplicationTable extends React.Component {
     axios.post('api/webScraper', link)
       .then((data) => {
         const jobInfo = data.data;
-        console.log(jobInfo);
+        console.log('jobInfo:', jobInfo);
         for (let key in jobInfo) {
           if(!this.state.selectedApplication[key]) {
             changedValues = true;
             body[key] = jobInfo[key];
-            console.log(key);
             this.props.updateOneKeyValPairInFE(idx, key, jobInfo[key]);
-            console.log(key);
           }
         }
         if (changedValues) {
           axios.post(route, body);
         }
       });
-  }
-
-  setSelectAppToNewApp() {
-    // console.log('setSelect:', this.props.applications[0]);
-    this.setState({
-      selectedAppIdx: 0,
-      selectedApplication: this.props.applications[0]
-    });
   }
 
   openDrawerWhenOneAppClick(application, idx, e) {
@@ -158,7 +155,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                 onClick={() => this.props.sortAppsByStageOrder(this.props.isStageOrder)}
                 style={{ cursor: 'pointer' }}
               >Stage</Table.HeaderCell>
-              <Table.HeaderCell>Link</Table.HeaderCell>
+              {/* <Table.HeaderCell>Link</Table.HeaderCell> */}
               <Table.HeaderCell
                 onClick={() => this.props.sortAppsByAlphaOrder('job_posting_source', this.props.isAlphabetOrder)}
                 style={{ cursor: 'pointer' }}
@@ -216,20 +213,21 @@ export default class DrawerAndApplicationTable extends React.Component {
                       selectedAppIdx={idx}
                       stages_settings={this.props.stages_settings}
                     /></Table.Cell>
-                  <ConditionalTableCell
+                  {/* <ConditionalTableCell
                     application={application}
                     appKey={'job_posting_link'}
-                    placeHolder={'Link'}
+                    placeHolder={'Source Link'}
                     updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
                     attemptWebScrape={this.attemptWebScrape}
                     idx={idx}
                     cellStyle={{ padding: '0.2% 0.2% 0px 0.2%', width: '10%' }}
-                  />
+                  /> */}
                   <ConditionalTableCell
                     application={application}
                     appKey={'job_posting_source'}
-                    placeHolder={'Source'}
+                    placeHolder={'Source Link'}
                     updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
+                    attemptWebScrape={this.attemptWebScrape}
                     idx={idx}
                     cellStyle={{ padding: '0.2% 0.2% 0px 0.2%', width: '10%' }}
                   />
