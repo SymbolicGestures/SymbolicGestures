@@ -5,7 +5,7 @@ import axios from 'axios';
 import { parse, getTime, format } from 'date-fns';
 
 import MateUiRightDrawer from './MateUiRightDrawer.jsx';
-import DropDownWithZeroPadding from './DropDownWithZeroPadding.jsx';
+import DropDownInTableCell from './DropDownInTableCell.jsx';
 
 // Table Header Cells
 import THCellStarIcon from './TableHeadCells/THCellStarIcon.jsx';
@@ -238,7 +238,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                     cellStyle={{ padding: '0.2% 0.2% 0px 0.2%' }}
                   />
                   <Table.Cell style={tdStyle}>
-                    <DropDownWithZeroPadding
+                    <DropDownInTableCell
                       getApplicationsFromDB={this.props.getApplicationsFromDB}
                       application={application}
                       stageNameToColorHash={this.props.stageNameToColorHash}

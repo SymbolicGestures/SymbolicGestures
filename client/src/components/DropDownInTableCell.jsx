@@ -2,7 +2,7 @@ import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
 
-class DropDownWithZeroPadding extends React.Component {
+class DropDownInTableCell extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -94,4 +94,4 @@ class DropDownWithZeroPadding extends React.Component {
 }
 
 
-export default DropDownWithZeroPadding;
+export default DropDownInTableCell;
