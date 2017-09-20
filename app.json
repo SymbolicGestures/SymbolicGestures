@@ -49,7 +49,11 @@
     },
     "STREAM_SECRET": {
       "required": true
+    },
+    "FULL_CONTACT_KEY": {
+      "required": true
     }
+
   },
   "formation": {},
   "addons": [
