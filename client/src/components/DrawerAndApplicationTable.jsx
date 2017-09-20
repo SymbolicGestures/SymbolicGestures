@@ -5,7 +5,7 @@ import axios from 'axios';
 import { parse, getTime, format } from 'date-fns';
 
 import MateUiRightDrawer from './MateUiRightDrawer.jsx';
-import DropDownInTableCell from './DropDownInTableCell.jsx';
+import DropDownInTableCell from './TableCells/DropDownInTableCell.jsx';
 
 // Table Header Cells
 import THCellStarIcon from './TableHeadCells/THCellStarIcon.jsx';
