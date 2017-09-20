@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 
 import AppDrawer from './drawer/AppDrawer.jsx';
 
-import AddAppButtTriggerLinkInputForm from '../components/AddAppButtTriggerLinkInputForm.jsx';
+import AddBtnTrigInputForm from '../components/AddBtnTrigInputForm.jsx';
 
 const seanStyleBox = require('./../../styles/seanStyleBox.css');
 
@@ -105,7 +105,7 @@ export default class MateUiRightDrawer extends React.Component {
             <Icon name="plus" /> Add Application
           </Button>
 
-          <AddAppButtTriggerLinkInputForm
+          <AddBtnTrigInputForm
             isInputFormVisible={this.state.isInputFormVisible}
             hideInputForm={this.hideInputForm}
             submitButtonClicked={this.submitButtonClicked}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Table, Segment, Button, Icon, Checkbox, Form } from 'semantic-ui-react';
 
 
-export default class AddAppButtTriggerLinkInputForm extends Component {
+export default class AddBtnTrigInputForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
