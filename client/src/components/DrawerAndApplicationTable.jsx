@@ -4,7 +4,7 @@ import { Table, Segment, Button, Icon, Checkbox } from 'semantic-ui-react';
 import axios from 'axios';
 import { parse, getTime, format } from 'date-fns';
 
-import MateUiRightDrawer from './MateUiRightDrawer.jsx';
+import MainDrawer from './MainDrawer.jsx';
 
 // Table Header Cells
 import THCellStarIcon from './TableHeadCells/THCellStarIcon.jsx';
@@ -105,7 +105,7 @@ export default class DrawerAndApplicationTable extends React.Component {
     const stageNameToColorHash = this.props.stageNameToColorHash || {};
     return (<div>
       <MuiThemeProvider>
-        <MateUiRightDrawer
+        <MainDrawer
           application={this.state.selectedApplication}
           isDrawerOpen={this.state.isDrawerOpen}
           handleAddButtonClick={this.handleAddButtonClick}

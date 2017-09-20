@@ -33,7 +33,7 @@ const generateEmptyApplicaton = () => {
   return emptyApplication;
 };
 
-export default class MateUiRightDrawer extends React.Component {
+export default class MainDrawer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
