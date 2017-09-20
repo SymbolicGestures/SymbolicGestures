@@ -74,7 +74,6 @@ export default class MateUiRightDrawer extends React.Component {
     this.props.createNewApplicationInFE(newApplication);
     this.postEmptyApplicationToDB(newApplication);
     this.setState({
-      open: true,
       isInputFormVisible: true,
     });
     this.props.getApplicationsFromDB(this.props.setSelectAppToNewApp);

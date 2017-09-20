@@ -88,7 +88,6 @@ export default class DrawerAndApplicationTable extends React.Component {
     // console.log('setSelect:', this.props.applications[0]);
     this.setState({
       selectedAppIdx: 0,
-      selectedAppIdxForArrowIcon: 0,
       selectedApplication: this.props.applications[0]
     });
   }
