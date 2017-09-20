@@ -17,6 +17,19 @@ const intMonthHash = {
   '12': { name: 'December', color: '#d82a41' },
 };
 
+const roundNumber = (num, scale) => {
+  if(!("" + num).includes("e")) {
+    return +(Math.round(num + "e+" + scale)  + "e-" + scale);
+  } else {
+    var arr = ("" + num).split("e");
+    var sig = ""
+    if(+arr[1] + scale > 0) {
+      sig = "+";
+    }
+    return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);
+  }
+}
+
 export default class SeanTestGraph extends Component {
   constructor(props) {
     super(props);

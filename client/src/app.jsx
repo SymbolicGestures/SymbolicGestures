@@ -140,7 +140,7 @@ class App extends React.Component {
             // sort applications by date
             let applications = applicationData.data;
             applications.sort((a, b) => {
-              return getTime(parse(b.created_at)) - getTime(parse(a.created_at));
+              return getTime(parse(b.applied_at)) - getTime(parse(a.applied_at));
             });
             
             let appliedDateToCountHash = {};
@@ -261,14 +261,12 @@ class App extends React.Component {
   sortAppsByDate(isDateDescendingOrder) {
     let sortedApplications = this.state.applications;
     sortedApplications.sort((a, b) => {
-      return getTime(parse((b.created_at))) - getTime(parse((a.created_at)));
+      return getTime(parse((b.applied_at))) - getTime(parse((a.applied_at)));
     });
 
     if (!isDateDescendingOrder) {
       sortedApplications = sortedApplications.reverse();
     }
-
-    // console.log('sorted date:', sortedApplications);
 
     this.setState({
       applications: sortedApplications,

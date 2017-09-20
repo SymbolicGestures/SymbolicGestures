@@ -1,6 +1,18 @@
 import React from 'react';
 import { Icon, Image, Statistic, Segment } from 'semantic-ui-react';
 
+const roundNumber = (num, scale) => {
+  if(!("" + num).includes("e")) {
+    return +(Math.round(num + "e+" + scale)  + "e-" + scale);
+  } else {
+    var arr = ("" + num).split("e");
+    var sig = ""
+    if(+arr[1] + scale > 0) {
+      sig = "+";
+    }
+    return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);
+  }
+}
 
 const FirstDateAppliedForJob = (props) => {
   let segmentStyle = { margin: '1%', marginBottom: '200px' };
@@ -23,7 +35,7 @@ const FirstDateAppliedForJob = (props) => {
         <Statistic>
           <Statistic.Value>
             <Icon name="plane" />
-            {props.applicationCount / props.diffBtwLastAndFirstDate}
+            {roundNumber(props.applicationCount / props.diffBtwLastAndFirstDate, 2)}
           </Statistic.Value>
           <Statistic.Label>Average # of Job Applied/Day</Statistic.Label>
         </Statistic>
