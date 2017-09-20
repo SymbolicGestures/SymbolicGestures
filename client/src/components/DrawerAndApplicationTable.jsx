@@ -5,24 +5,16 @@ import axios from 'axios';
 import { parse, getTime, format } from 'date-fns';
 
 import MateUiRightDrawer from './MateUiRightDrawer.jsx';
-import DropDownInTableCell from './TableCells/DropDownInTableCell.jsx';
 
 // Table Header Cells
 import THCellStarIcon from './TableHeadCells/THCellStarIcon.jsx';
 import THCellDateApplied from './TableHeadCells/THCellDateApplied.jsx';
 
 // TableCells
-// import TableCellJPLink from './TableCells/TableCellJPLink.jsx';
-import TableCellJPLink from './TableCells/TableCellJPLink.jsx';
-import TableCellJobTitle from './TableCells/TableCellJobTitle.jsx';
-import TableCellCompanyName from './TableCells/TableCellCompanyName.jsx';
-import TableCellJPSource from './TableCells/TableCellJPSource.jsx';
 import ConditionalTableCell from './TableCells/ConditionalTableCell.jsx';
-
 import TableCellWArrowIcon from './TableCells/TableCellWArrowIcon.jsx';
 import TableCellWStarIcon from './TableCells/TableCellWStarIcon.jsx';
-
-const seanStyleBox = require('./../../styles/seanStyleBox.css');
+import DropDownInTableCell from './TableCells/DropDownInTableCell.jsx';
 
 
 export default class DrawerAndApplicationTable extends React.Component {
