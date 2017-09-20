@@ -52,7 +52,7 @@ let oneFakeApplication = () => {
     updated_at: dateApplied,
     locaton: faker.address.city(),
     job_posting_to_pdf_link: faker.internet.url(),
-    salary: faker.random.number({min:60000, max:150000}),
+    salary: faker.random.number({min:60000, max:250000}),
     notes: [
       { type: 'note', note: faker.lorem.paragraph() },
       // { type: 'codeSnippet', note: faker.lorem.sentence() },
