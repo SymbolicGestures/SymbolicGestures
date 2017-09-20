@@ -46,7 +46,7 @@ class AppDrawerContactItem extends React.Component {
   }
 
   handleEdit(event) {
-    console.log('edit the contact with this id:' , this.props.contact.id)
+    console.log('edit the contact with this id:', this.props.contact.id);
   }
 
   openDatePicker(){

@@ -306,10 +306,6 @@ module.exports.deleteContact = (req, res) => {
 module.exports.webScraper = (req,res) => {
   let link = req.body.website,
       source = new URL(link);
-  // console.log(source.hostname)
-  // console.log("www.indeed.com");
-  // console.log(source.hostname, typeof source.hostname)
-  // console.log(source.hostname === 'www.indeed.com')
   // if the link is indeed.com, scrape it.
   if (source.hostname === "www.indeed.com") {
     request(link, function(err, resp, body) {

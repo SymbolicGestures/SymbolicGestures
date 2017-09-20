@@ -72,6 +72,4 @@ let fakeApplicationsGenerator = (num) => {
   return applications;
 };
 
-// console.log(JSON.stringify(fakeApplicationsGenerator(2)));
-
 module.exports = fakeApplicationsGenerator;

@@ -74,7 +74,6 @@ export default class DrawerAndApplicationTable extends React.Component {
     axios.post('api/webScraper', link)
       .then((data) => {
         const jobInfo = data.data;
-        console.log('jobInfo:', jobInfo);
         for (let key in jobInfo) {
           if(!this.state.selectedApplication[key]) {
             changedValues = true;

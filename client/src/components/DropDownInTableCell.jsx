@@ -11,7 +11,6 @@ class DropDownInTableCell extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.updateOneStageToDB = this.updateOneStageToDB.bind(this);
     this.ColorLuminance = this.ColorLuminance.bind(this);
     this.toggleDarkStyle = this.toggleDarkStyle.bind(this);
@@ -38,12 +37,6 @@ class DropDownInTableCell extends React.Component {
     this.setState({ dropDownText: clickedText });
     this.updateOneStageToDB(clickedText);
     this.props.getApplicationsFromDB();
-  }
-
-  handleChange(clickedText) {
-
-    console.log('Am I capturing this ???');
-
   }
 
   updateOneStageToDB(clickedText) {
@@ -114,7 +107,6 @@ class DropDownInTableCell extends React.Component {
             return (
               <Dropdown.Item
                 onMouseEnter={this.toggleDarkStyle}
-                onChange={this.handleChange}
                 onClick={() => { this.handleClick(dropDownItem.name); }}
                 style={ddItemCombineStyle}
                 key={idx}

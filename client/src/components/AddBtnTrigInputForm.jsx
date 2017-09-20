@@ -38,12 +38,9 @@ export default class AddBtnTrigInputForm extends Component {
     let key = appKey;
     let val = appVal;
     let body = {};
-    // console.log('keyVal in ADDBtnTrig:', key, val);
     body[key] = val;
-    // console.log('body', body);
     axios.post(route, body)
       .then( (app) => {
-        // console.log(app);
       })
       .catch((message) => { console.log(message); });
   }

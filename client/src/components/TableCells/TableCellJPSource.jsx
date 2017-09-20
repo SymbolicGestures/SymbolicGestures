@@ -12,23 +12,15 @@ class TableCellJPSource extends Component {
   }
 
   handleChange(e) {
-    console.log(console.log('val:', e.target.value));
     this.setState({ userInput: e.target.value });
   }
 
   handleSubmit(idx, updatedField, e) {
-    // alert('A name was submitted: ' + this.state.value);
-    console.log('handle submit');
-    console.log('idx', idx);
-    console.log('updatedField', updatedField);
-    console.log('value', this.state.userInput);
-    // this.props.updateOneKeyValPairInFE()
     this.props.updateOneKeyValPairInFE(idx, updatedField, this.state.userInput)
     e.preventDefault();
   }
 
   render() {
-    console.log('udtOneAppInFE:', this.props.job_posting_source.length !== 0);
     if (this.props.job_posting_source.length !== 0) {
       return (<Table.Cell>{this.props.job_posting_source}</Table.Cell>);
     }

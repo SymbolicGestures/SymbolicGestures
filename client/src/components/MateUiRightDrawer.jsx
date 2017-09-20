@@ -47,16 +47,12 @@ export default class MateUiRightDrawer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log(nextProps.isDrawerOpen);
     this.setState({ open: nextProps.isDrawerOpen });
   }
 
   postEmptyApplicationToDB(newApplication) {
     axios.post('/api/applications', newApplication)
       .then(function (response) {
-        // console.log('post req empty application succeed');
-        // console.log('id: ', response.data.id);
-        // console.log('application_id', response.data.id);
         axios.post('/api/notes', {
           application_id: response.data.id,
           type: 'note',
@@ -64,8 +60,7 @@ export default class MateUiRightDrawer extends React.Component {
         });
       })
       .catch(function (error) {
-        // console.log('post req empty application failed');
-        // console.log(error);
+        console.log(error);
       });
   }
 
@@ -89,7 +84,6 @@ export default class MateUiRightDrawer extends React.Component {
   }
 
   submitButtonClicked() {
-    // console.log('submit button clicked');
     this.setState({ isInputFormVisible: false });
   }
 

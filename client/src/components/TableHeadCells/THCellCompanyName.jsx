@@ -12,7 +12,6 @@ export default class THCellCompanyName extends Component {
   }
 
   toggleSortIcon() {
-    // console.log(this.state.isSortActivate);
     this.setState({ isSortActivate: !this.state.isSortActivate });
   }
 
