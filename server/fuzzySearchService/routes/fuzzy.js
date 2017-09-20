@@ -6,7 +6,7 @@ const OrganizationController = require('../controllers').Organization;
 /**
  * With a GET - gets all organizations.
  * With a POST - creates or updates an organization.
- * @param  {Object} reqBody post request body form is {organization_name: 'HR80', member_count: 1}
+ * @param  {Object} reqBody post request body form is {organization_name: 'HR80'}
  * @return {Array}          returns the updated organization.
  */
 router.route('/organizations')
@@ -22,8 +22,8 @@ router.route('/fuzzyMatchOrganizations')
   .post(OrganizationController.getFuzzyOrganizations)
 
 /**
- * With a POST - updates an organization. member_count is given with amount to add to member_count
- * @param  {Object} reqBody post request body form is {organization_name: 'HR80', member_count: 1}
+ * With a POST - updates an organization.
+ * @param  {Object} reqBody post request body form is {organization_name: 'HR80'}
  * @return {Array}          returns the updated organization.
  */
 router.route('/organizations/:id')

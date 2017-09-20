@@ -25,8 +25,8 @@ module.exports.updateUserProfile = (req, res) => {
         organization_id: profile.organization_id
       });
     })
-    .then(() => {
-      res.status(200).send('Profile successfully updated!');
+    .then((profile) => {
+      res.status(200).send(req.user);
     })
     .catch(err => {
       res.status(503).send(err);
@@ -51,8 +51,7 @@ module.exports.createOrUpdateOrganization = (req, res) => {
       .then(newOrganization => {
         if(newOrganization) {
           return newOrganization.save({
-            organization_name: organization.organization_name,
-            member_count: (organization.member_count > 0 ? newOrganization.attributes.member_count + organization.member_count : undefined)
+            organization_name: organization.organization_name
           })
         }
       })
@@ -65,8 +64,7 @@ module.exports.createOrUpdateOrganization = (req, res) => {
   } else {
     //create
     return models.Organization.forge({
-      organization_name: organization.organization_name,
-      member_count: organization.member_count
+      organization_name: organization.organization_name
     }).save()
       .then(organization => {
         res.status(200).send(organization);

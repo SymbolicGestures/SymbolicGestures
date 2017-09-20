@@ -1,6 +1,7 @@
 const models = require('../../db/models');
 const bookshelf = require('../../db');
 const request = require('request');
+const feed = require('../helper/addToFeed').addToFeed;
 const cheerio = require('cheerio');
 const URL = require("url-parse");
 /**
@@ -49,6 +50,19 @@ module.exports.createOrUpdateApp = (req, res) => {
     models.Application.forge({ id: req.params.id }).fetch()
       .then(currentApplication => {
         if (currentApplication) {
+          //create congratulations feed card when stage changes
+          if(['Offer', 'On Site', 'Tech Screen'].includes(application.stage)) {
+            let stageMessages = {
+              'Offer': `Congratulate ${applicant.display} on receiving an offer from ${currentApplication.attributes.company_name}`,
+              'On Site': `Give some tips to ${applicant.display} before their on site interview at ${currentApplication.attributes.company_name}`,
+              'Tech Screen': `Give some tips to ${applicant.display} before their tech Screen interview at ${currentApplication.attributes.company_name}`
+            }
+            feed({
+              message: stageMessages[application.stage],
+              message_type: 'congrat'
+            }, applicant);
+          }
+
           //updating in case of a application with given id.
           return currentApplication.save({
             company_name: application.company_name,
@@ -82,7 +96,6 @@ module.exports.createOrUpdateApp = (req, res) => {
     })
       .save()
       .then((data) => {
-        console.log(data)
         res.status(200).send(data);
       })
       .catch(err => {

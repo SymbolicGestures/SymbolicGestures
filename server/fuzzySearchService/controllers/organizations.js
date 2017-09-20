@@ -27,8 +27,7 @@ module.exports.createOrUpdateOrganization = (req, res) => {
         if(newOrganization) {
           console.log(organization)
           return newOrganization.save({
-            organization_name: organization.organization_name,
-            member_count: (organization.member_count > 0 ? newOrganization.attributes.member_count + organization.member_count : undefined)
+            organization_name: organization.organization_name
           })
         }
       })
@@ -41,8 +40,7 @@ module.exports.createOrUpdateOrganization = (req, res) => {
   } else {
     //create
     return models.Organization.forge({
-      organization_name: organization.organization_name,
-      member_count: organization.member_count
+      organization_name: organization.organization_name
     }).save()
       .then(organization => {
         res.status(200).send(organization);

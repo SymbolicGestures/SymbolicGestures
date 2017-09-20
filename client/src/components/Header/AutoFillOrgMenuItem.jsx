@@ -28,12 +28,15 @@ export default class AutoFillOrgMenuItem extends React.Component {
   updateProfile(orgId, orgName) {
     axios.post('/api/profiles', {
       "organization_id": orgId
-    }).then(()=>{
+    })
+    .then((profile)=>{
+      console.log(profile)
+      axios.post('/api/feed', {
+        message_type: 'joinOrg',
+        message: `${profile.data.display} joined ${orgName}!`
+      })
       this.setState({organization: orgName, organizationId: orgId});
       this.props.onHide()
-    });
-    axios.post(`/fuzzy/organizations/${orgId}`, {
-      "member_count": 1
     });
   }
   addOrganizationAndUpdateProfile(orgName) {

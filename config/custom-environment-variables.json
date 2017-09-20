@@ -36,5 +36,9 @@
     "streamKey": "STREAM_KEY",
     "streamSecret": "STREAM_SECRET",
     "streamId": "STREAM_ID"
+  },
+
+  "fullContact": {
+    "ApiKey": "FULL_CONTACT_KEY"
   }
 }

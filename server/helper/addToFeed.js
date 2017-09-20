@@ -2,10 +2,7 @@ const models = require('../../db/models');
 const bookshelf = require('../../db');
 let client = require('../middleware')['stream'];
 
-module.exports.feedAdd = (req, res) => {
-  console.log('got in feed')
-  let feedInfo = req.body;
-  let user = req.user;
+module.exports.addToFeed = (feedInfo, user) => {
   let newFeed = client.feed('profile', user.id);
   models.Feed.forge().save({
     message_type: feedInfo.message_type,
@@ -16,7 +13,6 @@ module.exports.feedAdd = (req, res) => {
     profile_id: user.id
   })
   .then(feedMessage => {
-    console.log('from feed:', feedMessage.attributes)
     return newFeed.addActivity({
       actor: user.display,
       verb: feedMessage.attributes.message_type,
@@ -29,21 +25,4 @@ module.exports.feedAdd = (req, res) => {
       to: [`organization_feed:${user.organization_id}`],
     })
   })
-  .then(data => {
-    res.status(200).send(data)
-  }).catch(err=>{
-    res.status(503).send(err)})
-}
-
-module.exports.feedGet = (req, res) => {
-  let newFeed = client.feed('organization_feed', req.user.organization_id);
-  // newFeed.follow('organization_feed', req.user.organization_id);
-  newFeed.get({limit:15})
-    .then(results => {
-      console.log(results.results[0].activities)
-      res.status(200).send(results)
-    })
-    .catch(err=> {
-      res.status(503).send(err)
-    })
 }

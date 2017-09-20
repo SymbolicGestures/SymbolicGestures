@@ -4,6 +4,7 @@ const router = express.Router();
 const ApplicationController = require('../controllers').Applications;
 const ProfilesController = require('../controllers').Profiles;
 const FeedController = require('../controllers').Feed;
+const FindContactController = require('../controllers').FindContact;
 /**
  * With a GET - Returns all applications of the user.
  * With a POST - Adds an application for the user.
@@ -25,7 +26,7 @@ router.route('/applications/:id')
  * @return {Array}     returns an Array with salaries of those in user's org from least to greatest.
  */
 router.route('/orgSalary')
-  .get(ProfilesController.getHighestSalariesWithinOrg)
+  .get(ProfilesController.getHighestSalariesWithinOrg);
 
 /**
  * delete an application and all related data (notes, histories, etc.) with id = :id.
@@ -126,7 +127,7 @@ router.route('/profiles')
 /**
  * With a GET - Returns all current organizations.
  * With a POST - creates an organization
- * @param  {Object} reqBody post request body form is {organization_name: 'HR80', member_count: 1}
+ * @param  {Object} reqBody post request body form is {organization_name: 'HR80'}
  * @return {Array}          returns an array of all organizations.
  */
 router.route('/organizations')
@@ -134,8 +135,8 @@ router.route('/organizations')
   .post(ProfilesController.createOrUpdateOrganization);
 
 /**
- * With a POST - updates an organization. member_count is given with amount to add to member_count
- * @param  {Object} reqBody post request body form is {organization_name: 'HR80', member_count: 1}
+ * With a POST - updates an organization.
+ * @param  {Object} reqBody post request body form is {organization_name: 'HR80'}
  * @return {Array}          returns the updated organization.
  */
 router.route('/organizations/:id')
@@ -143,5 +144,9 @@ router.route('/organizations/:id')
 
 router.route('/feed')
   .get(FeedController.feedGet)
-  .post(FeedController.feedAdd)
+  .post(FeedController.feedAdd);
+
+router.route('/findContact')
+  .post(FindContactController.findLinkedIn);
+
 module.exports = router;

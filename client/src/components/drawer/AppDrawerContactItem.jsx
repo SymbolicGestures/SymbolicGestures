@@ -16,6 +16,7 @@ class AppDrawerContactItem extends React.Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.openDatePicker = this.openDatePicker.bind(this);
+    this.findLinkedInAndSend = this.findLinkedInAndSend.bind(this);
   }
 
   handleChange(event, date) {
@@ -37,6 +38,21 @@ class AppDrawerContactItem extends React.Component {
     this.refs.datepicker.openDialog()
   }
 
+  findLinkedInAndSend(e) {
+    axios.post('/api/findContact', {
+      email: this.props.contact.email
+    })
+    .then(url=>{
+      window.open(
+        url.data,
+        '_blank'
+      );
+    })
+    .catch(err=>{
+      console.log(err);
+    });
+  }
+
   render() {
     return (
       <div className={styles.contact}>
@@ -48,7 +64,10 @@ class AppDrawerContactItem extends React.Component {
               <Card.Header>{this.props.contact.name}</Card.Header>
 
               <Card.Meta>{this.props.contact.role}</Card.Meta>
-              <Card.Description>{this.props.contact.email}</Card.Description>
+              <div style={{display:'inline'}}>
+                <Card.Description style={{display:'inline'}}>{this.props.contact.email}</Card.Description>
+                <Icon link name='linkedin square' onClick={this.findLinkedInAndSend}/>
+              </div>
               <Card.Description>{this.props.contact.phone}</Card.Description>
               <div style={{display:'inline'}}>
                 <Card.Description style={{display:'inline'}}>
