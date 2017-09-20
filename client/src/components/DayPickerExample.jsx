@@ -14,7 +14,6 @@ export default class componentName extends Component {
 
 
   handleSelect(date) {
-    console.log(date._d); // Momentjs object
   }
 
   render() {

@@ -118,7 +118,6 @@ class AppDrawerInfo extends React.Component {
 
 
   render() {
-    console.log(this.props.application);
     return (
       <div className={styles.application}>
         {/*<h1>Application</h1>*/}
@@ -176,16 +175,6 @@ class AppDrawerInfo extends React.Component {
             />
           </div>
 
-
-          {/* <TextField
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            id="created_at"
-            value={this.state.created_at || ''}
-            floatingLabelText='created_at'
-            /> */}
-
-            {/* {console.log('application:', this.props.application)} */}
 
             <div className={styles.appInfo_col_2}>
               <TextField

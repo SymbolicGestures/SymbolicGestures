@@ -8,6 +8,7 @@ class ConditionalTableCell extends Component {
     this.state = {
       userInput: '',
       formView: false,
+      isClicked: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,7 +39,7 @@ class ConditionalTableCell extends Component {
   }
 
   activateFormView(value) {
-    this.setState({ userInput: value, formView: true });
+    this.setState({ userInput: value, formView: true, isClicked: true });
   }
 
   deActivateFormView(idx, updatedField, application) {
@@ -61,18 +62,39 @@ class ConditionalTableCell extends Component {
     }
 
     if (this.props.application[this.props.appKey] === null || this.state.formView === true) {
+      if (this.state.isClicked === true) {
+        return (
+          <Table.Cell style={this.props.cellStyle}>
+            <Form onSubmit={e => this.handleSubmit(this.props.idx, this.props.appKey, this.props.application, e)}>
+              <Form.Field>
+                <input
+                  ref={input => input && input.focus()} 
+                  onChange={this.handleChange}
+                  onBlur={() => {
+                    this.deActivateFormView(this.props.idx, this.props.appKey, this.props.application);
+                    if (this.props.placeHolder === 'Link') {
+                      this.props.attemptWebScrape(this.props.idx, this.state.userInput);
+                    }
+                  }}
+                  value={this.state.userInput}
+                  placeholder={this.props.placeHolder}
+                />
+              </Form.Field>
+            </Form>
+          </Table.Cell>
+        );
+      }
       return (
         <Table.Cell style={this.props.cellStyle}>
           <Form onSubmit={e => this.handleSubmit(this.props.idx, this.props.appKey, this.props.application, e)}>
             <Form.Field>
               <input
-                ref={input => input && input.focus()}
                 onChange={this.handleChange}
                 onBlur={() => {
                   this.deActivateFormView(this.props.idx, this.props.appKey, this.props.application);
                   if (this.props.placeHolder === 'Link') {
                     this.props.attemptWebScrape(this.props.idx, this.state.userInput);
-                  };
+                  }
                 }}
                 value={this.state.userInput}
                 placeholder={this.props.placeHolder}

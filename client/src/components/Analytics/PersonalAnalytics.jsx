@@ -41,7 +41,6 @@ export default class SeanTestGraph extends Component {
   render() {
     return (
       <div>
-        {/* {console.log('this', this.props.fakeSeanGraphData)} */}
         <C3Chart
           padding={{ left: 100, right: 100 }}
           color={{ pattern: [intMonthHash[this.props.intMonth].color] }}

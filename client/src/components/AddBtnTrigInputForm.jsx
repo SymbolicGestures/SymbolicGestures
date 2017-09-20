@@ -40,6 +40,7 @@ export default class AddBtnTrigInputForm extends Component {
         <Form.Field>
           {/* ref={input => input && input.focus()} */}
           <input
+            ref={input => input && input.focus()} 
             onChange={this.handleChange}
             value={this.state.userInput}
             placeholder="Type Indeed job posting link to auto-fill data "

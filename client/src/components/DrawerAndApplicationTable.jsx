@@ -62,7 +62,6 @@ export default class DrawerAndApplicationTable extends React.Component {
     let changedValues = false,
         route = `/api/applications/${this.state.selectedApplication.id}`,
         body = {};
-    console.log(this.state.selectedApplication);
 
     link = {'website': link};
     axios.post('api/webScraper', link)
@@ -107,14 +106,6 @@ export default class DrawerAndApplicationTable extends React.Component {
   openDrawer() { this.setState({ isDrawerOpen: true }); }
   closeDrawer() { this.setState({ isDrawerOpen: false, selectedAppIdxForArrowIcon: '', }); }
 
-
-  handleMouseEnter() {
-    console.log('hover!!!');
-  }
-  handleMouseLeave() {
-    console.log('leave!!!');
-  }
-
   render() {
     // applications={this.state.applications}
     // stages_settings={this.state.stages_settings}
@@ -149,20 +140,7 @@ export default class DrawerAndApplicationTable extends React.Component {
           <Table.Header fullWidth>
             <Table.Row>
               <Table.HeaderCell> {' '} </Table.HeaderCell>
-              {/* <Table.HeaderCell
-                onClick={this.props.sortAppsByIsFavorite}
-                style={{ cursor: 'pointer' }}
-              > <Icon style={{ color: '#ffd042' }} name="star" /> </Table.HeaderCell> */}
-              <THCellStarIcon
-                sortAppsByIsFavorite={this.props.sortAppsByIsFavorite}
-              />
-              {/* <Table.HeaderCell
-                onClick={() => this.props.sortAppsByDate(this.props.isDateDescendingOrder)}
-                style={{ cursor: 'pointer' }}
-              >Date Applied
-                <Icon name="sort" />
-                <Icon name="sort" color="red"/>
-              </Table.HeaderCell>  */}
+              <THCellStarIcon sortAppsByIsFavorite={this.props.sortAppsByIsFavorite} />
               <THCellDateApplied
                 sortAppsByDate={this.props.sortAppsByDate}
                 isDateDescendingOrder={this.props.isDateDescendingOrder}
@@ -181,7 +159,6 @@ export default class DrawerAndApplicationTable extends React.Component {
                 style={{ cursor: 'pointer' }}
               >Stage</Table.HeaderCell>
               <Table.HeaderCell>Link</Table.HeaderCell>
-              {/* <Table.HeaderCell>Source</Table.HeaderCell> */}
               <Table.HeaderCell
                 onClick={() => this.props.sortAppsByAlphaOrder('job_posting_source', this.props.isAlphabetOrder)}
                 style={{ cursor: 'pointer' }}
@@ -196,12 +173,6 @@ export default class DrawerAndApplicationTable extends React.Component {
               let dateStyle = { paddingLeft: 0, paddingRight: 0, width: '7.5%' };
               return (
                 <Table.Row key={idx}>
-                  {/* <Table.Cell
-                    onClick={(e) => (this.openDrawerWhenOneAppClick(application, idx, e))}
-                    style={{ cursor: 'pointer' }}
-                    collapsing
-                  >
-                    <Icon style={{ color: 'black' }} name="chevron left" /></Table.Cell> */}
                   <TableCellWArrowIcon
                     openDrawerWhenOneAppClick={this.openDrawerWhenOneAppClick}
                     closeDrawer={this.closeDrawer}
@@ -209,7 +180,6 @@ export default class DrawerAndApplicationTable extends React.Component {
                     idx={idx}
                     selectedAppIdxForArrowIcon={this.state.selectedAppIdxForArrowIcon}
                   />
-                  {/* <Table.Cell>{application.created_at}</Table.Cell> */}
                   <TableCellWStarIcon
                     openDrawerWhenOneAppClick={this.openDrawerWhenOneAppClick}
                     closeDrawer={this.closeDrawer}
@@ -219,7 +189,6 @@ export default class DrawerAndApplicationTable extends React.Component {
                     selectedAppIdxForArrowIcon={this.state.selectedAppIdxForArrowIcon}
                     toggleIsFavoriteForOneAppInFE={this.props.toggleIsFavoriteForOneAppInFE}
                   />
-                  {/* style={dateStyle} */}
                   <Table.Cell>{format(parse(application.applied_at), 'ddd, MMM DD, YY')}</Table.Cell>
                   <ConditionalTableCell
                     application={application}
@@ -247,7 +216,6 @@ export default class DrawerAndApplicationTable extends React.Component {
                       selectedAppIdx={idx}
                       stages_settings={this.props.stages_settings}
                     /></Table.Cell>
-                  {/* <TableCellJPLink job_posting_link={application.job_posting_link} /> */}
                   <ConditionalTableCell
                     application={application}
                     appKey={'job_posting_link'}
@@ -255,7 +223,7 @@ export default class DrawerAndApplicationTable extends React.Component {
                     updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
                     attemptWebScrape={this.attemptWebScrape}
                     idx={idx}
-                    cellStyle={{ padding: '0.2% 0.2% 0px 0.2%', width: '7.5%' }}
+                    cellStyle={{ padding: '0.2% 0.2% 0px 0.2%', width: '10%' }}
                   />
                   <ConditionalTableCell
                     application={application}
