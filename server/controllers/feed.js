@@ -34,13 +34,18 @@ module.exports.feedAdd = (req, res) => {
 }
 
 module.exports.feedGet = (req, res) => {
-  let newFeed = client.feed('organization_feed', req.user.organization_id);
-  // newFeed.follow('organization_feed', req.user.organization_id);
-  newFeed.get({limit:15})
-    .then(results => {
-      res.status(200).send(results)
-    })
-    .catch(err=> {
-      res.status(503).send(err)
-    })
+  if(req.user.organization_id) {
+    let newFeed = client.feed('organization_feed', req.user.organization_id);
+    // newFeed.follow('organization_feed', req.user.organization_id);
+    newFeed.get({limit:15})
+      .then(results => {
+        res.status(200).send(results)
+      })
+      .catch(err=> {
+        res.status(503).send(err)
+      })
+  } else {
+    res.status(200).send({results: []})
+  }
+
 }

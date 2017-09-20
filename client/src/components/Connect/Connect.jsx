@@ -44,7 +44,7 @@ class Connect extends React.Component {
         <div className={styles.graph}>
           <Analytics />
         </div>
-        <div className={styles.stream}>
+        <div className={styles.stream} style={{"maxHeight": window.innerHeight - 90 +'px'}}>
           {feedCards}
         </div>
       </div>

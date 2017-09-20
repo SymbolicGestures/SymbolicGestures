@@ -19,7 +19,6 @@
 .stream {
   grid-area: stream;
   overflow: scroll;
-  max-height: 41em;
   background-color: rgba(252, 249, 239, 0.53);
 }
 
