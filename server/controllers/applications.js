@@ -3,6 +3,7 @@ const bookshelf = require('../../db');
 const request = require('request');
 const feed = require('../helper/addToFeed').addToFeed;
 const cheerio = require('cheerio');
+const message = require('../helper/messageConstructor');
 const URL = require("url-parse");
 /**
  * returns all apps of the user.
@@ -53,9 +54,9 @@ module.exports.createOrUpdateApp = (req, res) => {
           //create congratulations feed card when stage changes
           if(['Offer', 'On Site', 'Tech Screen'].includes(application.stage)) {
             let stageMessages = {
-              'Offer': `Congratulate ${applicant.display} on receiving an offer from ${currentApplication.attributes.company_name}`,
-              'On Site': `Give some tips to ${applicant.display} before their on site interview at ${currentApplication.attributes.company_name}`,
-              'Tech Screen': `Give some tips to ${applicant.display} before their tech Screen interview at ${currentApplication.attributes.company_name}`
+              'Offer': message.concatMessage('Congratulate', applicant.display, 'on receiving an offer', 'from', currentApplication.attributes.company_name),
+              'On Site': message.concatMessage('Give some tips to', applicant.display, 'before their on site interview', 'at', currentApplication.attributes.company_name),
+              'Tech Screen': message.concatMessage('Give some tips to', applicant.display, 'before their tech Screen interview', 'at', currentApplication.attributes.company_name)
             }
             feed({
               message: stageMessages[application.stage],
