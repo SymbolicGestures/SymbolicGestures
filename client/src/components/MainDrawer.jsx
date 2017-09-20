@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 
 import AppDrawer from './drawer/AppDrawer.jsx';
 
-import AddBtnTrigInputForm from '../components/AddBtnTrigInputForm.jsx';
+import MainDrawerAddBtnInputForm from '../components/MainDrawerAddBtnInputForm.jsx';
 
 const seanStyleBox = require('./../../styles/seanStyleBox.css');
 
@@ -99,7 +99,7 @@ export default class MainDrawer extends React.Component {
             <Icon name="plus" /> Add Application
           </Button>
 
-          <AddBtnTrigInputForm
+          <MainDrawerAddBtnInputForm
             isInputFormVisible={this.state.isInputFormVisible}
             hideInputForm={this.hideInputForm}
             submitButtonClicked={this.submitButtonClicked}

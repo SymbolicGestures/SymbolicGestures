@@ -3,7 +3,7 @@ import { Table, Segment, Button, Icon, Checkbox, Form } from 'semantic-ui-react'
 import axios from 'axios';
 
 
-export default class AddBtnTrigInputForm extends Component {
+export default class MainDrawerAddBtnInputForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
