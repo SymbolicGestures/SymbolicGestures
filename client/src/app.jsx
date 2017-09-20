@@ -11,34 +11,12 @@ import Connect from './components/Connect/Connect.jsx';
 import PersonalAnalytics from './components/Analytics/PersonalAnalytics.jsx';
 import FirstDateAppliedForJob from './components/Analytics/FirstDateAppliedForJob.jsx';
 
-
-// let fakeSeanGraphDataGenerator = require('./../../config/fakeSeanGraphDataGenerator.js');
-// let fakeSeanGraphData = fakeSeanGraphDataGenerator('01/01/17', new Date());
-
-// let fakeApplications = fakeApplicationsGenerator(15);
-// let fakestages_settings = [
-//   { name: 'Considering', backgroundColor: '#FF9800', textColor: 'black' },
-//   { name: 'Applied', backgroundColor: '#FFC107', textColor: 'black' },
-//   { name: 'Phone Screen', backgroundColor: '#2196F3', textColor: 'white' },
-//   { name: 'OFFER', backgroundColor: '#009688', textColor: 'white' },
-//   { name: 'Denied', backgroundColor: '#F44336', textColor: 'white' },
-//   { name: 'On Site', backgroundColor: '#F44336', textColor: 'white' }
-// ];
-
-// let fakeStageNameToColorHash = {};
-// fakestages_settings.forEach((setting) => {
-//   fakeStageNameToColorHash[setting.name] = {
-//     backgroundColor: setting.backgroundColor,
-//     color: setting.textColor,
-//   };
-// });
-
 const seanStyleBox = require('./../styles/seanStyleBox.css');
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { // for data from database
+    this.state = {
       userId: undefined,
       applications: [],
       stageNameToColorHash: {},
@@ -70,11 +48,6 @@ class App extends React.Component {
       isDateDescendingOrder: true,
       dateAppliedCountDataForGraph: [],
     };
-    // this.state = { // for data from fake data
-    //   applications: fakeApplications,
-    //   stages_settings: fakestages_settings,
-    //   fakeStageNameToColorHash,
-    // };
     this.getApplicationsFromDB = this.getApplicationsFromDB.bind(this);
     this.stageNameToColorHash = this.stageNameToColorHash.bind(this);
     this.toggleNavBar = this.toggleNavBar.bind(this);
@@ -104,7 +77,6 @@ class App extends React.Component {
    * @param  {array} applications Array of applications.
    */
   onStagesChange(stages, applications) {
-    // console.log('previous stages', this.state.stages_settings)
     this.setState({
       'stages_settings': stages
     }, () => {
@@ -113,9 +85,7 @@ class App extends React.Component {
       this.stageNameToColorHash(stages);
       this.countApplicationStages();
     });
-    // console.log(!!applications);
     if (applications !== undefined) {
-      // console.log(this.state.applications);
       this.setState({applications}, this.countApplicationStages);
     }
   }
@@ -138,7 +108,6 @@ class App extends React.Component {
 
         axios.get('/api/applications')
           .then((applicationData) => {
-
             // sort applications by date
             let applications = applicationData.data;
             applications.sort((a, b) => {
@@ -198,8 +167,6 @@ class App extends React.Component {
       let stage = application.stage;
       tempHash[stage].push(application);
     });
-
-    // console.log('tempHash: ', tempHash);
     this.setState({ stageNameToAppsHash: tempHash });
   }
 
@@ -241,8 +208,6 @@ class App extends React.Component {
 
   sortAppsByStageOrder(isStageOrder) {
     let sortedApplications = [];
-    // console.log('->', this.state.stageNameToAppsHash);
-    // console.log('-->', Object.values(this.state.stageNameToAppsHash));
     let tempArr = Object.values(this.state.stageNameToAppsHash);
 
     tempArr.forEach((arr) => {
@@ -256,8 +221,6 @@ class App extends React.Component {
       applications: sortedApplications,
       isStageOrder: !isStageOrder,
     });
-
-    // console.log('--->', sortedApplications);
   }
 
   sortAppsByDate(isDateDescendingOrder) {
@@ -438,7 +401,6 @@ class App extends React.Component {
 
     let datesInOneMonth = [];
     allDates.forEach((date) => {
-      // console.log(date);
       datesInOneMonth.push(date);
       if (isLastDayOfMonth(date)) {
         tempArr.push(datesInOneMonth);
@@ -461,7 +423,6 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log('applications: ', this.state.applications);
     return (
       <Router>
         <div onWheel={(event) => { this.toggleNavBar(event.deltaY); }}>
@@ -524,8 +485,6 @@ class App extends React.Component {
                   let firstDay = firstMonth[0].appliedDate;
                   let lastDay = lastMonth[lastMonth.length - 1].appliedDate;
                   let diffBtwLastAndFirstDate = differenceInCalendarDays(parse(lastDay), parse(firstDay)) + 1;
-                  // let diffBtwLastAndFirstDate = parse(lastDay);
-                  // console.log('diffBtwLastAndFirstDate:', diffBtwLastAndFirstDate);
                   return (
                     <div>
                       <div style={{ height: 100 }} />
@@ -544,15 +503,6 @@ class App extends React.Component {
                             fakeSeanGraphData={data}
                           />);
                       })}
-                      {/* {fakeSeanGraphData.map((data, idx) => {
-                        let intMonth = data[0].appliedDate.slice(5, 7);
-                        return (
-                          <PersonalAnalytics
-                            key={idx}
-                            intMonth={intMonth}
-                            fakeSeanGraphData={data}
-                          />);
-                      })} */}
                     </div>
                   );
                 }
