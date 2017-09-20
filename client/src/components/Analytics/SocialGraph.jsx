@@ -67,4 +67,4 @@ export default SocialGraph;
 
 SocialGraph.propTypes = {
   socialGraphData: PropTypes.array
-}
+};

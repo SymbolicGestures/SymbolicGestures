@@ -92,8 +92,6 @@ export default class MainDrawer extends React.Component {
     let submitButtStyle = Object.assign({ width: '15%', marginLeft: '1%' }, visibilityStyle);
     return (
       <div>
-
-
         <div className={seanStyleBox.box_for_addApplicationButtAndOther}>
           <Button color="vk" onClick={this.openDrawerAndPostEmptyAppToDB} style={{width: '15%'}}>
             <Icon name="plus" /> Add Application
