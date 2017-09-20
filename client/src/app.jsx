@@ -13,12 +13,12 @@ import StageBar from './components/stageBar/StageBar.jsx';
 import DrawerAndApplicationTable from './components/DrawerAndApplicationTable.jsx';
 import Connect from './components/Connect/Connect.jsx';
 
-import SeanTestGraph from './components/Analytics/SeanTestGraph.jsx';
+import PersonalAnalytics from './components/Analytics/PersonalAnalytics.jsx';
 import FirstDateAppliedForJob from './components/Analytics/FirstDateAppliedForJob.jsx';
 
 
-let fakeSeanGraphDataGenerator = require('./../../config/fakeSeanGraphDataGenerator.js');
-let fakeSeanGraphData = fakeSeanGraphDataGenerator('01/01/17', new Date());
+// let fakeSeanGraphDataGenerator = require('./../../config/fakeSeanGraphDataGenerator.js');
+// let fakeSeanGraphData = fakeSeanGraphDataGenerator('01/01/17', new Date());
 
 // let fakeApplications = fakeApplicationsGenerator(15);
 // let fakestages_settings = [
@@ -514,7 +514,7 @@ class App extends React.Component {
                       {this.state.dateAppliedCountDataForGraph.map((data, idx) => {
                         let intMonth = data[0].appliedDate.slice(5, 7);
                         return (
-                          <SeanTestGraph
+                          <PersonalAnalytics
                             key={idx}
                             intMonth={intMonth}
                             fakeSeanGraphData={data}
@@ -523,7 +523,7 @@ class App extends React.Component {
                       {/* {fakeSeanGraphData.map((data, idx) => {
                         let intMonth = data[0].appliedDate.slice(5, 7);
                         return (
-                          <SeanTestGraph
+                          <PersonalAnalytics
                             key={idx}
                             intMonth={intMonth}
                             fakeSeanGraphData={data}

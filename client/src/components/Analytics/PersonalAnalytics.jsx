@@ -1,20 +1,6 @@
 import React, { Component } from 'react';
-
-// import React from 'react';
-// import ReactDOM from 'react-dom';
 import C3Chart from 'react-c3js';
 import 'c3';
-
-import dataFromOtherFile from '../../../../testFakerPastDate.js'
-
-const data = {
-  columns: [
-    ['data1', 30, 200, 100, 400, 150, 250],
-    ['data2', 50, 20, 10, 40, 15, 25]
-  ]
-};
-
-let type = 'bar';
 
 const intMonthHash = {
   '01': { name: 'January', color: '#e0a048' },
@@ -30,21 +16,6 @@ const intMonthHash = {
   '11': { name: 'November', color: '#6d554b' },
   '12': { name: 'December', color: '#d82a41' },
 };
-
-
-// let exampleData = {[
-//   {appliedDate: 'under $60K', dateAppliedCount: 2, dateAppliedCount: 20},
-//   {appliedDate: '$60K to $69,999', dateAppliedCount: 1, dateAppliedCount: 35},
-//   {appliedDate: '$70K to $79,999', dateAppliedCount: 3, dateAppliedCount: 40},
-//   {appliedDate: 'over $80K', dateAppliedCount: 4, dateAppliedCount: 10}
-// ]}
-
-// let exampleData = [
-//   { appliedDate: '09/11/17', dateAppliedCount: 2, },
-//   { appliedDate: '09/12/17', dateAppliedCount: 1, },
-// ];
-
-// let exampleData = dataFromOtherFile;
 
 export default class SeanTestGraph extends Component {
   constructor(props) {
@@ -93,12 +64,3 @@ export default class SeanTestGraph extends Component {
     );
   }
 }
-
-
-
-// {/* tooltip={{
-//   format: {
-//     appliedDate: (appliedDate, ratio, id, index) => { return 'dateAppliedCount:'; },
-//     value: (value, ratio, id, index) => {  return props.exampleData[index].dateAppliedCount; }
-//   }
-// }} */}
