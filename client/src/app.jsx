@@ -14,9 +14,9 @@ import DrawerAndApplicationTable from './components/DrawerAndApplicationTable.js
 import Analytics from './components/Analytics/Analytics.jsx';
 import Connect from './components/Connect/Connect.jsx';
 
-import SeanTestGraph from './components/analytics/SeanTestGraph.jsx';
+import SeanTestGraph from './components/Analytics/SeanTestGraph.jsx';
+import FirstDateAppliedForJob from './components/Analytics/FirstDateAppliedForJob.jsx';
 
-import FirstDateAppliedForJob from './components/analytics/FirstDateAppliedForJob.jsx';
 
 const fakeApplicationsGenerator = require('./../../config/fakeApplicationsGenerator.js');
 
@@ -93,6 +93,7 @@ class App extends React.Component {
     this.setStageNameToAppsHash = this.setStageNameToAppsHash.bind(this);
     this.toggleIsFavoriteForOneAppInFE = this.toggleIsFavoriteForOneAppInFE.bind(this);
     this.generateAppliedCountGraphData = this.generateAppliedCountGraphData.bind(this);
+    this.updateOneKeyValPairToDB = this.updateOneKeyValPairToDB.bind(this);
   }
 
   componentDidMount() {
@@ -152,6 +153,8 @@ class App extends React.Component {
               return strDateToMiliSec(b.created_at) - strDateToMiliSec(a.created_at);
             });
 
+            // console.log('applications:', applications);
+            
             let appliedDateToCountHash = {};
             applications.forEach((application) => {
               let formattedDate = format(application.applied_at, 'ddd, MM/DD/YY');
@@ -160,7 +163,6 @@ class App extends React.Component {
               } else {
                 appliedDateToCountHash[formattedDate] += 1;
               }
-              application.isFavorite = false;
             });
 
             let applicationLen = applications.length;
@@ -399,10 +401,29 @@ class App extends React.Component {
   }
 
   toggleIsFavoriteForOneAppInFE(applications, idx) {
+    console.log('before:', applications[idx].isFavorite);
     applications[idx].isFavorite = !applications[idx].isFavorite;
     this.setState({ applications });
+    console.log('after:', applications[idx].isFavorite);
+    this.updateOneKeyValPairToDB(applications[idx], 'isFavorite');
   }
 
+  updateOneKeyValPairToDB(application, appKey) {
+    let route = `/api/applications/${application.id}`;
+    let key = appKey;
+    let val = application[appKey];
+    let body = {};
+    console.log('keyVal', key, val);
+    body[key] = val;
+    console.log('body', body);
+    axios.post(route, body)
+      .then( (app) => {
+        console.log(app);
+      })
+        
+        // console.log('Able to post one app key val pair to DB'))
+      .catch((message) => { console.log(message); });
+  }
 
   generateAppliedCountGraphData(begDate, endDate) {
     // let beginningDate = '08/15/17';

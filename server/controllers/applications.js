@@ -73,7 +73,8 @@ module.exports.createOrUpdateApp = (req, res) => {
             location: application.location,
             job_posting_source: application.job_posting_source,
             job_posting_to_pdf_link: application.job_posting_to_pdf_link,
-            salary: application.salary
+            salary: application.salary,
+            isFavorite: application.isFavorite
           });
         }
       })

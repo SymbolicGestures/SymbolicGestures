@@ -38,6 +38,7 @@ exports.up = function (knex, Promise) {
       table.string('job_posting_to_pdf_link').nullable();
       table.integer('salary').nullable();
       table.timestamp('applied_at').defaultTo(knex.fn.now());
+      table.boolean('isFavorite').defaultTo(false);
       table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('histories', function(table) {
