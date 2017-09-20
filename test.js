@@ -12,6 +12,8 @@ let arr = ['Ccc', 'zzz', 'aaa', 'fff', 'ddd'];
 
 // console.log('a'.toUpperCase());
 
-let arr1 = arr.slice();
+// let arr1 = arr.slice();
 
-console.log(arr1.reverse());
+// console.log(arr1.reverse());
+console.log(arr[-1]);
+

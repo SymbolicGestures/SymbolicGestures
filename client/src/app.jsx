@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import { parse, getTime, format } from 'date-fns';
+import { parse, getTime, format, eachDay, isLastDayOfMonth, differenceInCalendarDays } from 'date-fns';
 import {
   BrowserRouter as Router,
   Route,
@@ -15,9 +15,8 @@ import Analytics from './components/Analytics/Analytics.jsx';
 import Connect from './components/Connect/Connect.jsx';
 
 import SeanTestGraph from './components/analytics/SeanTestGraph.jsx';
-import DayPickerExample from './components/DayPickerExample.jsx';
 
-
+import FirstDateAppliedForJob from './components/analytics/FirstDateAppliedForJob.jsx';
 
 const fakeApplicationsGenerator = require('./../../config/fakeApplicationsGenerator.js');
 
@@ -55,6 +54,7 @@ class App extends React.Component {
       applications: [],
       stageNameToColorHash: {},
       stageNameToAppsHash: {},
+      appliedDateToCountHash: {},
       stagesCount: {},
       navBarIsHidden: false,
       profile: {},
@@ -70,6 +70,7 @@ class App extends React.Component {
       isAlphabetOrder: true,
       isStageOrder: true,
       isDateDescendingOrder: true,
+      dateAppliedCountDataForGraph: [],
     };
     // this.state = { // for data from fake data
     //   applications: fakeApplications,
@@ -91,6 +92,7 @@ class App extends React.Component {
     this.sortAppsByIsFavorite = this.sortAppsByIsFavorite.bind(this);
     this.setStageNameToAppsHash = this.setStageNameToAppsHash.bind(this);
     this.toggleIsFavoriteForOneAppInFE = this.toggleIsFavoriteForOneAppInFE.bind(this);
+    this.generateAppliedCountGraphData = this.generateAppliedCountGraphData.bind(this);
   }
 
   componentDidMount() {
@@ -135,15 +137,11 @@ class App extends React.Component {
         let profile = userData.data;
         this.stageNameToColorHash(this.state.stages_settings);
 
-        this.setState({profile, userId});
+        this.setState({ profile, userId });
 
-
-        // console.log('stageNameToColorHash:', stageNameToColorHash);
-        // console.log('fakeStageNameToColorHash:', fakeStageNameToColorHash);
 
         axios.get('/api/applications')
           .then((applicationData) => {
-            // console.log('Applications from database:', applicationData.data);
 
             let strDateToMiliSec = (strDate) => {
               return getTime(parse(strDate));
@@ -154,19 +152,33 @@ class App extends React.Component {
               return strDateToMiliSec(b.created_at) - strDateToMiliSec(a.created_at);
             });
 
+            let appliedDateToCountHash = {};
             applications.forEach((application) => {
+              let formattedDate = format(application.applied_at, 'ddd, MM/DD/YY');
+              if (appliedDateToCountHash[formattedDate] === undefined) {
+                appliedDateToCountHash[formattedDate] = 1;
+              } else {
+                appliedDateToCountHash[formattedDate] += 1;
+              }
               application.isFavorite = false;
             });
-            // applications = applications.map((application) => {
-            //   application.created_at = format(parse(application.created_at), 'ddd, MMM DD, YY');
-            //   return application;
-            // });
 
-            // console.log(applications);
+            let applicationLen = applications.length;
+            let oldestApplication = applications[applicationLen - 1];
+            let oldestAppAppliedAt = oldestApplication.applied_at;
+            let dataForGraph = this.generateAppliedCountGraphData(oldestAppAppliedAt, new Date());
 
-            // this.setState({ applications }, this.countApplicationStages);
-            // this.setState({ applications }, this.setStageNameToAppsHash);
-            this.setState({ applications }, () => {
+            dataForGraph.forEach((dateInOneMonth) => {
+              dateInOneMonth.forEach((oneDate) => {
+                oneDate.howManyApplied = appliedDateToCountHash[oneDate.appliedDate];
+              });
+            });
+
+            this.setState({
+              applications,
+              appliedDateToCountHash,
+              dateAppliedCountDataForGraph: dataForGraph
+            }, () => {
               this.countApplicationStages();
               this.setStageNameToAppsHash();
             });
@@ -391,7 +403,42 @@ class App extends React.Component {
     this.setState({ applications });
   }
 
+
+  generateAppliedCountGraphData(begDate, endDate) {
+    // let beginningDate = '08/15/17';
+    // let todayDate = new Date();
+    let tempArr = [];
+    let parseBegDate = parse(begDate);
+    let parseEndDate = parse(endDate);
+
+    let allDates = eachDay(parseBegDate, parseEndDate);
+
+    let datesInOneMonth = [];
+    allDates.forEach((date) => {
+      // console.log(date);
+      datesInOneMonth.push(date);
+      if (isLastDayOfMonth(date)) {
+        tempArr.push(datesInOneMonth);
+        datesInOneMonth = [];
+      }
+    });
+    tempArr.push(datesInOneMonth);
+
+    let outputArr = tempArr.map((dates) => {
+      let dataForGraph = dates.map((date) => {
+        let formattedDate = format(date, 'ddd, MM/DD/YY');
+        return {
+          appliedDate: formattedDate,
+          howManyApplied: 0,
+        };
+      });
+      return dataForGraph;
+    });
+    return outputArr;
+  }
+
   render() {
+    // console.log('applications: ', this.state.applications);
     return (
       <Router>
         <div onWheel={(event) => { this.toggleNavBar(event.deltaY); }}>
@@ -401,12 +448,11 @@ class App extends React.Component {
             profile={this.state.profile}
             displayName={this.state.profile.display || 'profile'}
           />
-          {/* <div className="box_94per_3perMg"> */}
           <Switch>
             <Route
               key = {1}
               exact path = {'/'}
-              render = {()=>{return (
+              render = {() => { return (
                 <div>
                   <div className={seanStyleBox.box_94per_3perMg}>
                     <div className={seanStyleBox.PatrickStatusBar}>
@@ -448,22 +494,37 @@ class App extends React.Component {
               key={2}
               path={'/analytics'}
               render={() => {
-                return (
-                  <div>
-                    <div style={{ height: 200 }} />
-                    <DayPickerExample />
-                    {fakeSeanGraphData.map((data, idx) => {
-                      let intMonth = data[0].appliedDate.slice(5, 7);  
-                      return (
-                        <SeanTestGraph
-                          key={idx}
-                          intMonth={intMonth}
-                          fakeSeanGraphData={data}
-                        />);
-                    })}
-                    <div style={{ height: 200 }} />
-                  </div>
-                );
+                let applicationCount = this.state.applications.length;
+                if (applicationCount > 0) {
+                  let firstMonth = this.state.dateAppliedCountDataForGraph[0];
+                  let lastMonth = this.state.dateAppliedCountDataForGraph[this.state.dateAppliedCountDataForGraph.length - 1];
+                  let firstDay = firstMonth[0].appliedDate;
+                  let lastDay = lastMonth[lastMonth.length - 1].appliedDate;
+                  let diffBtwLastAndFirstDate = differenceInCalendarDays(parse(lastDay), parse(firstDay)) + 1;
+                  // let diffBtwLastAndFirstDate = parse(lastDay);
+                  // console.log('diffBtwLastAndFirstDate:', diffBtwLastAndFirstDate);
+                  return (
+                    <div>
+                      <div style={{ height: 100 }} />
+                      <FirstDateAppliedForJob
+                        dateOfFirstApplied={firstDay}
+                        todaysDate={lastDay}
+                        applicationCount={applicationCount}
+                        diffBtwLastAndFirstDate={diffBtwLastAndFirstDate}
+                      />
+                      {this.state.dateAppliedCountDataForGraph.map((data, idx) => {
+                        let intMonth = data[0].appliedDate.slice(5, 7);
+                        return (
+                          <SeanTestGraph
+                            key={idx}
+                            intMonth={intMonth}
+                            fakeSeanGraphData={data}
+                          />);
+                      })}
+                    </div>
+                  );
+                }
+                return (<div>a</div>);
               }}
             />
             <Route
