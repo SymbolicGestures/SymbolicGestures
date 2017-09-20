@@ -3,7 +3,6 @@ const bookshelf = require('../../db');
 let client = require('../middleware')['stream'];
 
 module.exports.feedAdd = (req, res) => {
-  console.log('got in feed')
   let feedInfo = req.body;
   let user = req.user;
   let newFeed = client.feed('profile', user.id);
@@ -16,7 +15,6 @@ module.exports.feedAdd = (req, res) => {
     profile_id: user.id
   })
   .then(feedMessage => {
-    console.log('from feed:', feedMessage.attributes)
     return newFeed.addActivity({
       actor: user.display,
       verb: feedMessage.attributes.message_type,
@@ -40,7 +38,6 @@ module.exports.feedGet = (req, res) => {
   // newFeed.follow('organization_feed', req.user.organization_id);
   newFeed.get({limit:15})
     .then(results => {
-      console.log(results.results[0].activities)
       res.status(200).send(results)
     })
     .catch(err=> {

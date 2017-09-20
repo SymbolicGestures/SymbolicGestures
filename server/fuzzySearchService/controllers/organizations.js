@@ -25,7 +25,6 @@ module.exports.createOrUpdateOrganization = (req, res) => {
     return models.Organization.forge({id: req.params.id}).fetch()
       .then(newOrganization => {
         if(newOrganization) {
-          console.log(organization)
           return newOrganization.save({
             organization_name: organization.organization_name
           })

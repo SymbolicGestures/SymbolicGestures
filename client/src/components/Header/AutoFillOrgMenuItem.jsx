@@ -30,7 +30,6 @@ export default class AutoFillOrgMenuItem extends React.Component {
       "organization_id": orgId
     })
     .then((profile)=>{
-      console.log(profile)
       axios.post('/api/feed', {
         message_type: 'joinOrg',
         message: `${profile.data.display} joined ${orgName}!`
