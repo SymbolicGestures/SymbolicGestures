@@ -11,40 +11,34 @@ import {
 import Navbar from './components/Header/Navbar.jsx';
 import StageBar from './components/stageBar/StageBar.jsx';
 import DrawerAndApplicationTable from './components/DrawerAndApplicationTable.jsx';
-import Analytics from './components/Analytics/Analytics.jsx';
 import Connect from './components/Connect/Connect.jsx';
 
 import SeanTestGraph from './components/Analytics/SeanTestGraph.jsx';
 import FirstDateAppliedForJob from './components/Analytics/FirstDateAppliedForJob.jsx';
 
 
-const fakeApplicationsGenerator = require('./../../config/fakeApplicationsGenerator.js');
-
 let fakeSeanGraphDataGenerator = require('./../../config/fakeSeanGraphDataGenerator.js');
-
 let fakeSeanGraphData = fakeSeanGraphDataGenerator('01/01/17', new Date());
 
-let fakeApplications = fakeApplicationsGenerator(15);
-let fakestages_settings = [
-  { name: 'Considering', backgroundColor: '#FF9800', textColor: 'black' },
-  { name: 'Applied', backgroundColor: '#FFC107', textColor: 'black' },
-  { name: 'Phone Screen', backgroundColor: '#2196F3', textColor: 'white' },
-  { name: 'OFFER', backgroundColor: '#009688', textColor: 'white' },
-  { name: 'Denied', backgroundColor: '#F44336', textColor: 'white' },
-  { name: 'On Site', backgroundColor: '#F44336', textColor: 'white' }
-];
+// let fakeApplications = fakeApplicationsGenerator(15);
+// let fakestages_settings = [
+//   { name: 'Considering', backgroundColor: '#FF9800', textColor: 'black' },
+//   { name: 'Applied', backgroundColor: '#FFC107', textColor: 'black' },
+//   { name: 'Phone Screen', backgroundColor: '#2196F3', textColor: 'white' },
+//   { name: 'OFFER', backgroundColor: '#009688', textColor: 'white' },
+//   { name: 'Denied', backgroundColor: '#F44336', textColor: 'white' },
+//   { name: 'On Site', backgroundColor: '#F44336', textColor: 'white' }
+// ];
 
-let fakeStageNameToColorHash = {};
-fakestages_settings.forEach((setting) => {
-  fakeStageNameToColorHash[setting.name] = {
-    backgroundColor: setting.backgroundColor,
-    color: setting.textColor,
-  };
-});
+// let fakeStageNameToColorHash = {};
+// fakestages_settings.forEach((setting) => {
+//   fakeStageNameToColorHash[setting.name] = {
+//     backgroundColor: setting.backgroundColor,
+//     color: setting.textColor,
+//   };
+// });
 
 const seanStyleBox = require('./../styles/seanStyleBox.css');
-
-
 
 class App extends React.Component {
   constructor(props) {
@@ -140,20 +134,14 @@ class App extends React.Component {
 
         this.setState({ profile, userId });
 
-
         axios.get('/api/applications')
           .then((applicationData) => {
 
-            let strDateToMiliSec = (strDate) => {
-              return getTime(parse(strDate));
-            };
-
+            // sort applications by date
             let applications = applicationData.data;
             applications.sort((a, b) => {
-              return strDateToMiliSec(b.created_at) - strDateToMiliSec(a.created_at);
+              return getTime(parse(b.created_at)) - getTime(parse(a.created_at));
             });
-
-            // console.log('applications:', applications);
             
             let appliedDateToCountHash = {};
             applications.forEach((application) => {
@@ -190,18 +178,15 @@ class App extends React.Component {
           })
           .catch((err) => {
             console.log('err from api/applications');
-            // console.log(err);
           });
       })
       .catch((err) => {
         console.log('err from /api/preference', err);
-        // console.log(err);
       });
   }
 
   setStageNameToAppsHash() {
     let applications = this.state.applications;
-    // console.log('setStage: ', applications);
     let tempHash = {};
     this.state.stages_settings.forEach((item) => {
       tempHash[item.name] = [];
@@ -298,11 +283,6 @@ class App extends React.Component {
     sortedApplications.sort((a, b) => {
       let B = a.isFavorite.toString();
       let A = b.isFavorite.toString();
-      // if (isAlphabetOrder) {
-      //   A = a.isFavorite.toString();
-      //   B = b.isFavorite.toString();
-      // }
-
       if (A === B) { return 0; }
       return A < B ? -1 : 1;
     });
@@ -341,7 +321,7 @@ class App extends React.Component {
    * @async post to database
    */
   updateStages() {
-    axios.post('/api/profiles', {'stages_settings': this.state.stages_settings})
+    axios.post('/api/profiles', { stages_settings: this.state.stages_settings })
       .then(function (response) {
         console.log('post req stage succeed');
         console.log(response);
@@ -420,8 +400,6 @@ class App extends React.Component {
       .then( (app) => {
         console.log(app);
       })
-        
-        // console.log('Able to post one app key val pair to DB'))
       .catch((message) => { console.log(message); });
   }
 
@@ -541,7 +519,16 @@ class App extends React.Component {
                             intMonth={intMonth}
                             fakeSeanGraphData={data}
                           />);
-                      })}
+                      })} 
+                      {/* {fakeSeanGraphData.map((data, idx) => {
+                        let intMonth = data[0].appliedDate.slice(5, 7);
+                        return (
+                          <SeanTestGraph
+                            key={idx}
+                            intMonth={intMonth}
+                            fakeSeanGraphData={data}
+                          />);
+                      })} */}
                     </div>
                   );
                 }
