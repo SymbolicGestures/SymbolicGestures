@@ -1,7 +1,6 @@
-import React from 'react'
-import styles from './../../../styles/socialGraphStyles.css'
-import PropTypes from 'prop-types'
-import C3Chart from 'react-c3js'
+import React from 'react';
+import PropTypes from 'prop-types';
+import C3Chart from 'react-c3js';
 
 const SocialGraph = (props) => {
   let graphHeight = window.innerHeight - 180;

@@ -2,6 +2,7 @@ import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import { Button, Icon } from 'semantic-ui-react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 
 import AppDrawer from './drawer/AppDrawer.jsx';
@@ -91,7 +92,7 @@ export default class MainDrawer extends React.Component {
     return (
       <div>
         <div className={seanStyleBox.box_for_addApplicationButtAndOther}>
-          <Button color="vk" onClick={this.openDrawerAndPostEmptyAppToDB} style={{width: '15%'}}>
+          <Button color="vk" onClick={this.openDrawerAndPostEmptyAppToDB} style={{ width: '15%' }}>
             <Icon name="plus" /> Add Application
           </Button>
 
@@ -135,3 +136,19 @@ export default class MainDrawer extends React.Component {
     );
   }
 }
+
+MainDrawer.propTypes = {
+  application: PropTypes.object,
+  isDrawerOpen: PropTypes.func,
+  closeDrawer: PropTypes.func,
+  getApplicationsFromDB: PropTypes.func,
+  setSelectAppToNewApp: PropTypes.func,
+  stages_settings: PropTypes.object,
+  stageNameToColorHash: PropTypes.object,
+  updateOneAppStage: PropTypes.func,
+  selectedAppIdx: PropTypes.number,
+  createNewApplicationInFE: PropTypes.func,
+  updateOneKeyValPairInFE: PropTypes.func,
+  attemptWebScrape: PropTypes.func,
+};
+

@@ -103,8 +103,6 @@ export default class DrawerAndApplicationTable extends React.Component {
         <MainDrawer
           application={this.state.selectedApplication}
           isDrawerOpen={this.state.isDrawerOpen}
-          handleAddButtonClick={this.handleAddButtonClick}
-          openDrawer={this.openDrawer}
           closeDrawer={this.closeDrawer}
           getApplicationsFromDB={this.props.getApplicationsFromDB}
           setSelectAppToNewApp={this.setSelectAppToNewApp}
