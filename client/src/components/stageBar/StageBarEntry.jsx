@@ -10,19 +10,19 @@ const StageBarEntry = (props) => {
     'flex': `${props.flexSize}`,
     'opacity': props.opacity,
   };
-  if(props.stage.name === 'Denied') {
+  if (props.stage.name === 'Denied') {
     style.flex = 1;
   }
 
   return (
     <li
       style={style}
-      onClick={() => {props.toggleStage(props.entryPosition)}}
+      onClick={() => { props.toggleStage(props.entryPosition) }}
     >
       <div className={styles.settings}>
 
       </div>
-      {props.count}<br/>{props.stage.name}
+      {props.count}<br />{props.stage.name}
     </li>
   );
 };

@@ -6,7 +6,7 @@ import axios from 'axios';
 class Analytics extends React.Component {
   constructor() {
     super();
-    this.state={
+    this.state = {
       socialGraphData: []
     };
     this.salaryIncrements = 10000;
@@ -22,17 +22,17 @@ class Analytics extends React.Component {
   getOrgSalaries() {
     axios.get('api/orgSalary')
       .then(salaries => {
-        console.log('raw data: ',salaries.data)
-        let socialGraphData = [{name: `under $${this.numberWithCommas(Math.round(this.salaryStartPoint/1000))}k`, count: 0, percentage: undefined}];
+        console.log('raw data: ', salaries.data)
+        let socialGraphData = [{ name: `under $${this.numberWithCommas(Math.round(this.salaryStartPoint / 1000))}k`, count: 0, percentage: undefined }];
         let graphStartingPoint = this.salaryIncrements;
-        salaries.data.forEach((salary)=>{
-          console.log('current data: ',salary, 'thisSalaryStartPoint: ', this.salaryStartPoint)
-          if(salary < this.salaryStartPoint) {
+        salaries.data.forEach((salary) => {
+          console.log('current data: ', salary, 'thisSalaryStartPoint: ', this.salaryStartPoint)
+          if (salary < this.salaryStartPoint) {
             socialGraphData[socialGraphData.length - 1].count++;
-          } else if(salary < this.salaryCeiling){
-            while(salary >= this.salaryStartPoint) {
+          } else if (salary < this.salaryCeiling) {
+            while (salary >= this.salaryStartPoint) {
               this.salaryStartPoint += this.salaryIncrements;
-              if(salary >= this.salaryStartPoint) {
+              if (salary >= this.salaryStartPoint) {
                 socialGraphData.push({
                   name: `$${this.numberWithCommas(this.salaryStartPoint - 10000)} to ${this.numberWithCommas(this.salaryStartPoint - 1)}`,
                   count: 0,
@@ -47,7 +47,7 @@ class Analytics extends React.Component {
               }
             }
           } else {
-            while(this.salaryCeiling >= this.salaryStartPoint) {
+            while (this.salaryCeiling >= this.salaryStartPoint) {
               this.salaryStartPoint += this.salaryIncrements;
               socialGraphData.push({
                 name: `$${this.numberWithCommas(this.salaryStartPoint - 10000)} to ${this.numberWithCommas(this.salaryStartPoint - 1)}`,
@@ -57,13 +57,13 @@ class Analytics extends React.Component {
             }
             this.salaryStartPoint = Infinity;
             socialGraphData.push({
-              name: `over $${this.numberWithCommas(Math.round(this.salaryCeiling/1000))}k`,
+              name: `over $${this.numberWithCommas(Math.round(this.salaryCeiling / 1000))}k`,
               count: 1, percentage: undefined
             });
           }
         });
         socialGraphData.map(data => {
-          data.percentage = Math.floor(data.count/salaries.data.length*100)
+          data.percentage = Math.floor(data.count / salaries.data.length * 100)
           return data;
         });
         this.setState({
@@ -73,7 +73,7 @@ class Analytics extends React.Component {
   }
 
   numberWithCommas(x) {
-      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   render() {
@@ -90,7 +90,7 @@ class Analytics extends React.Component {
     }
     return (
       <div>
-        <div style={{height:"66px"}}></div>
+        <div style={{ height: "66px" }}></div>
         {socialGraph}
       </div>
     );

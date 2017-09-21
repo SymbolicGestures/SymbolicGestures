@@ -80,13 +80,13 @@ class App extends React.Component {
     this.setState({
       'stages_settings': stages
     }, () => {
-//       console.log(this.state.stages_settings)
+      //       console.log(this.state.stages_settings)
       this.updateStages();
       this.stageNameToColorHash(stages);
       this.countApplicationStages();
     });
     if (applications !== undefined) {
-      this.setState({applications}, this.countApplicationStages);
+      this.setState({ applications }, this.countApplicationStages);
     }
   }
 
@@ -240,7 +240,7 @@ class App extends React.Component {
   }
 
   sortAppsByIsFavorite() {
-//     console.log('sortAppsByFav');
+    //     console.log('sortAppsByFav');
     let sortedApplications = this.state.applications.slice();
 
     sortedApplications.sort((a, b) => {
@@ -296,8 +296,8 @@ class App extends React.Component {
     let filteredApplications = [];
     for (let i = 0; i < this.state.applications.length; i++) {
       let application = this.state.applications[i],
-          stage = application['stage'],
-          appStage = stageNameToIndex[stage];
+        stage = application['stage'],
+        appStage = stageNameToIndex[stage];
       if (this.state.filter_stages[appStage]) {
         filteredApplications.push(application)
       }
@@ -350,9 +350,9 @@ class App extends React.Component {
 
   updateOneKeyValPairInFE(idx, updatedField, updatedText) {
     // console.log(idx, updatedField,updatedText);
-//     console.log(this.state.applications)
-    if(updatedField === 'contacts' || updatedField === 'notes') {
-//       console.log('here', this.state.applications[idx][updatedField]);
+    //     console.log(this.state.applications)
+    if (updatedField === 'contacts' || updatedField === 'notes') {
+      //       console.log('here', this.state.applications[idx][updatedField]);
       this.state.applications[idx][updatedField].push(updatedText)
       this.setState({
         applications: this.state.applications
@@ -387,11 +387,11 @@ class App extends React.Component {
     let key = appKey;
     let val = application[appKey];
     let body = {};
-//     console.log('keyVal', key, val);
+    //     console.log('keyVal', key, val);
     body[key] = val;
-//     console.log('body', body);
+    //     console.log('body', body);
     axios.post(route, body)
-      .then( (app) => {
+      .then((app) => {
         console.log(app);
       })
       .catch((message) => { console.log(message); });
@@ -441,45 +441,47 @@ class App extends React.Component {
           />
           <Switch>
             <Route
-              key = {1}
-              exact path = {'/'}
-              render = {() => { return (
-                <div>
-                  <div className={seanStyleBox.box_94per_3perMg}>
-                    <div className={seanStyleBox.PatrickStatusBar}>
-                      <StageBar
-                        stages={this.state.stages_settings}
-                        stagesCount={this.state.stagesCount}
-                        stageNameToColorHash={this.state.stageNameToColorHash}
+              key={1}
+              exact path={'/'}
+              render={() => {
+                return (
+                  <div>
+                    <div className={seanStyleBox.box_94per_3perMg}>
+                      <div className={seanStyleBox.PatrickStatusBar}>
+                        <StageBar
+                          stages={this.state.stages_settings}
+                          stagesCount={this.state.stagesCount}
+                          stageNameToColorHash={this.state.stageNameToColorHash}
+                          applications={this.state.applications}
+                          stages_filter={this.state.stages_filter}
+                          toggleStage={this.toggleStage}
+                        />
+                      </div>
+                    </div>
+
+
+                    <div className={seanStyleBox.DrawerAndApplicationTable}>
+                      <DrawerAndApplicationTable
                         applications={this.state.applications}
-                        stages_filter={this.state.stages_filter}
-                        toggleStage={this.toggleStage}
+                        stages_settings={this.state.stages_settings}
+                        stageNameToColorHash={this.state.stageNameToColorHash}
+                        getApplicationsFromDB={this.getApplicationsFromDB}
+                        updateOneAppStage={this.updateOneAppStage}
+                        updateOneKeyValPairInFE={this.updateOneKeyValPairInFE}
+                        createNewApplicationInFE={this.createNewApplicationInFE}
+                        sortAppsByAlphaOrder={this.sortAppsByAlphaOrder}
+                        isAlphabetOrder={this.state.isAlphabetOrder}
+                        isStageOrder={this.state.isStageOrder}
+                        isDateDescendingOrder={this.state.isDateDescendingOrder}
+                        sortAppsByStageOrder={this.sortAppsByStageOrder}
+                        sortAppsByDate={this.sortAppsByDate}
+                        sortAppsByIsFavorite={this.sortAppsByIsFavorite}
+                        toggleIsFavoriteForOneAppInFE={this.toggleIsFavoriteForOneAppInFE}
                       />
                     </div>
                   </div>
-
-
-                  <div className={seanStyleBox.DrawerAndApplicationTable}>
-                    <DrawerAndApplicationTable
-                      applications={this.state.applications}
-                      stages_settings={this.state.stages_settings}
-                      stageNameToColorHash={this.state.stageNameToColorHash}
-                      getApplicationsFromDB={this.getApplicationsFromDB}
-                      updateOneAppStage={this.updateOneAppStage}
-                      updateOneKeyValPairInFE={this.updateOneKeyValPairInFE}
-                      createNewApplicationInFE={this.createNewApplicationInFE}
-                      sortAppsByAlphaOrder={this.sortAppsByAlphaOrder}
-                      isAlphabetOrder={this.state.isAlphabetOrder}
-                      isStageOrder={this.state.isStageOrder}
-                      isDateDescendingOrder={this.state.isDateDescendingOrder}
-                      sortAppsByStageOrder={this.sortAppsByStageOrder}
-                      sortAppsByDate={this.sortAppsByDate}
-                      sortAppsByIsFavorite={this.sortAppsByIsFavorite}
-                      toggleIsFavoriteForOneAppInFE={this.toggleIsFavoriteForOneAppInFE}
-                    />
-                  </div>
-                </div>
-              )}}
+                )
+              }}
             />
             <Route
               key={2}
@@ -517,13 +519,15 @@ class App extends React.Component {
               }}
             />
             <Route
-              key = {3}
-              path = {'/connect'}
-              render = { () => {return (
-                <div>
-                  <Connect />
-                </div>
-              )}}
+              key={3}
+              path={'/connect'}
+              render={() => {
+                return (
+                  <div>
+                    <Connect />
+                  </div>
+                )
+              }}
             />
           </Switch>
         </div>

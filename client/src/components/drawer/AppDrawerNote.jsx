@@ -18,10 +18,6 @@ class AppDrawerNote extends React.Component {
           key={0}
           getApplicationsFromDB={this.props.getApplicationsFromDB}
         />
-
-        {/* {this.props.application.notes.map((note,index) => {
-          return ( );
-        })} */}
       </div>
     );
   }

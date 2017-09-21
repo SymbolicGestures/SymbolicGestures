@@ -30,14 +30,14 @@ class AppDrawerContact extends React.Component {
   }
 
   handleOpen() {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
-/**
- * [ close the dialog box, erases existing value in the fields]
- * @param  {[type]} data [description]
- * @return {[type]}      [description]
- */
+  /**
+   * [ close the dialog box, erases existing value in the fields]
+   * @param  {[type]} data [description]
+   * @return {[type]}      [description]
+   */
   handleClose(data) {
     this.setState({
       open: false,
@@ -59,8 +59,8 @@ class AppDrawerContact extends React.Component {
 
     let route = '/api/contacts/';
 
-    axios.post(route,newContact)
-    .then(this.props.getApplicationsFromDB());
+    axios.post(route, newContact)
+      .then(this.props.getApplicationsFromDB());
 
     this.createHistoryEntry(event)
 
@@ -72,16 +72,16 @@ class AppDrawerContact extends React.Component {
     let route = '/api/histories/';
     let application_id = this.props.application.id;
 
-    let body = {'event' : eventText, application_id};
-    axios.post(route,body)
-    .then(this.props.getApplicationsFromDB());
+    let body = { 'event': eventText, application_id };
+    axios.post(route, body)
+      .then(this.props.getApplicationsFromDB());
   }
 
-// handle input change for all 4 fields, get id from event and change corresponding state value
+  // handle input change for all 4 fields, get id from event and change corresponding state value
   handleChange(event) {
     var key = event.target.id;
     var val = event.target.value;
-    var obj  = {};
+    var obj = {};
     obj[key] = val;
     this.setState(obj);
   };
@@ -106,7 +106,7 @@ class AppDrawerContact extends React.Component {
       <div className={styles.contacts}>
         <h1>Contacts</h1>
         <div className={styles.contactInfo}>
-          <RaisedButton label="Add Contact" onClick={this.handleOpen} primary={true}/>
+          <RaisedButton label="Add Contact" onClick={this.handleOpen} primary={true} />
           <Dialog
             title="Enter Contact Info"
             actions={actions}
@@ -145,7 +145,7 @@ class AppDrawerContact extends React.Component {
           </Dialog>
         </div>
 
-        {this.props.application.contacts.map((contact,index) => {
+        {this.props.application.contacts.map((contact, index) => {
           return (
             <AppDrawerContactItem
               contact={contact}

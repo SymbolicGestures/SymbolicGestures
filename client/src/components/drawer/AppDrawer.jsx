@@ -36,33 +36,33 @@ class AppDrawer extends React.Component {
           updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
           attemptWebScrape={this.props.attemptWebScrape}
         />
-      <div className={styles.notesAndContacts}>
-        <AppDrawerNote
-          application={this.props.application}
-          getApplicationsFromDB={this.props.getApplicationsFromDB}
-          selectedAppIdx={this.props.selectedAppIdx}
-          updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
-        />
-        <AppDrawerContact
-          application={this.props.application}
-          getApplicationsFromDB={this.props.getApplicationsFromDB}
-          selectedAppIdx={this.props.selectedAppIdx}
-          updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
-        />
+        <div className={styles.notesAndContacts}>
+          <AppDrawerNote
+            application={this.props.application}
+            getApplicationsFromDB={this.props.getApplicationsFromDB}
+            selectedAppIdx={this.props.selectedAppIdx}
+            updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
+          />
+          <AppDrawerContact
+            application={this.props.application}
+            getApplicationsFromDB={this.props.getApplicationsFromDB}
+            selectedAppIdx={this.props.selectedAppIdx}
+            updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
+          />
+        </div>
+        <div>
+          <AppDrawerHistory application={this.props.application} />
+        </div>
+        <div>
+          <FlatButton
+            label="Delete App"
+            style={{ 'float': 'right', 'color': 'red', opacity: .2 }}
+            primary={true}
+            keyboardFocused={true}
+            onClick={this.deleteApplication}
+          />
+        </div>
       </div>
-      <div>
-        <AppDrawerHistory application={this.props.application}/>
-      </div>
-      <div>
-        <FlatButton
-          label="Delete App"
-          style={{'float': 'right','color': 'red',opacity: .2}}
-          primary={true}
-          keyboardFocused={true}
-          onClick={this.deleteApplication}
-        />
-      </div>
-    </div>
     );
   }
 }

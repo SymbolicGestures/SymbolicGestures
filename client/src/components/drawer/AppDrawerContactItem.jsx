@@ -49,7 +49,7 @@ class AppDrawerContactItem extends React.Component {
     console.log('edit the contact with this id:', this.props.contact.id);
   }
 
-  openDatePicker(){
+  openDatePicker() {
     this.refs.datepicker.openDialog()
   }
 
@@ -57,55 +57,55 @@ class AppDrawerContactItem extends React.Component {
     axios.post('/api/findContact', {
       email: this.props.contact.email
     })
-    .then(url=>{
-      window.open(
-        url.data,
-        '_blank'
-      );
-    })
-    .catch(err=>{
-      console.log(err);
-    });
+      .then(url => {
+        window.open(
+          url.data,
+          '_blank'
+        );
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
     return (
       <div className={styles.contact}>
-          <Card>
-            <Card.Content>
-              <Card.Header>
-                <Icon style={{opacity: .1}} link name='close' onClick={this.handleDeleteContact}/>
-              </Card.Header>
+        <Card>
+          <Card.Content>
+            <Card.Header>
+              <Icon style={{ opacity: .1 }} link name='close' onClick={this.handleDeleteContact} />
+            </Card.Header>
 
-              <Card.Header>{this.props.contact.name}</Card.Header>
+            <Card.Header>{this.props.contact.name}</Card.Header>
 
-              <Card.Meta>{this.props.contact.role}</Card.Meta>
+            <Card.Meta>{this.props.contact.role}</Card.Meta>
 
-              <div style={{display:'inline'}}>
-                <Card.Description style={{display:'inline'}}>{this.props.contact.email}</Card.Description>
-                <Icon link name='linkedin square' onClick={this.findLinkedInAndSend}/>
-              </div>
+            <div style={{ display: 'inline' }}>
+              <Card.Description style={{ display: 'inline' }}>{this.props.contact.email}</Card.Description>
+              <Icon link name='linkedin square' onClick={this.findLinkedInAndSend} />
+            </div>
 
-              <Card.Description>{this.props.contact.phone}</Card.Description>
+            <Card.Description>{this.props.contact.phone}</Card.Description>
 
-              <div style={{display:'inline'}}>
-                <Card.Description style={{display:'inline'}}>
-                  {"Last contact: " + this.state.last_contact_date.slice(0,10) + "   "}
-                </Card.Description>
-                <Icon link name='calendar' onClick={this.openDatePicker}/>
-              </div>
+            <div style={{ display: 'inline' }}>
+              <Card.Description style={{ display: 'inline' }}>
+                {"Last contact: " + this.state.last_contact_date.slice(0, 10) + "   "}
+              </Card.Description>
+              <Icon link name='calendar' onClick={this.openDatePicker} />
+            </div>
 
-              <DatePicker
-                ref='datepicker'
-                style={{display: 'none'}}
-                hintText="Controlled Date Input"
-                // value={this.state.controlledDate}
-                onChange={this.handleChangeDate}
-                autoOk={true}
-              />
+            <DatePicker
+              ref='datepicker'
+              style={{ display: 'none' }}
+              hintText="Controlled Date Input"
+              // value={this.state.controlledDate}
+              onChange={this.handleChangeDate}
+              autoOk={true}
+            />
 
-            </Card.Content>
-          </Card>
+          </Card.Content>
+        </Card>
       </div>
     );
   }

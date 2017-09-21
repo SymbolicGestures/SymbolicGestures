@@ -27,10 +27,10 @@ class AppDrawerInfoDropDown extends React.Component {
     let eventText = "Stage was changed to " + clickedText;
     let route = '/api/histories/';
     let application_id = this.props.application.id
-    let body = {'event' : eventText, 'application_id' : application_id};
+    let body = { 'event': eventText, 'application_id': application_id };
     axios.post(route, body)
 
-    this.props.updateOneAppStage( this.props.selectedAppIdx, clickedText);
+    this.props.updateOneAppStage(this.props.selectedAppIdx, clickedText);
     this.setState({ dropDownText: clickedText });
     this.updateOneStageToDB(clickedText);
     this.props.getApplicationsFromDB();

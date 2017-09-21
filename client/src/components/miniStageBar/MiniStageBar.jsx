@@ -6,15 +6,15 @@ class MiniStageBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeStage: {'stage': {
-                      'name': undefined,
-                      'backgroundColor': '#2196F3',
-                      'textColor': '#000'},
-                    'index': 0},
+      activeStage: {
+        'stage': {
+          'name': undefined,
+          'backgroundColor': '#2196F3',
+          'textColor': '#000'
+        },
+        'index': 0
+      },
     }
-
-    //*******Function Bindings**********//
-
   }
 
   render() {
@@ -25,7 +25,7 @@ class MiniStageBar extends React.Component {
           stage={this.props.stage}
           selectedAppIdx={this.props.selectedAppIdx}
           updateOneAppStage={this.props.updateOneAppStage}
-          />
+        />
       </div>
     );
   };

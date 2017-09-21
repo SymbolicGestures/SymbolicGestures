@@ -24,7 +24,7 @@ class AppDrawerNoteItem extends React.Component {
   }
 
   handleChange(event) {
-   this.setState({note: event.target.value})
+    this.setState({ note: event.target.value })
   }
 
   handleBlur(event) {
@@ -45,10 +45,9 @@ class AppDrawerNoteItem extends React.Component {
             autoHeight
             placeholder='Try adding multiple lines'
             style={{ minHeight: 100 }}
-            value = {this.state.note || ''}
-            onChange = {this.handleChange}
+            value={this.state.note || ''}
+            onChange={this.handleChange}
             onBlur={this.handleBlur}
-
           />
         </Form>
       </div>

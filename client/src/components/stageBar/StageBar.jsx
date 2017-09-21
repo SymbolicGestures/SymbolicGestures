@@ -23,16 +23,22 @@ class StageBar extends React.Component {
     this.state = {
       stagesCount: {},
       settingsOpen: false,
-      activeStage: {'stage': {
-                      'name': undefined,
-                      'backgroundColor': '#2196F3',
-                      'textColor': '#000'},
-                    'index': 0},
-      activeStageBackup: {'stage': {
-                      'name': undefined,
-                      'backgroundColor': '#2196F3',
-                      'textColor': '#000'},
-                    'index': 0},
+      activeStage: {
+        'stage': {
+          'name': undefined,
+          'backgroundColor': '#2196F3',
+          'textColor': '#000'
+        },
+        'index': 0
+      },
+      activeStageBackup: {
+        'stage': {
+          'name': undefined,
+          'backgroundColor': '#2196F3',
+          'textColor': '#000'
+        },
+        'index': 0
+      },
     }
 
     //*******Function Bindings**********//
@@ -53,9 +59,9 @@ class StageBar extends React.Component {
   addNewStage() {
     let currentStages = this.props.stages,
       newStage = [{
-        backgroundColor:"#FFC107",
-        name:"Applied",
-        textColor:"black"
+        backgroundColor: "#FFC107",
+        name: "Applied",
+        textColor: "black"
       }];
 
     this.props.onStagesChange(currentStages.concat(newStage));
@@ -66,11 +72,11 @@ class StageBar extends React.Component {
    */
   deleteStage() {
     let currentStages = this.props.stages,
-        index = this.state.activeStage.index;
+      index = this.state.activeStage.index;
 
     currentStages.splice(index, 1);
     this.props.onStagesChange(currentStages);
-    this.setState({settingsOpen: false});
+    this.setState({ settingsOpen: false });
   }
 
   /**
@@ -79,12 +85,12 @@ class StageBar extends React.Component {
    */
   handleNameChange(event) {
     let currentStages = this.props.stages,
-        activeStage = this.state.activeStage,
-        index = this.state.activeStage.index;
+      activeStage = this.state.activeStage,
+      index = this.state.activeStage.index;
 
     activeStage.stage.name = event.target.value;
 
-    this.setState({activeStage: activeStage});
+    this.setState({ activeStage: activeStage });
   }
 
   /**
@@ -93,12 +99,12 @@ class StageBar extends React.Component {
    */
   handleBackgroundColorChange(event) {
     let currentStages = this.props.stages,
-        activeStage = this.state.activeStage,
-        index = this.state.activeStage.index;
+      activeStage = this.state.activeStage,
+      index = this.state.activeStage.index;
 
     activeStage.stage.backgroundColor = event;
 
-    this.setState({activeStage: activeStage});
+    this.setState({ activeStage: activeStage });
   }
 
   /**
@@ -107,12 +113,12 @@ class StageBar extends React.Component {
    */
   handleTextColorChange(event) {
     let currentStages = this.props.stages,
-        activeStage = this.state.activeStage,
-        index = this.state.activeStage.index;
+      activeStage = this.state.activeStage,
+      index = this.state.activeStage.index;
 
     activeStage.stage.textColor = event;
 
-    this.setState({activeStage: activeStage});
+    this.setState({ activeStage: activeStage });
   }
 
   /**
@@ -120,10 +126,10 @@ class StageBar extends React.Component {
    */
   stageSettingsSubmit() {
     let index = this.state.activeStage.index,
-        currentStages = _.cloneDeep(this.props.stages),
-        applications = _.cloneDeep(this.props.applications),
-        newStageName = this.state.activeStage.stage.name,
-        initialStageName = this.state.activeStageBackup.stage.name;
+      currentStages = _.cloneDeep(this.props.stages),
+      applications = _.cloneDeep(this.props.applications),
+      newStageName = this.state.activeStage.stage.name,
+      initialStageName = this.state.activeStageBackup.stage.name;
 
     currentStages[index] = this.state.activeStage.stage;
 
@@ -135,7 +141,7 @@ class StageBar extends React.Component {
       };
     }
     this.props.onStagesChange(currentStages);
-    this.setState({settingsOpen:false});
+    this.setState({ settingsOpen: false });
   }
 
   /**
@@ -143,11 +149,11 @@ class StageBar extends React.Component {
    */
   stageSettingsCancel() {
     let index = this.state.activeStage.index,
-        currentStages = this.props.stages;
+      currentStages = this.props.stages;
     currentStages[index] = this.state.activeStageBackup.stage;
 
-    this.setState({activeStage: this.state.activeStageBackup});
-    this.setState({settingsOpen:false});
+    this.setState({ activeStage: this.state.activeStageBackup });
+    this.setState({ settingsOpen: false });
   }
 
   /**
@@ -157,16 +163,16 @@ class StageBar extends React.Component {
    */
   handleOpen(index) {
     let currentStages = this.props.stages,
-        copyStages = _.cloneDeep(currentStages);
+      copyStages = _.cloneDeep(currentStages);
     this.setState({
       activeStage: {
-                    'stage': currentStages[index],
-                    'index': index
-                   },
+        'stage': currentStages[index],
+        'index': index
+      },
       activeStageBackup: {
-                          'stage': copyStages[index],
-                          'index': index
-                         },
+        'stage': copyStages[index],
+        'index': index
+      },
       settingsOpen: true
     });
   }
@@ -183,16 +189,16 @@ class StageBar extends React.Component {
           toggleStage={this.props.toggleStage}
           stages_filter={this.props.stages_filter}
         />
-      <StageBarSettings
-        open={this.state.settingsOpen}
-        activeStage={this.state.activeStage}
-        handleNameChange={this.handleNameChange}
-        handleBackgroundColorChange={this.handleBackgroundColorChange}
-        handleTextColorChange={this.handleTextColorChange}
-        submitStage={this.stageSettingsSubmit}
-        cancelStage={this.stageSettingsCancel}
-        deleteStage={this.deleteStage}
-      />
+        <StageBarSettings
+          open={this.state.settingsOpen}
+          activeStage={this.state.activeStage}
+          handleNameChange={this.handleNameChange}
+          handleBackgroundColorChange={this.handleBackgroundColorChange}
+          handleTextColorChange={this.handleTextColorChange}
+          submitStage={this.stageSettingsSubmit}
+          cancelStage={this.stageSettingsCancel}
+          deleteStage={this.deleteStage}
+        />
       </div>
     );
   };

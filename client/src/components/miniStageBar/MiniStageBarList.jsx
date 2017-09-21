@@ -9,29 +9,28 @@ const MiniStageBarList = (props) => {
     <div className={styles.miniStageBar}>
       <ul>
         {
-
           props.stages.map((stage, key) => {
-          let bgColor = stage.backgroundColor,
+            let bgColor = stage.backgroundColor,
               textColor = stage.textColor,
               opacity = 1,
               addOnHover;
-          if (props.stage === stage.name) {
-            currentStageFound = true;
-          } else if (currentStageFound) {
-            opacity = .2;
-            addOnHover = true;
-          }
-          return <MiniStageBarEntry
-                  stage={stage}
-                  bgColor={bgColor}
-                  textColor={textColor}
-                  opacity={opacity}
-                  addOnHover={addOnHover}
-                  key={key}
-                  selectedAppIdx={props.selectedAppIdx}
-                  updateOneAppStage={props.updateOneAppStage}
-                />;
-        })}
+            if (props.stage === stage.name) {
+              currentStageFound = true;
+            } else if (currentStageFound) {
+              opacity = .2;
+              addOnHover = true;
+            }
+            return <MiniStageBarEntry
+              stage={stage}
+              bgColor={bgColor}
+              textColor={textColor}
+              opacity={opacity}
+              addOnHover={addOnHover}
+              key={key}
+              selectedAppIdx={props.selectedAppIdx}
+              updateOneAppStage={props.updateOneAppStage}
+            />;
+          })}
       </ul>
     </div>
   );

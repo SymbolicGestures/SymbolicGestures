@@ -9,11 +9,11 @@ const MiniStageBarEntry = (props) => {
     'opacity': props.opacity
   };
 
-  let onHoverOpacity = function(el) {
+  let onHoverOpacity = function (el) {
     el.target.style.opacity = 1;
   }
 
-  let outHoverOpacity = function(el) {
+  let outHoverOpacity = function (el) {
     el.target.style.opacity = .2;
   }
 
@@ -23,7 +23,7 @@ const MiniStageBarEntry = (props) => {
         style={style}
         onMouseOver={onHoverOpacity}
         onMouseOut={outHoverOpacity}
-        onClick={() => {props.updateOneAppStage(props.selectedAppIdx, props.stage.name)}}
+        onClick={() => { props.updateOneAppStage(props.selectedAppIdx, props.stage.name) }}
       >
         {props.stage.name}
       </li>
@@ -33,7 +33,7 @@ const MiniStageBarEntry = (props) => {
     return (
       <li
         style={style}
-        onClick={() => {props.updateOneAppStage(props.selectedAppIdx, props.stage.name)}}
+        onClick={() => { props.updateOneAppStage(props.selectedAppIdx, props.stage.name) }}
       >
         {props.stage.name}
       </li>

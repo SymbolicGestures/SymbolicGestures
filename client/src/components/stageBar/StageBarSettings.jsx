@@ -13,7 +13,7 @@ const StageBarSettings = (props) => {
   const actions = [
     <FlatButton
       label="Delete"
-      style={{'float': 'left','color': 'red'}}
+      style={{ 'float': 'left', 'color': 'red' }}
       primary={true}
       keyboardFocused={true}
       onClick={props.deleteStage}
@@ -41,26 +41,26 @@ const StageBarSettings = (props) => {
           modal={false}
           open={props.open}
           onRequestClose={props.cancelStage}
-          >
+        >
           <TextField
             id="Name"
             value={props.activeStage.stage.name}
             onChange={props.handleNameChange}
             floatingLabelText="Name"
           />
-        <div className={styles.settingsColorPickers}>
-          <ColorPicker
-            defaultValue={props.activeStage.stage.backgroundColor}
-            onChange={props.handleBackgroundColorChange}
-            floatingLabelText="Background Color"
+          <div className={styles.settingsColorPickers}>
+            <ColorPicker
+              defaultValue={props.activeStage.stage.backgroundColor}
+              onChange={props.handleBackgroundColorChange}
+              floatingLabelText="Background Color"
             />
 
-          <ColorPicker
-            defaultValue={props.activeStage.stage.textColor}
-            onChange={props.handleTextColorChange}
-            floatingLabelText="Text Color"
+            <ColorPicker
+              defaultValue={props.activeStage.stage.textColor}
+              onChange={props.handleTextColorChange}
+              floatingLabelText="Text Color"
             />
-        </div>
+          </div>
         </Dialog>
       </MuiThemeProvider>
     </div>

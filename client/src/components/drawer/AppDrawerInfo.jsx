@@ -95,7 +95,7 @@ class AppDrawerInfo extends React.Component {
   handleBlurSalary(event) {
     let route = `/api/applications/${this.props.application.id}`;
     let key = event.target.id;
-    let val = event.target.value.replace(/\D/g,'');
+    let val = event.target.value.replace(/\D/g, '');
     let body = {};
     body[key] = val;
     this.props.updateOneKeyValPairInFE(this.props.selectedAppIdx, key, val);
@@ -107,7 +107,7 @@ class AppDrawerInfo extends React.Component {
   createHistoryEntry(application_id, oldStage, newStage) {
     let eventText = "Stage was changed from " + oldStage + " to " + newStage;
     let route = '/api/histories/';
-    let body = {'event' : eventText, application_id};
+    let body = { 'event': eventText, application_id };
     // console.log(' new history: ', application_id, eventText)
     axios.post(route, body);
   }
@@ -124,7 +124,7 @@ class AppDrawerInfo extends React.Component {
           updateOneAppStage={this.props.updateOneAppStage}
           selectedAppIdx={this.props.selectedAppIdx}
         />
-      {/*
+        {/*
         <AppDrawerInfoDropDown
         className={styles.stageSelection}
         getApplicationsFromDB={this.props.getApplicationsFromDB}
@@ -136,9 +136,9 @@ class AppDrawerInfo extends React.Component {
         selectedAppIdx={this.props.selectedAppIdx}
         />
         */}
-       <div className={styles.companyLogo}>
-         <img src={this.props.application.job_company_logo} />
-       </div>
+        <div className={styles.companyLogo}>
+          <img src={this.props.application.job_company_logo} />
+        </div>
         <div className={styles.applicationInfo}>
           <div className={styles.appInfo_col_1}>
             {/* <TextField
@@ -172,50 +172,51 @@ class AppDrawerInfo extends React.Component {
           </div>
 
 
-            <div className={styles.appInfo_col_2}>
-              <TextField
-                onBlur={this.handleBlur}
-                onChange={this.handleChange}
-                id="job_posting_source"
-                value={this.state.job_posting_source || ''}
-                floatingLabelText='job_posting_source'
-                />
-              <div className={styles.jobLinkRow}>
-                {/*<input
+          <div className={styles.appInfo_col_2}>
+            <TextField
+              onBlur={this.handleBlur}
+              onChange={this.handleChange}
+              id="job_posting_source"
+              value={this.state.job_posting_source || ''}
+              floatingLabelText='job_posting_source'
+            />
+            <div className={styles.jobLinkRow}>
+              {/*<input
                   type='button'
                   value='Get Info'
                   onClick={
                     () => {this.props.attemptWebScrape(this.props.selectedAppIdx, this.state.job_posting_link);
                   }}
                 />*/}
-                <TextField
-                  onBlur={this.handleBlur}
-                  onChange={this.handleChange}
-                  id="job_posting_link"
-                  value={this.state.job_posting_link || ''}
-                  floatingLabelText='job_posting_link'
-                />
-                <div className={styles.tooltip}>
-                  <Icon
-
-                    onClick={
-                      () => {this.props.attemptWebScrape(this.props.selectedAppIdx, this.state.job_posting_link);
-                    }}
-                    name='edit'
-                  />
-                <p className={styles.tooltiptext}>Autofill</p>
-                </div>
-
-              </div>
               <TextField
-                onBlur={this.handleBlurSalary}
-                onChange={this.handleChangeSalary}
-                id="salary"
-                value={this.state.salary || ''}
-                floatingLabelText='salary'
+                onBlur={this.handleBlur}
+                onChange={this.handleChange}
+                id="job_posting_link"
+                value={this.state.job_posting_link || ''}
+                floatingLabelText='job_posting_link'
+              />
+              <div className={styles.tooltip}>
+                <Icon
+
+                  onClick={
+                    () => {
+                      this.props.attemptWebScrape(this.props.selectedAppIdx, this.state.job_posting_link);
+                    }}
+                  name='edit'
                 />
+                <p className={styles.tooltiptext}>Autofill</p>
+              </div>
+
             </div>
-            {/* <TextField
+            <TextField
+              onBlur={this.handleBlurSalary}
+              onChange={this.handleChangeSalary}
+              id="salary"
+              value={this.state.salary || ''}
+              floatingLabelText='salary'
+            />
+          </div>
+          {/* <TextField
               onBlur={this.handleBlur}
               onChange={this.handleChange}
               id="stage"
@@ -223,7 +224,7 @@ class AppDrawerInfo extends React.Component {
               floatingLabelText='stage'
               /> */}
 
-            {/*
+          {/*
               <TextField
               onChange={this.handleChange}
               id="applied_at"
@@ -248,7 +249,7 @@ class AppDrawerInfo extends React.Component {
               value={this.props.application.job_posting_to_pdf_link}
               /> */}
         </div>
-     </div>
+      </div>
     );
   }
 }

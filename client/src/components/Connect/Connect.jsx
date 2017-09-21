@@ -9,8 +9,8 @@ import styles from './../../../styles/feedStyles.css'
 class Connect extends React.Component {
   constructor(props) {
     super(props);
-    this.state={
-      cardData:[]
+    this.state = {
+      cardData: []
     };
     this.updateCardData();
   }
@@ -29,8 +29,8 @@ class Connect extends React.Component {
     let feedCards = this.state.cardData.map((card, i) => {
       return (
         <FeedCard
-          key = {i}
-          style={{"display": "inline", "width": "50%"}}
+          key={i}
+          style={{ "display": "inline", "width": "50%" }}
           profileImg={card.image_link || "./assets/default_avatar.png"}
           displayName={card.actor}
           message={card.message}
@@ -44,7 +44,7 @@ class Connect extends React.Component {
         <div className={styles.graph}>
           <Analytics />
         </div>
-        <div className={styles.stream} style={{"maxHeight": window.innerHeight - 90 +'px'}}>
+        <div className={styles.stream} style={{ "maxHeight": window.innerHeight - 90 + 'px' }}>
           {feedCards}
         </div>
       </div>

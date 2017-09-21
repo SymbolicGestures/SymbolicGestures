@@ -20,35 +20,35 @@ export default class AutoFillOrgMenuItem extends React.Component {
     this.getOrganizations = this.getOrganizations.bind(this);
     this.updateProfile = this.updateProfile.bind(this);
   }
-  componentWillReceiveProps(nextProps){
-    if(nextProps.profile.organizations && !this.state.organizationId) {
-      this.setState({organization: nextProps.profile.organizations.organization_name, organizationId: nextProps.profile.organizations.id})
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.profile.organizations && !this.state.organizationId) {
+      this.setState({ organization: nextProps.profile.organizations.organization_name, organizationId: nextProps.profile.organizations.id })
     }
   }
   updateProfile(orgId, orgName) {
     axios.post('/api/profiles', {
       "organization_id": orgId
     })
-    .then((profile)=>{
-      axios.post('/api/feed', {
-        message_type: 'joinOrg',
-        message: `${profile.data.display} joined ${orgName}!`
-      })
-      this.setState({organization: orgName, organizationId: orgId});
-      this.props.onHide()
-    });
+      .then((profile) => {
+        axios.post('/api/feed', {
+          message_type: 'joinOrg',
+          message: `${profile.data.display} joined ${orgName}!`
+        })
+        this.setState({ organization: orgName, organizationId: orgId });
+        this.props.onHide()
+      });
   }
   addOrganizationAndUpdateProfile(orgName) {
     axios.post(`/fuzzy/organizations`, {
       organization_name: orgName
     })
-    .then(organization => {
-      axios.post(`/api/profiles`, {
-        organization_id: organization.data.id
+      .then(organization => {
+        axios.post(`/api/profiles`, {
+          organization_id: organization.data.id
+        })
+        this.setState({ organization: orgName });
+        this.props.onHide();
       })
-      this.setState({organization: orgName});
-      this.props.onHide();
-    })
   }
   getOrganizations(fuzzySearchTerm, limit) {
     axios.post('/fuzzy/fuzzyMatchOrganizations', {
@@ -71,7 +71,7 @@ export default class AutoFillOrgMenuItem extends React.Component {
           dataSource.push(data)
         });
         this.setState({
-          organizations : dataSource,
+          organizations: dataSource,
         })
       })
   }
@@ -87,8 +87,8 @@ export default class AutoFillOrgMenuItem extends React.Component {
                 label="Update Profile"
                 primary={true}
                 keyboardFocused={true}
-                onClick={()=>{
-                  if(this.state.isSelectedFromList) {
+                onClick={() => {
+                  if (this.state.isSelectedFromList) {
                     this.updateProfile(this.state.organizationId, this.state.organization);
                   } else {
                     this.addOrganizationAndUpdateProfile(this.state.organization);
@@ -105,17 +105,17 @@ export default class AutoFillOrgMenuItem extends React.Component {
               dataSource={this.state.organizations}
               floatingLabelText={this.state.organization.length ? this.state.organization : 'Join an Organization'}
               maxSearchResults={10}
-              onNewRequest={(value, i)=>{
+              onNewRequest={(value, i) => {
                 let isSelectedFromList = i >= 0 ? true : false;
-                if(isSelectedFromList) {
-                  this.setState({organization: value.text, organizationId: value.index, isSelectedFromList: isSelectedFromList})
+                if (isSelectedFromList) {
+                  this.setState({ organization: value.text, organizationId: value.index, isSelectedFromList: isSelectedFromList })
                 } else {
-                  this.setState({organization: this.state.organization, isSelectedFromList: isSelectedFromList})
+                  this.setState({ organization: this.state.organization, isSelectedFromList: isSelectedFromList })
                 }
               }}
-              onUpdateInput={(search)=>{
+              onUpdateInput={(search) => {
                 this.getOrganizations(search, 10);
-                this.setState({organization: search});
+                this.setState({ organization: search });
               }}
             />
           </Dialog>
