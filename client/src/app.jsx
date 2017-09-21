@@ -460,7 +460,6 @@ class App extends React.Component {
                       getApplicationsFromDB={this.getApplicationsFromDB}
                       updateOneAppStage={this.updateOneAppStage}
                       updateOneKeyValPairInFE={this.updateOneKeyValPairInFE}
-                      updateOneKeyValPairToDB={this.updateOneKeyValPairToDB}
                       createNewApplicationInFE={this.createNewApplicationInFE}
                       sortAppsByAlphaOrder={this.sortAppsByAlphaOrder}
                       isAlphabetOrder={this.state.isAlphabetOrder}

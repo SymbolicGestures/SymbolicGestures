@@ -1,8 +1,9 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Table, Segment, Button, Icon, Checkbox } from 'semantic-ui-react';
+import { Table, Segment } from 'semantic-ui-react';
 import axios from 'axios';
-import { parse, getTime, format } from 'date-fns';
+import { parse, format } from 'date-fns';
+import PropTypes from 'prop-types';
 
 import MainDrawer from './MainDrawer.jsx';
 
@@ -95,14 +96,8 @@ export default class DrawerAndApplicationTable extends React.Component {
   closeDrawer() { this.setState({ isDrawerOpen: false, selectedAppIdxForArrowIcon: '', }); }
 
   render() {
-    // applications={this.state.applications}
-    // stages_settings={this.state.stages_settings}
-    // stageNameToColorHash={this.state.stageNameToColorHash}
-    // getApplicationsFromDB={this.getApplicationsFromDB}
-    // updateOneAppStage={this.updateOneAppStage}
     const segmentStyle = { padding: 0 };
     const applications = this.props.applications || [];
-    const stageNameToColorHash = this.props.stageNameToColorHash || {};
     return (<div>
       <MuiThemeProvider>
         <MainDrawer
@@ -141,12 +136,10 @@ export default class DrawerAndApplicationTable extends React.Component {
                 onClick={() => this.props.sortAppsByAlphaOrder('job_title', this.props.isAlphabetOrder)}
                 style={{ cursor: 'pointer' }}
               >Job Title</Table.HeaderCell>
-              {/* <Table.HeaderCell>Stage</Table.HeaderCell> */}
               <Table.HeaderCell
                 onClick={() => this.props.sortAppsByStageOrder(this.props.isStageOrder)}
                 style={{ cursor: 'pointer' }}
               >Stage</Table.HeaderCell>
-              {/* <Table.HeaderCell>Link</Table.HeaderCell> */}
               <Table.HeaderCell
                 onClick={() => this.props.sortAppsByAlphaOrder('job_posting_source', this.props.isAlphabetOrder)}
                 style={{ cursor: 'pointer' }}
@@ -157,8 +150,6 @@ export default class DrawerAndApplicationTable extends React.Component {
           <Table.Body>
             {applications.map((application, idx) => {
               let tdStyle = { padding: '0px', height: '1px', paddingTop: '0.2%' };
-              let rowColor = idx === this.state.selectedAppIdxForArrowIcon ? 'red' : '';
-              let dateStyle = { paddingLeft: 0, paddingRight: 0, width: '7.5%' };
               return (
                 <Table.Row key={idx}>
                   <TableCellWArrowIcon
@@ -204,15 +195,6 @@ export default class DrawerAndApplicationTable extends React.Component {
                       selectedAppIdx={idx}
                       stages_settings={this.props.stages_settings}
                     /></Table.Cell>
-                  {/* <ConditionalTableCell
-                    application={application}
-                    appKey={'job_posting_link'}
-                    placeHolder={'Source Link'}
-                    updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
-                    attemptWebScrape={this.attemptWebScrape}
-                    idx={idx}
-                    cellStyle={{ padding: '0.2% 0.2% 0px 0.2%', width: '10%' }}
-                  /> */}
                   <ConditionalTableCell
                     application={application}
                     appKey={'job_posting_source'}
@@ -236,25 +218,21 @@ export default class DrawerAndApplicationTable extends React.Component {
 }
 
 
-
-
-// const TableCellJPLink = ({ job_posting_link }) => {
-//   if (job_posting_link) {
-//     return (
-//       <Table.Cell
-//         style={{ textAlign: 'center' }}
-//       ><a href={job_posting_link}><u>Link</u></a></Table.Cell>
-//     );
-//   }
-//   return (
-//     <Table.Cell
-//       style={{ textAlign: 'center' }}
-//     >No Link</Table.Cell>
-//   );
-// };
-
-
-// {/* <Table.Row
-//   key={idx}
-//   style={{ backgroundColor: rowColor }}
-// > */}
+// Parent: app.jsx
+DrawerAndApplicationTable.propTypes = {
+  applications: PropTypes.array,
+  stages_settings: PropTypes.array,
+  stageNameToColorHash: PropTypes.object,
+  getApplicationsFromDB: PropTypes.func,
+  updateOneAppStage: PropTypes.func,
+  updateOneKeyValPairInFE: PropTypes.func,
+  createNewApplicationInFE: PropTypes.func,
+  sortAppsByAlphaOrder: PropTypes.func,
+  isAlphabetOrder: PropTypes.bool,
+  isStageOrder: PropTypes.bool,
+  isDateDescendingOrder: PropTypes.bool,
+  sortAppsByStageOrder: PropTypes.func,
+  sortAppsByDate: PropTypes.func,
+  sortAppsByIsFavorite: PropTypes.func,
+  toggleIsFavoriteForOneAppInFE: PropTypes.func,
+};

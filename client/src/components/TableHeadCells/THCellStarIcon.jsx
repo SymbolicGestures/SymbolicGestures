@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import { Table, Segment, Button, Icon, Checkbox } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+
+import { Table, Icon } from 'semantic-ui-react';
 
 export default class THCellStarIcon extends Component {
   constructor(props) {
@@ -34,3 +36,8 @@ export default class THCellStarIcon extends Component {
     );
   }
 }
+
+// Parent: DrawerAndApplicationTable.jsx
+THCellStarIcon.propTypes = {
+  sortAppsByIsFavorite: PropTypes.func,
+};

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Table, Segment, Button, Icon, Checkbox } from 'semantic-ui-react';
 
 class TableCellWArrowIcon extends Component {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Table, Form } from 'semantic-ui-react';
 import axios from 'axios';
 

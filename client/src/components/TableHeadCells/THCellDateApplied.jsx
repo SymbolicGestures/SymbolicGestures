@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import { Table, Segment, Button, Icon, Checkbox } from 'semantic-ui-react';
 
 export default class THCellDateApplied extends Component {
@@ -39,3 +39,8 @@ export default class THCellDateApplied extends Component {
     );
   }
 }
+
+THCellDateApplied.propTypes = {
+  sortAppsByDate: PropTypes.func,
+  isDateDescendingOrder: PropTypes.bool,
+};
