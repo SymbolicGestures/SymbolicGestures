@@ -160,12 +160,9 @@ export default class DrawerAndApplicationTable extends React.Component {
                     selectedAppIdxForArrowIcon={this.state.selectedAppIdxForArrowIcon}
                   />
                   <TableCellWStarIcon
-                    openDrawerWhenOneAppClick={this.openDrawerWhenOneAppClick}
-                    closeDrawer={this.closeDrawer}
                     applications={applications}
                     application={application}
                     idx={idx}
-                    selectedAppIdxForArrowIcon={this.state.selectedAppIdxForArrowIcon}
                     toggleIsFavoriteForOneAppInFE={this.props.toggleIsFavoriteForOneAppInFE}
                   />
                   <Table.Cell>{format(parse(application.applied_at), 'ddd, MMM DD, YY')}</Table.Cell>
