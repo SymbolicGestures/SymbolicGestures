@@ -60,15 +60,15 @@ export default class DrawerAndApplicationTable extends React.Component {
    */
   attemptWebScrape(idx, link) {
     let changedValues = false,
-        route = `/api/applications/${this.state.selectedApplication.id}`,
-        body = {};
+      route = `/api/applications/${this.state.selectedApplication.id}`,
+      body = {};
 
-    link = {'website': link};
+    link = { 'website': link };
     axios.post('api/webScraper', link)
       .then((data) => {
         const jobInfo = data.data;
         for (let key in jobInfo) {
-          if(!this.state.selectedApplication[key]) {
+          if (!this.state.selectedApplication[key]) {
             changedValues = true;
             body[key] = jobInfo[key];
             this.props.updateOneKeyValPairInFE(idx, key, jobInfo[key]);
@@ -81,7 +81,6 @@ export default class DrawerAndApplicationTable extends React.Component {
   }
 
   openDrawerWhenOneAppClick(application, idx, e) {
-
     e.preventDefault();
 
     this.setState({
