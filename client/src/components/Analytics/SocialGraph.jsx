@@ -5,7 +5,7 @@ import C3Chart from 'react-c3js'
 
 let SocialGraph = (props) => {
   let graphHeight = window.innerHeight - 180;
-  console.log(props.socialGraphData)
+//   console.log(props.socialGraphData)
   return(
       <C3Chart
         size={{
