@@ -41,9 +41,10 @@ export default TableCellWArrowIcon;
 
 
 // Parent: DrawerAndApplicationTable.jsx
-// TableCellWArrowIcon.propTypes = {
-//   applications: PropTypes.array,
-//   application: PropTypes.object,
-//   idx: PropTypes.number,
-//   toggleIsFavoriteForOneAppInFE: PropTypes.func,
-// };
+TableCellWArrowIcon.propTypes = {
+  openDrawerWhenOneAppClick: PropTypes.func,
+  closeDrawer: PropTypes.func,
+  application: PropTypes.array,
+  idx: PropTypes.number,
+  selectedAppIdxForArrowIcon: PropTypes.func,
+};
