@@ -80,7 +80,7 @@ class App extends React.Component {
     this.setState({
       'stages_settings': stages
     }, () => {
-      console.log(this.state.stages_settings)
+//       console.log(this.state.stages_settings)
       this.updateStages();
       this.stageNameToColorHash(stages);
       this.countApplicationStages();
