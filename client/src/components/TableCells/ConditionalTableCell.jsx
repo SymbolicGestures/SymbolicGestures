@@ -137,3 +137,14 @@ class ConditionalTableCell extends Component {
 }
 
 export default ConditionalTableCell;
+
+// Parent: DrawerAndApplicationTable.jsx
+ConditionalTableCell.propTypes = {
+  application: PropTypes.object,
+  appKey: PropTypes.string,
+  placeHolder: PropTypes.string,
+  updateOneKeyValPairInFE: PropTypes.func,
+  attemptWebScrape: PropTypes.func,
+  idx: PropTypes.number,
+  cellStyle: PropTypes.object,
+};
