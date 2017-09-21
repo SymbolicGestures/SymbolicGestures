@@ -350,7 +350,14 @@ class App extends React.Component {
 
   updateOneKeyValPairInFE(idx, updatedField, updatedText) {
     // console.log(idx, updatedField,updatedText);
-    if (this.state.applications[idx][updatedField]
+    console.log(this.state.applications)
+    if(updatedField === 'contacts' || updatedField === 'notes') {
+      console.log('here', this.state.applications[idx][updatedField]);
+      this.state.applications[idx][updatedField].push(updatedText)
+      this.setState({
+        applications: this.state.applications
+      });
+    } else if (this.state.applications[idx][updatedField]
       || this.state.applications[idx][updatedField] === ''
       || this.state.applications[idx][updatedField] === null) {
       this.state.applications[idx][updatedField] = updatedText;

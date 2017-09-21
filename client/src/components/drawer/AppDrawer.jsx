@@ -37,8 +37,18 @@ class AppDrawer extends React.Component {
           attemptWebScrape={this.props.attemptWebScrape}
         />
       <div className={styles.notesAndContacts}>
-        <AppDrawerNote application={this.props.application} getApplicationsFromDB={this.props.getApplicationsFromDB}/>
-        <AppDrawerContact application={this.props.application} getApplicationsFromDB={this.props.getApplicationsFromDB}/>
+        <AppDrawerNote
+          application={this.props.application}
+          getApplicationsFromDB={this.props.getApplicationsFromDB}
+          selectedAppIdx={this.props.selectedAppIdx}
+          updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
+        />
+        <AppDrawerContact
+          application={this.props.application}
+          getApplicationsFromDB={this.props.getApplicationsFromDB}
+          selectedAppIdx={this.props.selectedAppIdx}
+          updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
+        />
       </div>
       <div>
         <AppDrawerHistory application={this.props.application}/>
