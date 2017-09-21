@@ -1,43 +1,44 @@
 {
   "knex": {
-    "connection": {
-      "database": "thesis_devel"
-    }
+    "connection": "DATABASE_URL"
   },
-
+  "redis": {
+    "url": "REDIS_URL",
+    "secret": "REDIS_SECRET"
+  },
   "passport": {
     "Google": {
-      "clientID": "369722475527-frnih5g8s03hdu9lnj8451purquivvf2.apps.googleusercontent.com",
-      "clientSecret": "S4dJ1zV3NhGAmWvHNeGwnTQ0",
-      "callbackURL": "http://localhost:3000/auth/google/callback"
+      "clientID": "GOOGLE_CLIENT_ID",
+      "clientSecret": "GOOGLE_CLIENT_SECRET",
+      "callbackURL": "GOOGLE_CALLBACK_URL"
     },
 
     "Facebook": {
-      "clientID": "298635473877138",
-      "clientSecret": "15745796e925d67e73668a91994205a4",
-      "callbackURL": "http://localhost:3000/auth/facebook/callback"
+      "clientID": "FACEBOOK_CLIENT_ID",
+      "clientSecret": "FACEBOOK_CLIENT_SECRET",
+      "callbackURL": "FACEBOOK_CALLBACK_URL"
     },
 
     "Twitter": {
-      "consumerKey": "XfuOKFHqmIId4N5gWMcLu1tcC",
-      "consumerSecret": "GZTBWb1B2GfJVBqyH9eBDtOn4bZhxX50B1f9PP3eWjXt53MlBj",
-      "callbackURL": "http://localhost:3000/auth/twitter/callback"
+      "consumerKey": "TWITTER_CLIENT_ID",
+      "consumerSecret": "TWITTER_CLIENT_SECRET",
+      "callbackURL": "TWITTER_CALLBACK_URL"
     },
 
     "LinkedIn": {
-      "consumerKey": "86y3rakf0xz9ff",
-      "consumerSecret": "9Wi0iYjvWknCSVQf",
-      "callbackURL": "http://localhost:3000/auth/linkedin/callback"
+      "consumerKey": "LINKEDIN_CLIENT_ID",
+      "consumerSecret": "LINKEDIN_CLIENT_SECRET",
+      "callbackURL": "LINKEDIN_CALLBACK_URL"
     }
   },
 
   "stream": {
-    "streamKey": "5rmr68hvwwfx",
-    "streamSecret": "yc2ctqjgw3kcdceyjued9a98juf6fhnavp7mu2xra3g6ssdb6ex7ah94zzdfnaxb",
-    "streamId": "28988"
+    "streamKey": "STREAM_KEY",
+    "streamSecret": "STREAM_SECRET",
+    "streamId": "STREAM_ID"
   },
 
   "fullContact": {
-    "ApiKey": "62d80111e30366bf"
+    "ApiKey": "FULL_CONTACT_KEY"
   }
 }
