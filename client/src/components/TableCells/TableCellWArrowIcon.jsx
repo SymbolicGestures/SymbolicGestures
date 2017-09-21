@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Segment, Button, Icon, Checkbox } from 'semantic-ui-react';
+import { Table, Icon } from 'semantic-ui-react';
 
 class TableCellWArrowIcon extends Component {
   constructor(props) {
@@ -38,3 +38,12 @@ class TableCellWArrowIcon extends Component {
 }
 
 export default TableCellWArrowIcon;
+
+
+// Parent: DrawerAndApplicationTable.jsx
+// TableCellWArrowIcon.propTypes = {
+//   applications: PropTypes.array,
+//   application: PropTypes.object,
+//   idx: PropTypes.number,
+//   toggleIsFavoriteForOneAppInFE: PropTypes.func,
+// };
