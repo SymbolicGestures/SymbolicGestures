@@ -40,6 +40,7 @@ export default class THCellDateApplied extends Component {
   }
 }
 
+// Parent: DrawerAndApplicationTable.jsx
 THCellDateApplied.propTypes = {
   sortAppsByDate: PropTypes.func,
   isDateDescendingOrder: PropTypes.bool,

@@ -122,6 +122,15 @@ class DropDownInTableCell extends React.Component {
   }
 }
 
-// style={this.props.stageNameToColorHash[dropDownItem.name]}
-
 export default DropDownInTableCell;
+
+// Parent: DrawerAndApplicationTable.jsx
+DropDownInTableCell.propTypes = {
+  getApplicationsFromDB: PropTypes.func,
+  application: PropTypes.object,
+  stageNameToColorHash: PropTypes.object,
+  stage: PropTypes.string,
+  updateOneAppStage: PropTypes.func,
+  selectedAppIdx: PropTypes.number,
+  stages_settings: PropTypes.array,
+};
