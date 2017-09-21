@@ -72,7 +72,6 @@ class AppDrawerInfo extends React.Component {
     body[key] = val.toISOString();
     this.props.updateOneKeyValPairInFE(this.props.selectedAppIdx, key, val.toISOString());
     axios.post(route, body)
-    .then(this.props.getApplicationsFromDB())
   }
 
   handleChangeSalary(event) {
@@ -90,8 +89,7 @@ class AppDrawerInfo extends React.Component {
     let body = {};
     body[key] = val;
     this.props.updateOneKeyValPairInFE(this.props.selectedAppIdx, key, val);
-    axios.post(route, body)
-      .then(this.props.getApplicationsFromDB());
+    axios.post(route, body);
   }
 
   handleBlurSalary(event) {
@@ -101,8 +99,8 @@ class AppDrawerInfo extends React.Component {
     let body = {};
     body[key] = val;
     this.props.updateOneKeyValPairInFE(this.props.selectedAppIdx, key, val);
-    axios.post(route, body)
-      .then(this.props.getApplicationsFromDB());
+    axios.post(route, body);
+    // .then((message) => {console.log(message)})
   }
 
 
@@ -110,8 +108,8 @@ class AppDrawerInfo extends React.Component {
     let eventText = "Stage was changed from " + oldStage + " to " + newStage;
     let route = '/api/histories/';
     let body = {'event' : eventText, application_id};
-    axios.post(route, body)
-      .then(this.props.getApplicationsFromDB());
+    // console.log(' new history: ', application_id, eventText)
+    axios.post(route, body);
   }
 
 
