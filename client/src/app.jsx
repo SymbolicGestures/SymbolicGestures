@@ -240,7 +240,7 @@ class App extends React.Component {
   }
 
   sortAppsByIsFavorite() {
-    console.log('sortAppsByFav');
+//     console.log('sortAppsByFav');
     let sortedApplications = this.state.applications.slice();
 
     sortedApplications.sort((a, b) => {
@@ -350,9 +350,9 @@ class App extends React.Component {
 
   updateOneKeyValPairInFE(idx, updatedField, updatedText) {
     // console.log(idx, updatedField,updatedText);
-    console.log(this.state.applications)
+//     console.log(this.state.applications)
     if(updatedField === 'contacts' || updatedField === 'notes') {
-      console.log('here', this.state.applications[idx][updatedField]);
+//       console.log('here', this.state.applications[idx][updatedField]);
       this.state.applications[idx][updatedField].push(updatedText)
       this.setState({
         applications: this.state.applications
@@ -387,9 +387,9 @@ class App extends React.Component {
     let key = appKey;
     let val = application[appKey];
     let body = {};
-    console.log('keyVal', key, val);
+//     console.log('keyVal', key, val);
     body[key] = val;
-    console.log('body', body);
+//     console.log('body', body);
     axios.post(route, body)
       .then( (app) => {
         console.log(app);
