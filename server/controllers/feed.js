@@ -36,10 +36,14 @@ module.exports.feedAdd = (req, res) => {
 module.exports.feedGet = (req, res) => {
   if(req.user.organization_id) {
     let newFeed = client.feed('organization_feed', req.user.organization_id);
-    // newFeed.follow('organization_feed', req.user.organization_id);
+    // client = stream.connect(config.streamKey, null, config.streamId)
+    var readOnlyToken = client.getReadOnlyToken('organization_feed', req.user.organization_id);
+    // var subscription = newFeed.subscribe(function callback(data) {
+	  //    console.log('callback',data)/* callback */
+    // });
     newFeed.get({limit:15})
       .then(results => {
-        res.status(200).send(results)
+        res.status(200).send([results, req.user.organization_id, readOnlyToken])
       })
       .catch(err=> {
         res.status(503).send(err)
