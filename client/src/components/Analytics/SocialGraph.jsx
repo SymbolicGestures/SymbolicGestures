@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './../../../styles/socialGraphStyles.css'
 import PropTypes from 'prop-types';
 import C3Chart from 'react-c3js';
 
