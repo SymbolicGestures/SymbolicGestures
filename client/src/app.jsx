@@ -432,7 +432,9 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div onWheel={(event) => { this.toggleNavBar(event.deltaY); }}>
+        <div
+          // onWheel={(event) => { this.toggleNavBar(event.deltaY); }}
+        >
           <Navbar
             navBarIsHidden={this.state.navBarIsHidden}
             profileImg={this.state.profile.image_link || "./assets/default_avatar.png"}

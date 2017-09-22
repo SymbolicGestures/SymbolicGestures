@@ -1,13 +1,14 @@
 import React from 'react';
 import Drawer from 'material-ui/Drawer';
-import { Button, Icon } from 'semantic-ui-react';
+import RaisedButton from 'material-ui/RaisedButton';
+import { Table, Segment, Button, Icon, Form } from 'semantic-ui-react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 
 
 import AppDrawer from './drawer/AppDrawer.jsx';
 
-import MainDrawerAddBtnInputForm from '../components/MainDrawerAddBtnInputForm.jsx';
+import AddAppButtTriggerLinkInputForm from '../components/AddAppButtTriggerLinkInputForm.jsx';
 
 const seanStyleBox = require('./../../styles/seanStyleBox.css');
 
@@ -32,7 +33,7 @@ const generateEmptyApplicaton = () => {
   return emptyApplication;
 };
 
-export default class MainDrawer extends React.Component {
+export default class MateUiRightDrawer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,12 +47,16 @@ export default class MainDrawer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // console.log(nextProps.isDrawerOpen);
     this.setState({ open: nextProps.isDrawerOpen });
   }
 
   postEmptyApplicationToDB(newApplication) {
     axios.post('/api/applications', newApplication)
       .then(function (response) {
+        // console.log('post req empty application succeed');
+        // console.log('id: ', response.data.id);
+        // console.log('application_id', response.data.id);
         axios.post('/api/notes', {
           application_id: response.data.id,
           type: 'note',
@@ -59,7 +64,8 @@ export default class MainDrawer extends React.Component {
         });
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log('post req empty application failed');
+        // console.log(error);
       });
   }
 
@@ -68,6 +74,7 @@ export default class MainDrawer extends React.Component {
     this.props.createNewApplicationInFE(newApplication);
     this.postEmptyApplicationToDB(newApplication);
     this.setState({
+      open: true,
       isInputFormVisible: true,
     });
     this.props.getApplicationsFromDB(this.props.setSelectAppToNewApp);
@@ -83,6 +90,7 @@ export default class MainDrawer extends React.Component {
   }
 
   submitButtonClicked() {
+    // console.log('submit button clicked');
     this.setState({ isInputFormVisible: false });
   }
 
@@ -91,20 +99,19 @@ export default class MainDrawer extends React.Component {
     let submitButtStyle = Object.assign({ width: '15%', marginLeft: '1%' }, visibilityStyle);
     return (
       <div>
+
+
         <div className={seanStyleBox.box_for_addApplicationButtAndOther}>
-          <Button color="vk" onClick={this.openDrawerAndPostEmptyAppToDB} style={{ width: '15%' }}>
+          <Button color="vk" onClick={this.openDrawerAndPostEmptyAppToDB} style={{width: '15%'}}>
             <Icon name="plus" /> Add Application
           </Button>
 
-          <MainDrawerAddBtnInputForm
+          <AddAppButtTriggerLinkInputForm
             isInputFormVisible={this.state.isInputFormVisible}
             hideInputForm={this.hideInputForm}
             submitButtonClicked={this.submitButtonClicked}
             emptyUserInput={''}
             attemptWebScrape={this.props.attemptWebScrape}
-            updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
-            selectedAppIdx={this.props.selectedAppIdx}
-            application={this.props.application}
           />
 
           <Button
@@ -115,20 +122,11 @@ export default class MainDrawer extends React.Component {
           </Button>
         </div>
 
-        <Drawer width={'70%'} openSecondary={true} open={this.state.open} style={{'display': 'flex'}}>
+        <Drawer width={'70%'} openSecondary={true} open={this.state.open}>
           <Button
-            style={{'display':'inline', 'width':'16px', 'padding':'0px', 'height': window.innerHeight,'position': 'relative'}}
             attached="top"
             onClick={this.closeDrawer}
-          >
-            <Icon
-              name="right chevron"
-              style={{'position': 'relative', 'top': (window.innerHeight*2/5)}}
-            />
-            <Icon
-              name="right chevron"
-              style={{'position': 'relative', 'top': (window.innerHeight*3/5)}}
-            />
+          > Close Drawer <Icon name="right chevron" />
           </Button>
           <AppDrawer
             application={this.props.application}
@@ -145,19 +143,3 @@ export default class MainDrawer extends React.Component {
     );
   }
 }
-
-MainDrawer.propTypes = {
-  application: PropTypes.object,
-  isDrawerOpen: PropTypes.func,
-  closeDrawer: PropTypes.func,
-  getApplicationsFromDB: PropTypes.func,
-  setSelectAppToNewApp: PropTypes.func,
-  stages_settings: PropTypes.object,
-  stageNameToColorHash: PropTypes.object,
-  updateOneAppStage: PropTypes.func,
-  selectedAppIdx: PropTypes.number,
-  createNewApplicationInFE: PropTypes.func,
-  updateOneKeyValPairInFE: PropTypes.func,
-  attemptWebScrape: PropTypes.func,
-};
-
