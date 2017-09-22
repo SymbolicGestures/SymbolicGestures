@@ -116,7 +116,7 @@ export default class DrawerAndApplicationTable extends React.Component {
       </MuiThemeProvider>
       <Segment style={segmentStyle}>
 
-        <Table selectable>
+        <Table selectable singleLine>
           <Table.Header fullWidth>
             <Table.Row>
               <Table.HeaderCell> {' '} </Table.HeaderCell>

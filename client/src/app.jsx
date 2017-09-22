@@ -511,7 +511,7 @@ class App extends React.Component {
                           <PersonalAnalytics
                             key={idx}
                             intMonth={intMonth}
-                            fakeSeanGraphData={data}
+                            dateAppliedGraphData={data}
                           />);
                       })}
                     </div>

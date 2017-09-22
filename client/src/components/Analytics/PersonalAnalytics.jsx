@@ -45,7 +45,7 @@ export default class SeanTestGraph extends Component {
           padding={{ left: 100, right: 100 }}
           color={{ pattern: [intMonthHash[this.props.intMonth].color] }}
           data={{
-            json: this.props.fakeSeanGraphData,
+            json: this.props.dateAppliedGraphData,
             keys: { x: 'appliedDate', value: ['howManyApplied'] },
             type: 'bar',
           }}

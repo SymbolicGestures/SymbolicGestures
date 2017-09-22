@@ -3,7 +3,7 @@ const parse = require('date-fns/parse');
 const eachDay = require('date-fns/each_day');
 const isLastDayOfMonth = require('date-fns/is_last_day_of_month')
 
-let fakeSeanGraphDataGenerator = (begDate, endDate) => {
+let dateAppliedGraphDataGenerator = (begDate, endDate) => {
   // let beginningDate = '08/15/17';
   // let todayDate = new Date();
   let tempArr = [];
@@ -38,7 +38,7 @@ let fakeSeanGraphDataGenerator = (begDate, endDate) => {
   return outputArr;
 };
 
-module.exports = fakeSeanGraphDataGenerator;
+module.exports = dateAppliedGraphDataGenerator;
 
 
 
