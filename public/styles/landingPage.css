@@ -1,0 +1,34 @@
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+}
+.landingPage {
+  background-image: url('../assets/testOverflow.png');
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+  padding: 35px;
+}
+
+.hiddenForm {
+  display: none;
+}
+
+.test {
+  /*margin-top: 15%;*/
+  text-align: center;
+  /*border: solid;*/
+  font-family: lato;
+  border-width: 2px;
+  border-color: #4d7198;
+  border-radius: 15px;
+  background: rgba(255,255,255,.4);
+  color: #16687c;
+  padding: 15px;
+  min-width: 250px;
+  max-width: 400px;
+  float:left;
+}
