@@ -115,31 +115,33 @@ export default class MainDrawer extends React.Component {
           </Button>
         </div>
 
-        <Drawer width={'70%'} openSecondary={true} open={this.state.open} style={{'display': 'flex'}}>
-          <Button
-            style={{'display':'inline', 'width':'16px', 'padding':'0px', 'height': window.innerHeight,'position': 'relative'}}
-            attached="top"
-            onClick={this.closeDrawer}
-          >
-            <Icon
-              name="right chevron"
-              style={{'position': 'relative', 'top': (window.innerHeight*2/5)}}
+        <Drawer width={'70%'} openSecondary={true} open={this.state.open}>
+          <div style={{'display': 'flex'}}>
+            <Button
+              style={{'display':'inline', 'width':'16px', 'padding':'0px', 'height': window.innerHeight,'position': 'relative'}}
+              attached="top"
+              onClick={this.closeDrawer}
+            >
+              <Icon
+                name="right chevron"
+                style={{'position': 'relative', 'margin': '0px', 'top': (window.innerHeight*2/5)}}
+              />
+              <Icon
+                name="right chevron"
+                style={{'position': 'relative',  'margin': '0px', 'top': (window.innerHeight*3/5)}}
+              />
+            </Button>
+            <AppDrawer
+              application={this.props.application}
+              getApplicationsFromDB={this.props.getApplicationsFromDB}
+              stages_settings={this.props.stages_settings}
+              stageNameToColorHash={this.props.stageNameToColorHash}
+              updateOneAppStage={this.props.updateOneAppStage}
+              selectedAppIdx={this.props.selectedAppIdx}
+              updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
+              attemptWebScrape={this.props.attemptWebScrape}
             />
-            <Icon
-              name="right chevron"
-              style={{'position': 'relative', 'top': (window.innerHeight*3/5)}}
-            />
-          </Button>
-          <AppDrawer
-            application={this.props.application}
-            getApplicationsFromDB={this.props.getApplicationsFromDB}
-            stages_settings={this.props.stages_settings}
-            stageNameToColorHash={this.props.stageNameToColorHash}
-            updateOneAppStage={this.props.updateOneAppStage}
-            selectedAppIdx={this.props.selectedAppIdx}
-            updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
-            attemptWebScrape={this.props.attemptWebScrape}
-          />
+          </div>
         </Drawer>
       </div>
     );
@@ -160,4 +162,3 @@ MainDrawer.propTypes = {
   updateOneKeyValPairInFE: PropTypes.func,
   attemptWebScrape: PropTypes.func,
 };
-
