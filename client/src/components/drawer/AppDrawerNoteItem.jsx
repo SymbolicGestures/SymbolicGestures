@@ -44,7 +44,7 @@ class AppDrawerNoteItem extends React.Component {
           <TextArea
             autoHeight
             placeholder='Try adding multiple lines'
-            style={{ minHeight: 100 }}
+            style={{ minHeight: 300 }}
             value={this.state.note || ''}
             onChange={this.handleChange}
             onBlur={this.handleBlur}

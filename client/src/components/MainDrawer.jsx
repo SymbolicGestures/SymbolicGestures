@@ -118,7 +118,7 @@ export default class MainDrawer extends React.Component {
         <Drawer width={'70%'} openSecondary={true} open={this.state.open}>
           <div style={{'display': 'flex'}}>
             <Button
-              style={{'display':'inline', 'width':'16px', 'padding':'0px', 'height': window.innerHeight,'position': 'relative'}}
+              style={{'display':'inline', 'width':'30px', 'padding':'0px', 'height': window.innerHeight,'position': 'relative'}}
               attached="top"
               onClick={this.closeDrawer}
             >

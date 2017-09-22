@@ -26,6 +26,9 @@ class AppDrawer extends React.Component {
   render() {
     return (
       <div className={styles.drawer}>
+        <h1
+          style={{"color": "black", "marginLeft": "10px"}}
+          >{this.props.application.company_name}</h1>
         <AppDrawerInfo
           application={this.props.application}
           getApplicationsFromDB={this.props.getApplicationsFromDB}
@@ -43,24 +46,24 @@ class AppDrawer extends React.Component {
             selectedAppIdx={this.props.selectedAppIdx}
             updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
           />
-          <AppDrawerContact
-            application={this.props.application}
-            getApplicationsFromDB={this.props.getApplicationsFromDB}
-            selectedAppIdx={this.props.selectedAppIdx}
-            updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
-          />
+          <div>
+            <AppDrawerContact
+              application={this.props.application}
+              getApplicationsFromDB={this.props.getApplicationsFromDB}
+              selectedAppIdx={this.props.selectedAppIdx}
+              updateOneKeyValPairInFE={this.props.updateOneKeyValPairInFE}
+            />
+            <FlatButton
+              label="Delete App"
+              style={{ 'float': 'right', 'color': 'red', opacity: .2 }}
+              primary={true}
+              keyboardFocused={true}
+              onClick={this.deleteApplication}
+            />
+          </div>
         </div>
         <div>
           {/*<AppDrawerHistory application={this.props.application} />*/}
-        </div>
-        <div>
-          <FlatButton
-            label="Delete App"
-            style={{ 'float': 'right', 'color': 'red', opacity: .2 }}
-            primary={true}
-            keyboardFocused={true}
-            onClick={this.deleteApplication}
-          />
         </div>
       </div>
     );

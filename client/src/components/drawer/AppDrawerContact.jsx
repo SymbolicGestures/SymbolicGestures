@@ -106,7 +106,12 @@ class AppDrawerContact extends React.Component {
       <div className={styles.contacts}>
         <h1>Contacts</h1>
         <div className={styles.contactInfo}>
-          <RaisedButton label="Add Contact" onClick={this.handleOpen} primary={true} />
+          <RaisedButton
+            label="Add Contact"
+            onClick={this.handleOpen}
+            primary={true}
+            style={{"padding": "10px 100px", "boxShadow": "unset"}}
+          />
           <Dialog
             title="Enter Contact Info"
             actions={actions}
@@ -176,10 +181,6 @@ class AppDrawerContact extends React.Component {
                 }
               })}
             </div>
-
-
-
-
             <a className="left carousel-control" href="#myCarousel" data-slide="prev" style={{background:'none'}}>
               <span className="glyphicon glyphicon-chevron-left" style={{color: 'var(--headers-bg-color)'}}></span>
               <span className="sr-only">Previous</span>
@@ -190,11 +191,6 @@ class AppDrawerContact extends React.Component {
             </a>
           </div>
         </div>
-
-
-
-
-
       </div>
     );
   }

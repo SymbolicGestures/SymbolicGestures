@@ -120,7 +120,7 @@
 .contacts {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
   text-align: center;
-  width: 35%;
+  width: 100%;
   margin-top: 10px;
   /*height: 305px;*/
   align-self: flex-start;

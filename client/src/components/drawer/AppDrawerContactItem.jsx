@@ -72,7 +72,9 @@ class AppDrawerContactItem extends React.Component {
     return (
       <div className={styles.contact}>
         <Card>
-          <Card.Content>
+          <Card.Content
+            style={{"minHeight": '166px'}}
+            >
             <Card.Header>
               <Icon style={{ opacity: .1 }} link name='close' onClick={this.handleDeleteContact} />
             </Card.Header>
