@@ -46,5 +46,5 @@ TableCellWArrowIcon.propTypes = {
   closeDrawer: PropTypes.func,
   application: PropTypes.array,
   idx: PropTypes.number,
-  selectedAppIdxForArrowIcon: PropTypes.func,
+  selectedAppIdxForArrowIcon: PropTypes.string,
 };

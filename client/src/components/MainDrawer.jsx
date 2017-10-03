@@ -150,11 +150,11 @@ export default class MainDrawer extends React.Component {
 
 MainDrawer.propTypes = {
   application: PropTypes.object,
-  isDrawerOpen: PropTypes.func,
+  isDrawerOpen: PropTypes.bool,
   closeDrawer: PropTypes.func,
   getApplicationsFromDB: PropTypes.func,
   setSelectAppToNewApp: PropTypes.func,
-  stages_settings: PropTypes.object,
+  stages_settings: PropTypes.array,
   stageNameToColorHash: PropTypes.object,
   updateOneAppStage: PropTypes.func,
   selectedAppIdx: PropTypes.number,

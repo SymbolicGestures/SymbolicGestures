@@ -160,7 +160,7 @@ class AppDrawerContact extends React.Component {
               {this.props.application.contacts.map((contact, index) => {
                 if (index === 0) {
                   return (
-                    <div className="item active">
+                    <div className="item active" key={index}>
                       <AppDrawerContactItem
                         contact={contact}
                         key={index}
@@ -170,7 +170,7 @@ class AppDrawerContact extends React.Component {
                   );
                 } else {
                   return (
-                    <div className="item">
+                    <div className="item" key={index}>
                       <AppDrawerContactItem
                         contact={contact}
                         key={index}
