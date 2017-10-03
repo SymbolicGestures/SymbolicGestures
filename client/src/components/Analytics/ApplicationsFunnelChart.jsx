@@ -77,7 +77,6 @@ export default class ApplicationsFunnelChart extends React.Component{
         converted[3].push('#9256a0');
         converted[4].push('#0da17d');
 
-        console.log('converted : ',converted)
         return converted
       })
       .then((data) => {
