@@ -6,7 +6,7 @@
     "start": "node server",
     "server-dev": "nodemon server",
     "test": "NODE_ENV=test grunt test",
-    "build": "webpack --config webpack.config.babel.js --watch",
+    "build": "webpack --config webpack.config.babel.js",
     "build-dep": "webpack --config webpack.dev.config.babel.js --watch",
     "knex": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
@@ -44,7 +44,7 @@
     "knex": "^0.12.9",
     "material-ui": "^0.19.1",
     "material-ui-color-picker": "^1.0.1",
-    "moment": "^2.18.1",
+    "moment": "^2.24.0",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",

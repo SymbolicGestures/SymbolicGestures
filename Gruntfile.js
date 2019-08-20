@@ -25,7 +25,7 @@ module.exports = function(grunt) {
           password: config.connection.password,
           host: config.connection.host,
           port: config.connection.port,
-          database: 'template1'
+          database: 'thesis'
         },
         name: config.connection.database
       }
@@ -35,7 +35,6 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-eslint');
-  grunt.loadNpmTasks('grunt-pg');
 
   grunt.registerTask('default', ['eslint']);
   grunt.registerTask('test', ['mochaTest']);
