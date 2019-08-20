@@ -1,6 +1,8 @@
 {
   "name": "SymbolicGestures",
-  "scripts": {},
+  "scripts": {
+    "build": "webpack --config webpack.config.babel.js"
+  },
   "env": {
     "FACEBOOK_CALLBACK_URL": {
       "required": true
