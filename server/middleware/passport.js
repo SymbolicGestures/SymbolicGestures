@@ -139,7 +139,7 @@ passport.use('linkedin', new LinkedInStrategy({
   clientID: config.LinkedIn.consumerKey,
   clientSecret: config.LinkedIn.consumerSecret,
   callbackURL: config.LinkedIn.callbackURL,
-  scope: ['r_emailaddress', 'r_basicprofile']
+  scope: ['r_emailaddress', 'r_liteprofile']
 },(accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('linkedin', profile, done))
 );
 
