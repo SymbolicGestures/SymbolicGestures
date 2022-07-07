@@ -44,7 +44,7 @@
     "knex": "^0.12.9",
     "material-ui": "^0.19.1",
     "material-ui-color-picker": "^1.0.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
